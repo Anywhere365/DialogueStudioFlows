@@ -1,2 +1,2 @@
 # what this ds flow is about 
-+ requirements + intital config
+also intital config and requirements
