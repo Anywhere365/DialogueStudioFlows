@@ -2,7 +2,7 @@
 In above directories you can find HowTo- and Solution- flows and documentation for Anywhere365 Dialogue Studio.
 
 ## HowTo flows
-HowTo flows show you working building blocks of Anywhere365 Dialogue Studio flows. Examples HowTo flows are database, Sharepoint or file access, Event bus node or Incoming call node. HowTo flows are a handson start for quickly learning Dialogue Studio.
+HowTo flows show you working building blocks of Anywhere365 Dialogue Studio flows. Examples HowTo flows are database, Sharepoint or file access, Dialogue Studio Event bus node or Incoming call node. HowTo flows are a handson start for quickly learning Dialogue Studio.
 
 ## Solution flows
 Solution flows show you full working end to end Anywhere365 Dialogue Studio flows. These solution flows give you a working solution for a customer demo or are a starting point for your custom Anywhere365 Dialogue Studio integration or solution. 
