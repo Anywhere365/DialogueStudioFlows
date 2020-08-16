@@ -2,8 +2,9 @@
 ## Anywhere365 Dialogue Studio
 ## Flow description
 Standard 'press 1 for ..' ivr flow. With 3 skill choices: Sales, Support and Other. Menu will automatically repeat after 8 second pause. Press 9 to repeat the menu. Timeout after 60 second no caller response then bye message and disconnect action.
+This is a good myFirst flow to test the installation and environment.
 
-
+![standard simple ivr flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/DefaultUCCsimple_solution/resource/a365-ds-standard-ivr-flow.png?raw=true)
 
 ## Incoming - node
 Accepts incoming voice call. Configure Anywhere365 Server and UCC name properties (double click).
