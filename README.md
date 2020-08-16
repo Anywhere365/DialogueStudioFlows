@@ -13,5 +13,7 @@ How to use above flow content? You can clone this full Github repository and get
 Each flow typically needs some configuration e.g. connect to your unique Anywhere365 server, ucc or database.
 Flows may have requirements on other nodes that you may need to add to the Palette. In Dialogue Studio go to hamburger menu, top right, then choose Manage Palette, then Install tab, type the name of the new node you want to add, e.g. SQL.
 
+DefaultUCCsimple_Solution is a good choice as you first flow and to test your new Dialogue Studio deployment.
+
 ## DISCLAIMER:
 All code here is NOT part of your licensed and supported Anywhere365 software. All information on this Github repository is available to give you a quickstart and sample code for your learning.
