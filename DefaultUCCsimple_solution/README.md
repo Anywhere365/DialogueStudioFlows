@@ -6,6 +6,18 @@ This is a good myFirst flow to test the installation and environment.
 
 ![standard simple ivr flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/DefaultUCCsimple_solution/resource/a365-ds-standard-ivr-flow.png?raw=true)
 
+## How to import in Anywhere365 Dialogue Studio
+- Goto hamburger menu, top right, in Dialogue Studio
+- Choose Import
+- Select the .json file downloaded from github  or
+- Paste the content from the .json file on github
+
+## Todo after Import
+ - Change Server name and ucc name in Incoming node
+ - Make sure you have configured same skills in your UCC (Sharepoint) as mentioned in Enqueue node
+ - optional change Say and Ask&Wait messages or Skill names
+ - Configure Agents, AgentSkills, Business hours in Sharepoint
+
 ## Incoming - node
 Accepts incoming voice call. Configure Anywhere365 Server and UCC name properties (double click).
 
@@ -33,9 +45,3 @@ We did not get your choice, please call back later, bye
 
 ## Disconnect
 Disconnect, see you later.
-
-## Todo after Import
- - Change Server name and ucc name in Incoming node
- - Make sure you have configured same skills in your ucc as mentioned in Enqueue node
- - optional change Say and Ask&Wait messages or Skill names
- - Configure Agents, AgentSkills, Business hours in Sharepoint
