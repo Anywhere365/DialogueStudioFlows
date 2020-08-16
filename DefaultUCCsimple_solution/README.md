@@ -1,10 +1,10 @@
-# Anywhere365 Dialogue Studio
-## Standard simple IVR flow - nocode
-## flow description
+# Standard simple IVR flow - nocode
+## Anywhere365 Dialogue Studio
+## Flow description
 Standard 'press 1 for ..' ivr flow. With 3 skill choices: Sales, Support and Other. Menu will automatically repeate after 8 second pause. Press 9 to repeate the menu. Timeout after 60 second no caller response then bye message and disconnect action.
 
 ## Incoming - node
-Accepts incoming voice call. Configure Server and UCC name.
+Accepts incoming voice call. Configure Anywhere365 Server and UCC name properties (double click).
 
 ## Say: Welcome - node
 Announce welcome message
@@ -33,6 +33,6 @@ Disconnect, see you later.
 
 ## Todo after Import
  - Change Server name and ucc name in Incoming node
- - Make sure you have configured same skills in your ucc
- - optional change Say and Ask&Wait messages
+ - Make sure you have configured same skills in your ucc as mentioned in Enqueue node
+ - optional change Say and Ask&Wait messages or Skill names
  - Configure Agents, AgentSkills, Business hours in Sharepoint
