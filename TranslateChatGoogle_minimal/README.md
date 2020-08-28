@@ -21,3 +21,6 @@ Easiest minimal example for translation chat bot. So you chat in English languag
 
 ## Todo after Import
 - Change Server name and ucc name in Incoming node
+
+## Google Translate
+- supported languages, see [Google Cloud](https://cloud.google.com/translate/docs/languages)
