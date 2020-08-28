@@ -16,7 +16,7 @@ Easiest minimal example for translation chat bot. So you chat in English languag
 - Paste the content from the .json file on github
 
 ## Requirements
-- Configure Anywhere365 Translate Google, see [Golive]: (https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_translation.html)
+- Configure Anywhere365 Translate Google, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_translation.html)
 
 
 ## Todo after Import
