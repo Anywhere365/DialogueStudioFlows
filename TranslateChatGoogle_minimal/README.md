@@ -17,7 +17,7 @@ Easiest minimal example for translation chat bot. So you chat in English languag
 
 ## Requirements
 - Configure Anywhere365 Translate Google, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_translation.html)
-
+- Make sure you have configured a Chat endpoint for your ucc, see [Golive](https://golive.anywhere365.io/platform_elements/core/userguide/ucc_config_endpoints.html)
 
 ## Todo after Import
 - Change Server name and ucc name in Incoming node
