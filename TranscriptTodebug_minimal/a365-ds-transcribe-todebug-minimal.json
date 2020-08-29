@@ -1,0 +1,137 @@
+[
+    {
+        "id": "9f052b33.89d898",
+        "type": "tab",
+        "label": "Transcript Minimal, to debug",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9984ffd1.f6d84",
+        "type": "any-red-incoming-call",
+        "z": "9f052b33.89d898",
+        "name": "",
+        "config": "5ace9665.55c5c8",
+        "filtertype": "audiovideo",
+        "x": 180,
+        "y": 60,
+        "wires": [
+            [
+                "4d05d33d.dfcbd4"
+            ]
+        ]
+    },
+    {
+        "id": "f358df26.2ea7a8",
+        "type": "any-red-transcriptor",
+        "z": "9f052b33.89d898",
+        "name": "",
+        "enable": true,
+        "culture": "en-US",
+        "final": true,
+        "x": 530,
+        "y": 140,
+        "wires": [
+            [
+                "c4b2e756.bfd03"
+            ],
+            [
+                "c4b2e756.bfd03"
+            ]
+        ]
+    },
+    {
+        "id": "c4b2e756.bfd03",
+        "type": "debug",
+        "z": "9f052b33.89d898",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 690,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "466aad18.c0f91c",
+        "type": "any-red-ask-wait-input",
+        "z": "9f052b33.89d898",
+        "name": "",
+        "saytext": "describe and speak your question and end with a keypress",
+        "saymethod": "Default",
+        "voice": "",
+        "dtmftype": "DtmfNumChars",
+        "tone": "1",
+        "tonecount": "1",
+        "timeout": "99",
+        "playonce": true,
+        "repeatdelay": "5",
+        "speechphrase": "",
+        "speechculture": "en-US",
+        "dataType": "str",
+        "x": 500,
+        "y": 60,
+        "wires": [
+            [
+                "d1c54988.7706d8"
+            ],
+            [
+                "4d05d33d.dfcbd4"
+            ]
+        ]
+    },
+    {
+        "id": "4d05d33d.dfcbd4",
+        "type": "any-red-say",
+        "z": "9f052b33.89d898",
+        "name": "",
+        "text": "hello welcome to voice ticket service",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 300,
+        "y": 140,
+        "wires": [
+            [
+                "466aad18.c0f91c",
+                "f358df26.2ea7a8"
+            ]
+        ]
+    },
+    {
+        "id": "d1c54988.7706d8",
+        "type": "any-red-say",
+        "z": "9f052b33.89d898",
+        "name": "",
+        "text": "your case is recorded, thank you for calling bye",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 730,
+        "y": 60,
+        "wires": [
+            [
+                "2674834a.df422c"
+            ]
+        ]
+    },
+    {
+        "id": "2674834a.df422c",
+        "type": "any-red-disconnect",
+        "z": "9f052b33.89d898",
+        "name": "",
+        "x": 930,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "5ace9665.55c5c8",
+        "type": "any-red-config",
+        "z": "",
+        "active": true,
+        "ucc": "ucc_app34_william"
+    }
+]
