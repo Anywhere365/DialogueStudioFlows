@@ -1,13 +1,11 @@
-### Minimal Chat translate Bot for Teams and Skype
+### Minimal Transcript bot or flow for Teams and Skype
 ## Anywhere365 Dialogue Studio
 ## Flow description
-Easiest minimal example for translation chat bot. So you chat in English language and get same text back translated to other language. Example uses Anywhere365 Dialogue Studio Google translate node. Initial set to English to French translation. Each chat/translation is a new session and gets a new dialogueid because of the Disconnect node.
+Easiest minimal example for transcript bot or flow (Speech to Text). After the welcome announcement and prompt you speak in English language (configurable). Close with a keypress. The text from the callers speaking is written to the Dialogue Studio debug area for your examination. Click on the bug icon, top right side of the Dialogue Studio screen. This minimal example uses Anywhere365 Dialogue Studio transcriptor node for Google.
 
-![translate chat minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranslateChatGoogle_minimal/resources/a365-ds-translate-chat-minimal.png?raw=true)
+![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranscriptTodebug_minimal/resources/a365-ds-transcript-flow-minimal.png?raw=true)
 
-![translate chat chat minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranslateChatGoogle_minimal/resources/a365-ds-translate-chat-chat-minimal.png?raw=true)
-
-![translate chat debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranslateChatGoogle_minimal/resources/a365-ds-translate-chat-debug-minimal.png?raw=true)
+![transcript debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranslateChatGoogle_minimal/resources/a365-ds-translate-chat-chat-minimal.png?raw=true)
 
 ## How to import in Anywhere365 Dialogue Studio
 - Goto hamburger menu, top right, in Dialogue Studio
@@ -16,11 +14,14 @@ Easiest minimal example for translation chat bot. So you chat in English languag
 - Paste the content from the .json file on github
 
 ## Requirements
-- Configure Anywhere365 Translate for Google, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_translation.html)
-- Make sure you have configured a Chat endpoint for your ucc, see [Golive](https://golive.anywhere365.io/platform_elements/core/userguide/ucc_config_endpoints.html)
+- Configure Anywhere365 Transcription for Google, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_transcript.html)
 
 ## Todo after Import
 - Change Server name and ucc name in Incoming node
 
-## Google Translate
-- supported languages, see [Google Cloud](https://cloud.google.com/translate/docs/languages)
+## Next steps
+- import a database node from the Manage Pallete menu (SQL Server, Postgres, MySQL, etc)
+- write the dialogueid, receivedat (datetime), sipuri and transcript to SQL
+
+## Google Transcription
+- Google speech to text, see [Google Cloud](https://cloud.google.com/speech-to-text)
