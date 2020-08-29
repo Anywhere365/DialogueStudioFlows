@@ -5,7 +5,7 @@ Easiest minimal example for transcript bot or flow (Speech to Text). After the w
 
 ![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranscriptTodebug_minimal/resources/a365-ds-transcript-flow-minimal.png?raw=true)
 
-![transcript debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranslateChatGoogle_minimal/resources/a365-ds-translate-chat-chat-minimal.png?raw=true)
+![transcript debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranscriptTodebug_minimal/resources/a365-ds-transcript-debug-minimal.png?raw=true)
 
 ## How to import in Anywhere365 Dialogue Studio
 - Goto hamburger menu, top right, in Dialogue Studio
