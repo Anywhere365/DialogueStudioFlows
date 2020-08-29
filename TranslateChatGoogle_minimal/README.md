@@ -1,7 +1,7 @@
 ### Minimal Chat translate Bot for Teams and Skype
 ## Anywhere365 Dialogue Studio
 ## Flow description
-Easiest minimal example for translation chat bot. So you chat in English language and get same text back translated to other language. Example uses Anywhere365 Dialogue Studio Google translate node. Initial set to English to French translation.
+Easiest minimal example for translation chat bot. So you chat in English language and get same text back translated to other language. Example uses Anywhere365 Dialogue Studio Google translate node. Initial set to English to French translation. Each chat/translation is a new session and gets a new dialogueid because of the Disconnect node.
 
 ![translate chat minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranslateChatGoogle_minimal/resources/a365-ds-translate-chat-minimal.png?raw=true)
 
@@ -16,7 +16,7 @@ Easiest minimal example for translation chat bot. So you chat in English languag
 - Paste the content from the .json file on github
 
 ## Requirements
-- Configure Anywhere365 Translate Google, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_translation.html)
+- Configure Anywhere365 Translate for Google, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_translation.html)
 - Make sure you have configured a Chat endpoint for your ucc, see [Golive](https://golive.anywhere365.io/platform_elements/core/userguide/ucc_config_endpoints.html)
 
 ## Todo after Import
