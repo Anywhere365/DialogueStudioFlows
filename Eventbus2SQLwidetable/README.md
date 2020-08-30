@@ -20,7 +20,7 @@ Dialogue Studio includes an Event Bus node. This node gives detail events that h
 - Paste the content from the .json file on github
 
 ## Requirements
-- SQL server database, any version, i used SQL2019 CU5 on Ubuntu 18.04 in a Windows10 WSL2 Linux container
+- SQL Server database, any version, i used SQL2019 CU5 on Ubuntu 18.04 in a Windows10 WSL2 Linux container
 - Add a SQL node to the Dialogue Studio palette, i used 'node-red-contrib-mssql-plus' [mssql-plus](https://flows.nodered.org/node/node-red-contrib-mssql-plus)
 
 ## Todo before Import
@@ -33,4 +33,4 @@ Dialogue Studio includes an Event Bus node. This node gives detail events that h
 - Change SQL connection properties
 
 ## Notes
-The UCC IVR call flow on top in this Dialogue Studio flow is just for generating the events. Edit to your needs.  
+The UCC IVR call flow on top in this Dialogue Studio flow is just for generating the events. Edit to your needs. If you just want the standard Sharepoint based IVR flow you can change config.xml set identity is false for the nodered plugin. 
