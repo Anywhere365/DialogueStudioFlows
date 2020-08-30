@@ -34,3 +34,6 @@ Dialogue Studio includes an Event Bus node. This node gives detail events that h
 
 ## Notes
 The UCC IVR call flow on top in this Dialogue Studio flow is just for generating the events. Edit to your needs. If you just want the standard Sharepoint based IVR flow you can change config.xml set identity is false for the nodered plugin. 
+
+## Next steps
+If you want to extend this example for production you may want to add columns to the sql table. e.g. for hunts, qm/agent rating, forwards etc. For inspiration you can view the [PowerBI_Dialogue table](https://golive.anywhere365.io/platform_elements/powerbi_integration/power_bi_integration_technical_overview.html). Same for the callsimple view. e.g. you can add formatted xxx-duration columns that display in min:sec format. Remember sql view columns are only executed when you reference them in a query.

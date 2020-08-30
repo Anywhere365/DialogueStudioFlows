@@ -1,5 +1,5 @@
-### Minimal Transcript bot or flow for Teams and Skype
-## Anywhere365 Dialogue Studio
+## Minimal Transcript bot or flow for Teams and Skype
+### Anywhere365 Dialogue Studio
 ## Flow description
 Easiest minimal example for transcript bot or flow (Speech to Text). After the welcome announcement and prompt you speak in English language (configurable). Close with a keypress. The text from the callers speaking is written to the Dialogue Studio debug area for your examination. Click on the bug icon, top right side of the Dialogue Studio screen. This minimal example uses Anywhere365 Dialogue Studio transcriptor node for Google.
 
