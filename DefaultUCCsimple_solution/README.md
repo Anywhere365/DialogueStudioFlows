@@ -1,5 +1,5 @@
-# Standard simple IVR flow - nocode
-## Anywhere365 Dialogue Studio
+## Standard simple IVR flow - nocode
+### Anywhere365 Dialogue Studio
 ## Flow description
 Standard 'press 1 for ..' ivr flow. With 3 skill choices: Sales, Support and Other. Menu will automatically repeat after 8 second pause. Press 9 to repeat the menu. Timeout after 60 second no caller response then bye message and disconnect action.
 This is a good myFirst flow to test the installation and environment.
