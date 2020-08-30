@@ -1,7 +1,7 @@
-### Minimal Transcript bot or flow for Teams and Skype
+### Write Anywhere365 UCC call events to SQL Server
 ## Anywhere365 Dialogue Studio
 ## Flow description
-Easiest minimal example for transcript bot or flow (Speech to Text). After the welcome announcement and prompt you speak in English language (configurable). Close with a keypress. The text from the callers speaking is written to the Dialogue Studio debug area for your examination. Click on the bug icon, top right side of the Dialogue Studio screen. This minimal example uses Anywhere365 Dialogue Studio transcriptor node for Google.
+Dialogue Studio includes the Event Bus node. This node gives detail events that happen in a UCC flow. Examples are like CallStart, SkillChosen, AgentJoined, etc. This flow writes all the events for a single call to a single wide row in SQL Server. The CallStart does an sql INSERT, subsequent events do sql UPDATE's. Multiple green Debug nodes allow you to show optional proces information in the Dialogue Studio debug area. The callsimple table in SQL has columns for a simple call scenario. The callsimple view adds calculated columns for wait-, talk- and call- duration.
 
 ![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranscriptTodebug_minimal/resources/a365-ds-transcript-flow-minimal.png?raw=true)
 
