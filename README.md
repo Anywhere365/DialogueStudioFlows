@@ -1,5 +1,7 @@
 # DialogueStudioFlows
-In above directories you can find HowTo- and Solution- flows and documentation for Anywhere365 Dialogue Studio.
+In above directories you can find HowTo- and Solution- flows, documentation and downloads for Anywhere365 Dialogue Studio.
+
+![standard simple ivr flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/DefaultUCCsimple_solution/resource/a365-ds-standard-ivr-flow.png)
 
 ## HowTo flows
 Shorter HowTo flows show you working building blocks of Anywhere365 Dialogue Studio flows. Examples HowTo flows are database, Sharepoint or file access, Dialogue Studio Event bus node or Incoming call node. HowTo flows are a handson start for quickly learning Dialogue Studio.
