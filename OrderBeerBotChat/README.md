@@ -27,4 +27,4 @@ Uses the msg.hello property
 forwards the customer typed text or (timeout) repeats earlier Say: how many beer?
 
 ## 6 or six or other node
-chechs values and forwards to message and disconnect node
+match values and forwards to message and disconnect node
