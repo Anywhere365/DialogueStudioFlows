@@ -9,7 +9,7 @@ Then on the left side we have the 'InDialogue Started (Chat)' node. This trigger
 
 To enable continuous chat each participant has 2 loops attached. One loop to wait for and handle an incoming chat, translate and put the translated result in a flow level variable. A second loop to check if there is a new (translated) chat from the other participant, if so use the flow level variabele in the Say node to put it in the chat dialogue. 
 Chats are always forwarded and the translation added, to the other participant. If a participant does not type for 60 seconds a 'wazzup' for customer or 'sleepy' text is added in the specific dialogue. 
-By default this flow comes somewhat chatty, that is to signal what code is executing, nice during development. After the Delay nodes there are empty Function nodes, they are just there to visualise the spagetti wires better. 
+By default this flow comes somewhat chatty, that is to signal what code is executing, nice during development. After the Delay nodes there is an empty Function node, they are there just to visualize the spagetti wires better.
 
 ![agent chat with translate flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/AgentChatwithTranslate/resources/a365-ds-agentchattranslate-sceenshot.png)
 
@@ -22,7 +22,7 @@ By default this flow comes somewhat chatty, that is to signal what code is execu
 
 ## Requirements
 - your Google translate APIkey in Sharepoint, see Golive
-- UCC chatskill endpoint, chatskill and agent assigned
+- UCC chat modality endpoint, chatskill and agent assigned
 
 ## Todo after Import
 - Change Server name and ucc name in Incoming and InDialogue node
