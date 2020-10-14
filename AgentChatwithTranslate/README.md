@@ -1,4 +1,4 @@
-## Customer chat with Agent and bidirectional translate
+# Customer chat with Agent and bidirectional translate
 ### Anywhere365 Dialogue Studio
 ## Flow description
 This Anywhere365 Dialogue Studio flow describes minimal two way translation chat flow between Customer and Agent. We use the Anywhere365 build in Translate node and the Google Translation service.
