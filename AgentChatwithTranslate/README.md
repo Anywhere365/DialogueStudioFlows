@@ -3,7 +3,7 @@
 ## Flow description
 This Anywhere365 Dialogue Studio flow describes minimal translation chat flow between Customer and Agent. We use the Anywhere365 build in Translate node and the Google Translation service.
 
-![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/Eventbus2SQLwidetable/resources/a365-ds-event2sql-flow.png)
+![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/AgentChatwithTranslate/resources/a365-ds-agentchattranslate-sceenshot.png)
 
 
 ## How to import in Anywhere365 Dialogue Studio
