@@ -28,3 +28,7 @@ forwards the customer typed text or (timeout) repeats earlier Say: how many beer
 
 ## 6 or six or other node
 match values and forwards to message and disconnect node
+
+## Next steps
+cleanup greeting, strip 'sip:' and '@domainname'
+limit # timeouts, eg Disconnect after 3 timeouts

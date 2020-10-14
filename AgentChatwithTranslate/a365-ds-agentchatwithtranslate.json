@@ -1,0 +1,736 @@
+[
+    {
+        "id": "8329c151.065a7",
+        "type": "tab",
+        "label": "Chat Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b1c4f1c8.aa193",
+        "type": "any-red-incoming-call",
+        "z": "8329c151.065a7",
+        "name": "",
+        "config": "5ace9665.55c5c8",
+        "filtertype": "chat",
+        "x": 180,
+        "y": 60,
+        "wires": [
+            [
+                "5a64c007.a1e9c"
+            ]
+        ]
+    },
+    {
+        "id": "5a64c007.a1e9c",
+        "type": "any-red-wait-for-chatmessage",
+        "z": "8329c151.065a7",
+        "timeout": 30,
+        "x": 460,
+        "y": 60,
+        "wires": [
+            [
+                "626fb131.04bab",
+                "d2a2bb1d.69081"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "626fb131.04bab",
+        "type": "any-red-say",
+        "z": "8329c151.065a7",
+        "name": "",
+        "text": "hi friend",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 690,
+        "y": 60,
+        "wires": [
+            [
+                "d2a2bb1d.69081",
+                "8b25b985.c0c98"
+            ]
+        ]
+    },
+    {
+        "id": "d2a2bb1d.69081",
+        "type": "debug",
+        "z": "8329c151.065a7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 890,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8b25b985.c0c98",
+        "type": "any-red-action",
+        "z": "8329c151.065a7",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "chatskill",
+        "skillDataType": "str",
+        "x": 930,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "7d01fa89.80fa8c",
+        "type": "any-red-indialoguestarted",
+        "z": "8329c151.065a7",
+        "name": "",
+        "config": "5ace9665.55c5c8",
+        "filtertype": "chat",
+        "x": 170,
+        "y": 380,
+        "wires": [
+            [
+                "654b87d1.195ca8",
+                "e28fe311.543608"
+            ],
+            [
+                "6e2f3c00.3623cc",
+                "d335001b.1eb6b8"
+            ]
+        ]
+    },
+    {
+        "id": "654b87d1.195ca8",
+        "type": "any-red-wait-for-chatmessage",
+        "z": "8329c151.065a7",
+        "timeout": 30,
+        "x": 220,
+        "y": 221,
+        "wires": [
+            [
+                "7f0e0afb.91132c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7f0e0afb.91132c",
+        "type": "any-red-say",
+        "z": "8329c151.065a7",
+        "name": "",
+        "text": "wazzup?",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 500,
+        "y": 181,
+        "wires": [
+            [
+                "308ca5d1.845942"
+            ]
+        ]
+    },
+    {
+        "id": "308ca5d1.845942",
+        "type": "any-red-wait-for-chatmessage",
+        "z": "8329c151.065a7",
+        "timeout": "60",
+        "x": 540,
+        "y": 231,
+        "wires": [
+            [
+                "efdaa360.4c62b",
+                "fdd064f8.a45988"
+            ],
+            [
+                "7f0e0afb.91132c"
+            ]
+        ]
+    },
+    {
+        "id": "588e76ad.19fe8",
+        "type": "debug",
+        "z": "8329c151.065a7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1010,
+        "y": 226,
+        "wires": []
+    },
+    {
+        "id": "fdd064f8.a45988",
+        "type": "debug",
+        "z": "8329c151.065a7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 770,
+        "y": 186,
+        "wires": []
+    },
+    {
+        "id": "efdaa360.4c62b",
+        "type": "any-red-translate",
+        "z": "8329c151.065a7",
+        "name": "",
+        "text": "payload",
+        "dataType": "msg",
+        "source_language": "EN",
+        "source_language_dataType": "str",
+        "target_language": "NL",
+        "target_language_dataType": "str",
+        "x": 820,
+        "y": 226,
+        "wires": [
+            [
+                "588e76ad.19fe8",
+                "fa4dc7ca.3a34f"
+            ]
+        ]
+    },
+    {
+        "id": "6e2f3c00.3623cc",
+        "type": "any-red-say",
+        "z": "8329c151.065a7",
+        "name": "",
+        "text": "welcome agent",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 400,
+        "y": 573,
+        "wires": [
+            [
+                "c358b07.9b882d"
+            ]
+        ]
+    },
+    {
+        "id": "6e4cb361.9d28ec",
+        "type": "any-red-say",
+        "z": "8329c151.065a7",
+        "name": "",
+        "text": "customerTranslatedText",
+        "dataType": "flow",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 830,
+        "y": 540,
+        "wires": [
+            [
+                "8857ad63.0e102"
+            ]
+        ]
+    },
+    {
+        "id": "fa4dc7ca.3a34f",
+        "type": "function",
+        "z": "8329c151.065a7",
+        "name": "flow set",
+        "func": "let txt = msg.payload.translatedText\n\nflow.set(\"customerTranslatedText\", txt)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1020,
+        "y": 286,
+        "wires": [
+            [
+                "308ca5d1.845942"
+            ]
+        ]
+    },
+    {
+        "id": "8d9fda05.16f12",
+        "type": "inject",
+        "z": "8329c151.065a7",
+        "name": "",
+        "topic": "",
+        "payload": "startupCust",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "x": 190,
+        "y": 920,
+        "wires": [
+            [
+                "dfd86f03.1677e"
+            ]
+        ]
+    },
+    {
+        "id": "c038563a.8d17f8",
+        "type": "debug",
+        "z": "8329c151.065a7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "dfd86f03.1677e",
+        "type": "change",
+        "z": "8329c151.065a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "customerTranslatedText",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 920,
+        "wires": [
+            [
+                "c038563a.8d17f8"
+            ]
+        ]
+    },
+    {
+        "id": "c358b07.9b882d",
+        "type": "switch",
+        "z": "8329c151.065a7",
+        "name": "",
+        "property": "customerTranslatedText",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "oldCustText",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "startupCust",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "oldCustText",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 590,
+        "y": 574,
+        "wires": [
+            [
+                "78b17d8.9be2f84"
+            ],
+            [
+                "8857ad63.0e102"
+            ],
+            [
+                "8857ad63.0e102"
+            ]
+        ]
+    },
+    {
+        "id": "78b17d8.9be2f84",
+        "type": "change",
+        "z": "8329c151.065a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "oldCustText",
+                "pt": "flow",
+                "to": "customerTranslatedText",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 500,
+        "wires": [
+            [
+                "6e4cb361.9d28ec"
+            ]
+        ]
+    },
+    {
+        "id": "8857ad63.0e102",
+        "type": "delay",
+        "z": "8329c151.065a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 850,
+        "y": 580,
+        "wires": [
+            [
+                "ee49ceea.176df8"
+            ]
+        ]
+    },
+    {
+        "id": "e28fe311.543608",
+        "type": "any-red-say",
+        "z": "8329c151.065a7",
+        "name": "",
+        "text": "welcome customer",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 420,
+        "y": 374,
+        "wires": [
+            [
+                "8807e7c9.74c62"
+            ]
+        ]
+    },
+    {
+        "id": "e2ed3526.b3f73",
+        "type": "any-red-say",
+        "z": "8329c151.065a7",
+        "name": "",
+        "text": "agentTranslatedText",
+        "dataType": "flow",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 830,
+        "y": 340,
+        "wires": [
+            [
+                "62b19815.4a57"
+            ]
+        ]
+    },
+    {
+        "id": "8807e7c9.74c62",
+        "type": "switch",
+        "z": "8329c151.065a7",
+        "name": "",
+        "property": "agentTranslatedText",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "oldAgentText",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "startupAgent",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "oldAgentText",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 590,
+        "y": 374,
+        "wires": [
+            [
+                "e74c9ce.31f3c6"
+            ],
+            [
+                "62b19815.4a57"
+            ],
+            [
+                "62b19815.4a57"
+            ]
+        ]
+    },
+    {
+        "id": "e74c9ce.31f3c6",
+        "type": "change",
+        "z": "8329c151.065a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "oldAgentText",
+                "pt": "flow",
+                "to": "agentTranslatedText",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 300,
+        "wires": [
+            [
+                "e2ed3526.b3f73"
+            ]
+        ]
+    },
+    {
+        "id": "62b19815.4a57",
+        "type": "delay",
+        "z": "8329c151.065a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 850,
+        "y": 380,
+        "wires": [
+            [
+                "ccf309a8.066138"
+            ]
+        ]
+    },
+    {
+        "id": "af38bd51.1a2b6",
+        "type": "inject",
+        "z": "8329c151.065a7",
+        "name": "",
+        "topic": "",
+        "payload": "startupAgent",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 860,
+        "wires": [
+            [
+                "4d78159e.1b349c"
+            ]
+        ]
+    },
+    {
+        "id": "4d78159e.1b349c",
+        "type": "change",
+        "z": "8329c151.065a7",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "agentTranslatedText",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 860,
+        "wires": [
+            [
+                "83c7068f.198a4"
+            ]
+        ]
+    },
+    {
+        "id": "83c7068f.198a4",
+        "type": "debug",
+        "z": "8329c151.065a7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "ccf309a8.066138",
+        "type": "function",
+        "z": "8329c151.065a7",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 440,
+        "wires": [
+            [
+                "8807e7c9.74c62"
+            ]
+        ]
+    },
+    {
+        "id": "a100b2e5.3c9c38",
+        "type": "function",
+        "z": "8329c151.065a7",
+        "name": "flow set",
+        "func": "let txt = msg.payload.translatedText\n\nflow.set(\"agentTranslatedText\", txt)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 779,
+        "wires": [
+            [
+                "d335001b.1eb6b8"
+            ]
+        ]
+    },
+    {
+        "id": "b07b318c.b49178",
+        "type": "debug",
+        "z": "8329c151.065a7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 770,
+        "y": 719,
+        "wires": []
+    },
+    {
+        "id": "7bca8b96.f2a304",
+        "type": "any-red-translate",
+        "z": "8329c151.065a7",
+        "name": "",
+        "text": "payload",
+        "dataType": "msg",
+        "source_language": "NL",
+        "source_language_dataType": "str",
+        "target_language": "EN",
+        "target_language_dataType": "str",
+        "x": 580,
+        "y": 719,
+        "wires": [
+            [
+                "b07b318c.b49178",
+                "a100b2e5.3c9c38"
+            ]
+        ]
+    },
+    {
+        "id": "2b581da.31a2562",
+        "type": "debug",
+        "z": "8329c151.065a7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 530,
+        "y": 679,
+        "wires": []
+    },
+    {
+        "id": "d335001b.1eb6b8",
+        "type": "any-red-wait-for-chatmessage",
+        "z": "8329c151.065a7",
+        "timeout": "60",
+        "x": 240,
+        "y": 726,
+        "wires": [
+            [
+                "7bca8b96.f2a304",
+                "2b581da.31a2562"
+            ],
+            [
+                "ff417e8d.9044f8"
+            ]
+        ]
+    },
+    {
+        "id": "ff417e8d.9044f8",
+        "type": "any-red-say",
+        "z": "8329c151.065a7",
+        "name": "",
+        "text": "sleeping?",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 470,
+        "y": 799,
+        "wires": [
+            [
+                "d335001b.1eb6b8"
+            ]
+        ]
+    },
+    {
+        "id": "ee49ceea.176df8",
+        "type": "function",
+        "z": "8329c151.065a7",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 654,
+        "wires": [
+            [
+                "c358b07.9b882d"
+            ]
+        ]
+    },
+    {
+        "id": "5ace9665.55c5c8",
+        "type": "any-red-config",
+        "z": "",
+        "active": true,
+        "ucc": "ucc_app34_william"
+    }
+]
