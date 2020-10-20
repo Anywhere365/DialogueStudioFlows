@@ -68,7 +68,7 @@ Key Phrase extraction exerpt
 
 ## Requirements
 - Microsoft Azure subscription
-- Text analysis Key and endpoints
+- Azure text analysis key and endpoints
 
 ## Todo after Import
 - edit the custom text in the first change node on top
@@ -79,4 +79,4 @@ Key Phrase extraction exerpt
 The UCC IVR call flow on top in this Dialogue Studio flow is just for generating the events. Edit to your needs. If you just want the standard Sharepoint based IVR flow you can change config.xml set identity is false for the nodered plugin. 
 
 ## Next steps
-Happy with the result. Now create Transcript flow and use the text output for sentiment analysis. Change the debug node for a database write so you can see the result in PowerBI reports or Grafana realtime wallboard. To store all the JSON results and do trend reporting on sentiment or key phrases use free open source Elastic search and Kibana.
+Happy with the result? Now create Transcript flow and use the text output for sentiment analysis. Change the debug node for a database write so you can see the result in PowerBI reports or Grafana realtime wallboard. To store all the JSON results and do trend reporting on sentiment or key phrases use free open source Elastic search and Kibana.
