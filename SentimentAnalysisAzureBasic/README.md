@@ -10,6 +10,22 @@ Run each by manually pressing on button on left. See the result in debug area. F
 
 ![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/SentimentAnalysisAzureBasic/resources/a365-ds-azure-sentiment-simple-screenshot.png)
 
+Default custom text:
+"In their latest publication, tech consultancy giant Gartner writes about the importance of optimizing Microsoft Teams with Cloud Contact Center Platforms. Even though Contact Center integration with Microsoft Teams is vital for almost any business, Teams lacks capabilities for key use cases. See Anywhere365 on https://anywhere365.io for a great solution!"
+
+``` json
+    {
+        "sentiment": "negative",
+            "confidenceScores": {
+                "positive": 0.0,
+                "neutral": 0.03,
+                "negative": 0.97
+            },
+            "offset": 155,
+            "length": 137,
+            "text": "Even though Contact Center integration with Microsoft Teams is vital for almost any business, Teams lacks capabilities for key use cases."
+    }
+```
 
 ## How to import in Anywhere365 Dialogue Studio
 - Goto hamburger menu, top right, in Dialogue Studio
