@@ -6,7 +6,8 @@ Using Azure Cognitive Services Text Analytics a basic flow. Good to test your Az
 - sentiment analysis
 - key phrase extraction
 - named entity recognition
-Run each by manually pressing on button on left. See the result in debug area. For larger text copy the debug result to a JSON editer like VS Code. Microsoft allows you to create local Docker container with Text Analitics so your custom texts do not have to travel to the cloud but can be analysed on premisses if you prefer. The analytics cost is the same. 
+
+Run each by manually pressing on button on left. See the result in debug area. For larger text copy the debug result to a JSON editer like VS Code. Microsoft allows you to create local Docker container with Text Analytics so your custom texts do not have to travel to the cloud and can be analysed on premisses if you prefer. The analytics cost is the same. 
 
 ![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/SentimentAnalysisAzureBasic/resources/a365-ds-azure-sentiment-simple-screenshot.png)
 
