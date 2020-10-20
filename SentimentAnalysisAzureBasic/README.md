@@ -1,10 +1,14 @@
-# Sentiment Analysis with Azure Text Analitics basic
+# Sentiment Analysis with Azure Text Analytics basic
 ### Anywhere365 Dialogue Studio
 ## Flow description
-Dialogue Studio includes an Event Bus node. This node gives detail events that happen in a UCC call flow. Examples are like CallStart, SkillChosen, AgentJoined, etc. Each event has unique properties. Most call related events have minimal an eventName, dialogueId and timestamp. Most events are not used in this example. This Eventbus2SQL flow writes selected events for a call to a single wide row in SQL Server. The CallStart does an sql INSERT, subsequent events do sql UPDATE statements. This design is optimised for easy reporting and small database size. Multiple green Debug nodes allow you to show optional proces information in the Dialogue Studio debug area. The callsimple table in SQL has columns for a simple call scenario. The callsimple view adds calculated columns for wait-, talk- and call- duration.
+Using Azure Cognitive Services Text Analytics a basic flow. Good to test your Azure connectivity and secret. The two top nodes initialise flow level variables for your custom text to be analised and your Azure secret key. Below that are 4 differen text analysis you can run on your custom text.
+- language detection
+- sentiment analysis
+- key phrase extraction
+- named entity recognition
+Run each by manually pressing on button on left. See the result in debug area. For larger text copy the debug result to a JSON editer like VS Code. Microsoft allows you to create local Docker container with Text Analitics so your custom texts do not have to travel to the cloud but can be analysed on premisses if you prefer. The analytics cost is the same. 
 
 ![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/SentimentAnalysisAzureBasic/resources/a365-ds-azure-sentiment-simple-screenshot.png)
-
 
 
 ## How to import in Anywhere365 Dialogue Studio
@@ -14,20 +18,16 @@ Dialogue Studio includes an Event Bus node. This node gives detail events that h
 - Paste the content from the .json file on github
 
 ## Requirements
-- SQL Server database, any version, i used SQL2019 CU5 on Ubuntu 18.04 in a Windows10 WSL2 Linux container
-- Add a SQL node to the Dialogue Studio palette, i used 'node-red-contrib-mssql-plus' [mssql-plus](https://flows.nodered.org/node/node-red-contrib-mssql-plus)
-
-## Todo before Import
-- Add a SQL node to the Palette using, top right, hamburger menu, Manage Palette, Install tab, type mssql, i use 'node-red-contrib-mssql-plus'
-- Create the SQL callsimple table and callsimple_vw view, i use [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio) 
+- Microsoft Azure subscription
+- Text analysis Key and endpoints
 
 ## Todo after Import
-- Change Server name and ucc name in Incoming node
-- Make sure the Sales skill exists and has agents assigned, or edit
-- Change SQL connection properties
+- edit the custom text in the first change node on top
+- edit the key in the second change node on top
+- edit all 4 http request nodes, edit first part to your endpoint
 
 ## Notes
 The UCC IVR call flow on top in this Dialogue Studio flow is just for generating the events. Edit to your needs. If you just want the standard Sharepoint based IVR flow you can change config.xml set identity is false for the nodered plugin. 
 
 ## Next steps
-If you want to extend this example for production you may want to add columns to the sql table. e.g. for hunts, qm/agent rating, forwards etc. For inspiration you can view the [PowerBI_Dialogue table](https://golive.anywhere365.io/platform_elements/powerbi_integration/power_bi_integration_technical_overview.html). Same for the callsimple view. e.g. you can add formatted xxx-duration columns that display in min:sec format. Remember sql view columns are only executed when you reference them in a query.
+Happy with the result. Now create Transcript flow and use the text output for sentiment analysis. Change the debug node for a database write so you can see the result in PowerBI reports or Grafana realtime wallboard.
