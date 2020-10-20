@@ -1,0 +1,379 @@
+[
+    {
+        "id": "61421021.6c3a18",
+        "type": "tab",
+        "label": "Sentiment Analysis basic",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "61983675.dbd91",
+        "type": "inject",
+        "z": "61421021.6c3a18",
+        "name": "language detect",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "a6fa8c3e.fa0968"
+            ]
+        ]
+    },
+    {
+        "id": "be8a4c7e.f2d6e",
+        "type": "http request",
+        "z": "61421021.6c3a18",
+        "name": "http request /languages",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://dialoguestudiosmarts.cognitiveservices.azure.com/text/analytics/v3.0/languages",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 650,
+        "y": 140,
+        "wires": [
+            [
+                "587012a6.fc9264"
+            ]
+        ]
+    },
+    {
+        "id": "a6fa8c3e.fa0968",
+        "type": "function",
+        "z": "61421021.6c3a18",
+        "name": "prep http req",
+        "func": "// payload becomes body of http request\n\nmsg.payload = \"{'documents': [ { 'id': '1', 'text': '\" + flow.get(\"text\") + \"' } ] }\"\n\n// add azure coginitive service subscription key to http request header\nmsg.headers = {};\nmsg.headers['Ocp-Apim-Subscription-Key'] = flow.get(\"key\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 140,
+        "wires": [
+            [
+                "be8a4c7e.f2d6e"
+            ]
+        ]
+    },
+    {
+        "id": "587012a6.fc9264",
+        "type": "debug",
+        "z": "61421021.6c3a18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 870,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "47418e74.daa62",
+        "type": "inject",
+        "z": "61421021.6c3a18",
+        "name": "key phrase extraction",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 260,
+        "wires": [
+            [
+                "64da374e.2d59a8"
+            ]
+        ]
+    },
+    {
+        "id": "e7d68286.3b8ae8",
+        "type": "http request",
+        "z": "61421021.6c3a18",
+        "name": "http request /keyPhrases",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://dialoguestudiosmarts.cognitiveservices.azure.com/text/analytics/v3.0/keyPhrases",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 650,
+        "y": 260,
+        "wires": [
+            [
+                "f233ccfe.0cad6"
+            ]
+        ]
+    },
+    {
+        "id": "64da374e.2d59a8",
+        "type": "function",
+        "z": "61421021.6c3a18",
+        "name": "prep http req",
+        "func": "// payload becomes body of http request\n\nmsg.payload = \"{'documents': [ { 'id': '1', 'text': '\" + flow.get(\"text\") + \"' } ] }\"\n\n// add azure coginitive service subscription key to http request header\nmsg.headers = {};\nmsg.headers['Ocp-Apim-Subscription-Key'] = flow.get(\"key\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 260,
+        "wires": [
+            [
+                "e7d68286.3b8ae8"
+            ]
+        ]
+    },
+    {
+        "id": "f233ccfe.0cad6",
+        "type": "debug",
+        "z": "61421021.6c3a18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 870,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "c5cc81ec.da79a8",
+        "type": "inject",
+        "z": "61421021.6c3a18",
+        "name": "sentiment analysis",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "822ca73e.d0e61"
+            ]
+        ]
+    },
+    {
+        "id": "5436017e.9dfd5",
+        "type": "http request",
+        "z": "61421021.6c3a18",
+        "name": "http request /sentiment",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://dialoguestudiosmarts.cognitiveservices.azure.com/text/analytics/v3.0/sentiment",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "6b226902.b77e98"
+            ]
+        ]
+    },
+    {
+        "id": "822ca73e.d0e61",
+        "type": "function",
+        "z": "61421021.6c3a18",
+        "name": "prep http req",
+        "func": "// payload becomes body of http request\n\nmsg.payload = \"{'documents': [ { 'id': '1', 'text': '\" + flow.get(\"text\") + \"' } ] }\"\n\n// add azure coginitive service subscription key to http request header\nmsg.headers = {};\nmsg.headers['Ocp-Apim-Subscription-Key'] = flow.get(\"key\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [
+                "5436017e.9dfd5"
+            ]
+        ]
+    },
+    {
+        "id": "6b226902.b77e98",
+        "type": "debug",
+        "z": "61421021.6c3a18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 870,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "139278c9.3185cf",
+        "type": "inject",
+        "z": "61421021.6c3a18",
+        "name": "linked entity recognition",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "35487b15.56b074"
+            ]
+        ]
+    },
+    {
+        "id": "6ff00fb4.f1a698",
+        "type": "http request",
+        "z": "61421021.6c3a18",
+        "name": "http request /entities/reco..",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://dialoguestudiosmarts.cognitiveservices.azure.com/text/analytics/v3.0/entities/recognition/general",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 660,
+        "y": 320,
+        "wires": [
+            [
+                "78852f6e.659448"
+            ]
+        ]
+    },
+    {
+        "id": "35487b15.56b074",
+        "type": "function",
+        "z": "61421021.6c3a18",
+        "name": "prep http req",
+        "func": "// payload becomes body of http request\n\nmsg.payload = \"{'documents': [ { 'id': '1', 'text': '\" + flow.get(\"text\") + \"' } ] }\"\n\n// add azure coginitive service subscription key to http request header\nmsg.headers = {};\nmsg.headers['Ocp-Apim-Subscription-Key'] = flow.get(\"key\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 320,
+        "wires": [
+            [
+                "6ff00fb4.f1a698"
+            ]
+        ]
+    },
+    {
+        "id": "78852f6e.659448",
+        "type": "debug",
+        "z": "61421021.6c3a18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 870,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "3b080a9f.d8cb96",
+        "type": "comment",
+        "z": "61421021.6c3a18",
+        "name": "Microsoft Azure Text Analytics API example",
+        "info": "",
+        "x": 240,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "a479a602.151648",
+        "type": "inject",
+        "z": "61421021.6c3a18",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "4a8fc1ec.22acd"
+            ]
+        ]
+    },
+    {
+        "id": "4a8fc1ec.22acd",
+        "type": "change",
+        "z": "61421021.6c3a18",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "text",
+                "pt": "flow",
+                "to": "In their latest publication, tech consultancy giant Gartner writes about the importance of optimizing Microsoft Teams with Cloud Contact Center Platforms. Even though Contact Center integration with Microsoft Teams is vital for almost any business, Teams lacks capabilities for key use cases. See Anywhere365 on https://anywhere365.io for a great solution!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 80,
+        "wires": [
+            [
+                "53c854ee.21f93c"
+            ]
+        ]
+    },
+    {
+        "id": "53c854ee.21f93c",
+        "type": "change",
+        "z": "61421021.6c3a18",
+        "name": "azure cognitive services key",
+        "rules": [
+            {
+                "t": "set",
+                "p": "key",
+                "pt": "flow",
+                "to": "<yourazurecognitiveservicekeyhere>",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    }
+]
