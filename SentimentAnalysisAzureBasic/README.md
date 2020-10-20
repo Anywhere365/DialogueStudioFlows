@@ -1,13 +1,13 @@
 # Sentiment Analysis with Azure Text Analytics basic
 ### Anywhere365 Dialogue Studio
 ## Flow description
-Using Azure Cognitive Services Text Analytics a basic flow. Good to test your Azure connectivity and secret. The two top nodes initialise flow level variables for your custom text to be analised and your Azure secret key. Below that are 4 differen text analysis you can run on your custom text.
+Using Azure Cognitive Services Text Analytics a basic flow. Good to test your Azure connectivity and secret. The two top nodes initialise flow level variables for your custom text to be analised and your Azure secret key. Below that are 4 different text analysis you can run on a custom text.
 - language detection
 - sentiment analysis
 - key phrase extraction
 - named entity recognition
 
-Run each by manually pressing on button on left. See the result in debug area. For larger text copy the debug result to a JSON editer like VS Code. Microsoft allows you to create local Docker container with Text Analytics so your custom texts do not have to travel to the cloud and can be analysed on premisses if you prefer. The analytics cost is the same. 
+Run each by manually pressing the button on left. See the result in debug area. For larger text copy the debug result to a JSON editer like VS Code. Or write to a file or database. Microsoft allows you to create local Docker container with Text Analytics so your custom texts do not have to travel to the cloud and can be analysed on premisses if you prefer. The analytics cost is the same. 
 
 ![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/SentimentAnalysisAzureBasic/resources/a365-ds-azure-sentiment-simple-screenshot.png)
 
@@ -79,4 +79,4 @@ Key Phrase extraction exerpt
 The UCC IVR call flow on top in this Dialogue Studio flow is just for generating the events. Edit to your needs. If you just want the standard Sharepoint based IVR flow you can change config.xml set identity is false for the nodered plugin. 
 
 ## Next steps
-Happy with the result. Now create Transcript flow and use the text output for sentiment analysis. Change the debug node for a database write so you can see the result in PowerBI reports or Grafana realtime wallboard.
+Happy with the result. Now create Transcript flow and use the text output for sentiment analysis. Change the debug node for a database write so you can see the result in PowerBI reports or Grafana realtime wallboard. To store all the JSON results and do trend reporting on sentiment or key phrases use free open source Elastic search and Kibana.
