@@ -55,8 +55,7 @@ Key Phrase extraction exerpt
         "key use cases",
         "Anywhere365",
         "great solution"
-    ],
-    "warnings": []
+    ]
 }
 ```
 
