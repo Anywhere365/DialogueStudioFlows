@@ -3,7 +3,7 @@
 ## Flow description
 Dialogue Studio includes an Event Bus node. This node gives detail events that happen in a UCC call flow. Examples are like CallStart, SkillChosen, AgentJoined, etc. Each event has unique properties. Most call related events have minimal an eventName, dialogueId and timestamp. Most events are not used in this example. This Eventbus2SQL flow writes selected events for a call to a single wide row in SQL Server. The CallStart does an sql INSERT, subsequent events do sql UPDATE statements. This design is optimised for easy reporting and small database size. Multiple green Debug nodes allow you to show optional proces information in the Dialogue Studio debug area. The callsimple table in SQL has columns for a simple call scenario. The callsimple view adds calculated columns for wait-, talk- and call- duration.
 
-![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/Eventbus2SQLwidetable/resources/a365-ds-event2sql-flow.png)
+![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/SentimentAnalysisAzureBasic/resources/a365-ds-azure-sentiment-simple-screenshot.png)
 
 
 
