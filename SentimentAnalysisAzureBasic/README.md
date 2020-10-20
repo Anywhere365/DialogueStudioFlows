@@ -14,19 +14,52 @@ Run each by manually pressing on button on left. See the result in debug area. F
 Default custom text:
 "In their latest publication, tech consultancy giant Gartner writes about the importance of optimizing Microsoft Teams with Cloud Contact Center Platforms. Even though Contact Center integration with Microsoft Teams is vital for almost any business, Teams lacks capabilities for key use cases. See Anywhere365 on https://anywhere365.io for a great solution!"
 
+Sentiment Analysis exerpt
 ``` json
-    {
-        "sentiment": "negative",
-            "confidenceScores": {
-                "positive": 0.0,
-                "neutral": 0.03,
-                "negative": 0.97
-            },
-            "offset": 155,
-            "length": 137,
-            "text": "Even though Contact Center integration with Microsoft Teams is vital for almost any business, Teams lacks capabilities for key use cases."
-    }
+{
+    "sentiment": "negative",
+    "confidenceScores": {
+        "positive": 0.0,
+        "neutral": 0.03,
+        "negative": 0.97
+    },
+    "offset": 155,
+    "length": 137,
+    "text": "Even though Contact Center integration with Microsoft Teams is vital for almost any business, Teams lacks capabilities for key use cases."
+},
+{
+    "sentiment": "positive",
+    "confidenceScores": {
+        "positive": 0.99,
+        "neutral": 0.01,
+        "negative": 0.0
+    },
+    "offset": 293,
+    "length": 63,
+    "text": "See Anywhere365 on https://anywhere365.io for a great solution!"
+}
 ```
+Key Phrase extraction exerpt
+``` json
+{
+    "id": "1",
+    "keyPhrases": [
+        "Microsoft Teams",
+        "Contact Center integration",
+        "Cloud Contact Center Platforms",
+        "importance",
+        "tech consultancy giant Gartner",
+        "latest publication",
+        "capabilities",
+        "business",
+        "key use cases",
+        "Anywhere365",
+        "great solution"
+    ],
+    "warnings": []
+}
+```
+
 
 ## How to import in Anywhere365 Dialogue Studio
 - Goto hamburger menu, top right, in Dialogue Studio
