@@ -38,4 +38,4 @@ or get an error
 - Change Delay timeout and following Say bye node text, default set to 30 sec
 
 ## Next steps
-Sample flow only checks for uppercase names. Maybe better to lowercase the msg.payload.transcriptor.transcript in a Function- or Change- node before the Switch node. Extend with more names.
+Sample flow only checks for uppercase names. Maybe better to lowercase the msg.payload.transcriptor.transcript in a Function- or Change- node before the Switch node. Extend with more names. Now the names are hardcoded may want to read from a Sharepoint list or database and put in flow.set variables.
