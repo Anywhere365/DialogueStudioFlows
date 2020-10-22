@@ -1,0 +1,324 @@
+[
+    {
+        "id": "e1dc3a4d.704118",
+        "type": "tab",
+        "label": "Voice forward to coworker",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c5d4e3cb.0eb5c8",
+        "type": "any-red-incoming-call",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "config": "5ace9665.55c5c8",
+        "filtertype": "audiovideo",
+        "x": 160,
+        "y": 80,
+        "wires": [
+            [
+                "7fc77708.6f4a",
+                "daf5736d.db7ba"
+            ]
+        ]
+    },
+    {
+        "id": "daf5736d.db7ba",
+        "type": "any-red-transcriptor",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "enable": true,
+        "culture": "en-US",
+        "final": true,
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [],
+            [
+                "2b8d174d.68ec58",
+                "f32f1cf6.57de8"
+            ]
+        ]
+    },
+    {
+        "id": "7fc77708.6f4a",
+        "type": "any-red-say",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "text": "Hello Rubin, you want to speak to Linda, Kevin or Tom again?",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 430,
+        "y": 80,
+        "wires": [
+            [
+                "aef86e1b.67b98"
+            ]
+        ]
+    },
+    {
+        "id": "ed0d7864.429228",
+        "type": "any-red-action",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "disconnect",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "",
+        "skillDataType": "str",
+        "x": 1030,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "40e7a8ec.a510f",
+        "type": "any-red-say",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "text": "that took too long, bye",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 830,
+        "y": 80,
+        "wires": [
+            [
+                "ed0d7864.429228"
+            ]
+        ]
+    },
+    {
+        "id": "2b8d174d.68ec58",
+        "type": "debug",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.transcriptor.transcript",
+        "targetType": "msg",
+        "x": 700,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "aef86e1b.67b98",
+        "type": "delay",
+        "z": "e1dc3a4d.704118",
+        "name": "Wait 30sec",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 630,
+        "y": 80,
+        "wires": [
+            [
+                "40e7a8ec.a510f"
+            ]
+        ]
+    },
+    {
+        "id": "f32f1cf6.57de8",
+        "type": "switch",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "property": "payload.transcriptor.transcript",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "Linda",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Kevin",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Tom",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "stop",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 390,
+        "y": 240,
+        "wires": [
+            [
+                "84451a71.47e0f8"
+            ],
+            [
+                "8726fc08.6bb54"
+            ],
+            [
+                "ab5d7eab.ea443"
+            ],
+            [
+                "14d3f2e9.707da5"
+            ]
+        ]
+    },
+    {
+        "id": "84451a71.47e0f8",
+        "type": "any-red-say",
+        "z": "e1dc3a4d.704118",
+        "name": "Say: to Linda",
+        "text": "connecting to Linda",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 630,
+        "y": 200,
+        "wires": [
+            [
+                "5da2e978.8be238"
+            ]
+        ]
+    },
+    {
+        "id": "5da2e978.8be238",
+        "type": "any-red-action",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "LindaSkill",
+        "skillDataType": "str",
+        "x": 840,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8726fc08.6bb54",
+        "type": "any-red-say",
+        "z": "e1dc3a4d.704118",
+        "name": "Say: to Kevin",
+        "text": "connecting to Kevin",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 630,
+        "y": 240,
+        "wires": [
+            [
+                "c82c1323.b0d0e"
+            ]
+        ]
+    },
+    {
+        "id": "ab5d7eab.ea443",
+        "type": "any-red-say",
+        "z": "e1dc3a4d.704118",
+        "name": "Say: to Tom",
+        "text": "connecting to Tom",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 630,
+        "y": 280,
+        "wires": [
+            [
+                "1231fc23.42e674"
+            ]
+        ]
+    },
+    {
+        "id": "c82c1323.b0d0e",
+        "type": "any-red-action",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "KevinSkill",
+        "skillDataType": "str",
+        "x": 840,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "1231fc23.42e674",
+        "type": "any-red-action",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "TomSkill",
+        "skillDataType": "str",
+        "x": 830,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "cd56e61b.6d141",
+        "type": "any-red-action",
+        "z": "e1dc3a4d.704118",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "disconnect",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "",
+        "skillDataType": "str",
+        "x": 810,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "14d3f2e9.707da5",
+        "type": "any-red-say",
+        "z": "e1dc3a4d.704118",
+        "name": "Say: Sorry",
+        "text": "Sorry to disappoint you",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 630,
+        "y": 320,
+        "wires": [
+            [
+                "cd56e61b.6d141"
+            ]
+        ]
+    },
+    {
+        "id": "5ace9665.55c5c8",
+        "type": "any-red-config",
+        "z": "",
+        "active": true,
+        "ucc": "ucc_app34_william"
+    }
+]
