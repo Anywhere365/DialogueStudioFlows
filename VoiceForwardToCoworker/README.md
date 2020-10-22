@@ -18,11 +18,12 @@ or get an error
      "Exception: Session: 97045369-dbc6-4fc0-bf8e-76e097812cf6 - Skill: "KevinSkill" is not found for ucc. Session is not queued."
 ```
 
-## How to import in Anywhere365 Dialogue Studio
+## How to download and import in Anywhere365 Dialogue Studio
+- use green download code from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
+- click on the .json file, click [raw] on top right, ctl A, ctl C
 - Goto hamburger menu, top right, in Dialogue Studio
 - Choose Import
-- Select the .json file downloaded from github  or
-- Paste the content from the .json file on github
+
 
 ## Requirements
 - Google cloud subscription
