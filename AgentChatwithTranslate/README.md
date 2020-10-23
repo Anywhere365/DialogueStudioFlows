@@ -14,11 +14,11 @@ By default this flow comes somewhat chatty, that is to signal what code is execu
 ![agent chat with translate flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/AgentChatwithTranslate/resources/a365-ds-agentchattranslate-sceenshot.png)
 
 
-## How to import in Anywhere365 Dialogue Studio
+## How to download and import in Anywhere365 Dialogue Studio
+- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
+- click on the .json file, click [raw] on top right, then ctl-A, ctl-C
 - Goto hamburger menu, top right, in Dialogue Studio
-- Choose Import
-- Select the local .json file downloaded from github  or
-- Paste the content of the .json file from github (click Raw, select all, copy)
+- Choose Import, then ctl-V or select local file
 
 ## Requirements
 - your Google translate APIkey in Sharepoint, see Golive

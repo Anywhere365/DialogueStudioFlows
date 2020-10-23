@@ -13,11 +13,11 @@ Dialogue Studio includes an Event Bus node. This node gives detail events that h
 
 ![transcript debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/Eventbus2SQLwidetable/resources/a365-ds-event2sql-view.png)
 
-## How to import in Anywhere365 Dialogue Studio
+## How to download and import in Anywhere365 Dialogue Studio
+- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
+- click on the .json file, click [raw] on top right, then ctl-A, ctl-C
 - Goto hamburger menu, top right, in Dialogue Studio
-- Choose Import
-- Select the .json file downloaded from github  or
-- Paste the content from the .json file on github
+- Choose Import, then ctl-V or select local file
 
 ## Requirements
 - SQL Server database, any version, i used SQL2019 CU5 on Ubuntu 18.04 in a Windows10 WSL2 Linux container

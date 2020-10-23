@@ -5,11 +5,11 @@ Easy example for a chat bot. You are greeted with Welcome <customersipaddress@do
 
 ![translate chat minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/OrderBeerBotChat/resources/a365-ds-orderbeerbot-chat.png)
 
-## How to import in Anywhere365 Dialogue Studio
+## How to download and import in Anywhere365 Dialogue Studio
+- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
+- click on the .json file, click [raw] on top right, then ctl-A, ctl-C
 - Goto hamburger menu, top right, in Dialogue Studio
-- Choose Import
-- Select the .json file downloaded from github  or
-- Paste the content from the .json file on github
+- Choose Import, then ctl-V or select local file
 
 ## Requirements
 - Make sure you have configured a Chat endpoint for your ucc, see [Golive](https://golive.anywhere365.io/platform_elements/core/userguide/ucc_config_endpoints.html)

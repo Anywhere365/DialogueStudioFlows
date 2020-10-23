@@ -7,11 +7,11 @@ Easiest minimal example for transcript bot or flow (Speech to Text). After the w
 
 ![transcript debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TranscriptTodebug_minimal/resources/a365-ds-transcript-debug-minimal.png?raw=true)
 
-## How to import in Anywhere365 Dialogue Studio
+## How to download and import in Anywhere365 Dialogue Studio
+- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
+- click on the .json file, click [raw] on top right, then ctl-A, ctl-C
 - Goto hamburger menu, top right, in Dialogue Studio
-- Choose Import
-- Select the .json file downloaded from github  or
-- Paste the content from the .json file on github
+- Choose Import, then ctl-V or select local file
 
 ## Requirements
 - Configure Anywhere365 Transcription for Google, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_transcript.html)
