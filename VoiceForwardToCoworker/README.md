@@ -19,7 +19,7 @@ or get an error
 ```
 
 ## How to download and import in Anywhere365 Dialogue Studio
-- use green download code button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
+- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
 - click on the .json file, click [raw] on top right, ctl A, ctl C
 - Goto hamburger menu, top right, in Dialogue Studio
 - Choose Import, then ctl V or select local file
