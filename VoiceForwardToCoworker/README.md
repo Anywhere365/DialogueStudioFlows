@@ -27,7 +27,7 @@ or get an error
 
 ## Requirements
 - Google cloud subscription
-- Configure Transcription Google credentials in Sharepoint, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_transcript.html)
+- Configure Transcription Google credentials in UCC Sharepoint, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_transcript.html)
 
 ## Todo before Import
 - see requirements
