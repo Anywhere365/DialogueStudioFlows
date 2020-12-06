@@ -3,8 +3,11 @@
 ## Flow description
 Demonstrate the use of Transcription node, Speech to Text. Implements a personal flow where you can call the Anywhere365 contact center, get a personal greeting and then speak the first name of the co worker your want to be connected to. May be handy from the car. Person names are hardest to get correct with any Speech to text solution. Depending on the specific name your milage may vary. For Google to recognise a word as a persons name, and capitalise, the context matters. So speaking 'can i speak to Tom please' is better than 'Tom' or 'Tom please'. 
 
-![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/VoiceForwardToCoworker/resources/a365-ds-voice-forwardto-coworker.png)
+![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TutorialBase1/resources/a365-ds-tutorial-base1-screenshot.png)
 
+![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TutorialBase1/resources/a365-ds-tutorial-base1-debug.png)
+
+![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TutorialBase1/resources/a365-ds-tutorial-base1-htmlshot.png)
 
 With the debug node on in Dialogue Studio you can nicely read the spoken text. You can keep speaking sentences until one the the configured words is found, then the call is queueed for skill. Small pause in speaking will enable the speech to text output.
 ``` debug
