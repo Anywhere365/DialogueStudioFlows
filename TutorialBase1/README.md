@@ -1,45 +1,33 @@
 # Tutorial Base 1
 ### Anywhere365 Dialogue Studio
 ## Flow description
-Demonstrate the use of Transcription node, Speech to Text. Implements a personal flow where you can call the Anywhere365 contact center, get a personal greeting and then speak the first name of the co worker your want to be connected to. May be handy from the car. Person names are hardest to get correct with any Speech to text solution. Depending on the specific name your milage may vary. For Google to recognise a word as a persons name, and capitalise, the context matters. So speaking 'can i speak to Tom please' is better than 'Tom' or 'Tom please'. 
+First time user of Dialogue Studio? This introduction flow is specially for you to learn the general nodes. What will we cover?
+- Timestamp node to manually start a flow
+- Function node to edit variables with Javascript
+- Debug node
+- Flow level variables
+- HTTP In node and respnd with a webpage with custom values
 
 ![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TutorialBase1/resources/a365-ds-tutorial-base1-screenshot.png)
+
+### Top flow
+showcases the Timestamp node that you can click on the leftside button to start its flow. The Function nodes show different ways to display datetime formats. The Debug nodes. Can have one or more flows as input. Can show the msg.payload (default), all of msg.* values and third ISO date format. With Dialogue Studio you will often work with datatime so keep these examples handy!
+
+### Middle flow
+showcases the HTTP Request node to fetch or get information from a url. Here it is a quite large .json formatted text. Using the JSON node this is converted from plain text to a json object. Now you can reference specific values in the json hierarchy. The first Debug node shows the msg.payload object. Click in the debug area to expand the object and discover the hierarchy and values. The next 2 Debug nodes show specific values from the json hierarchy. In the Function node these 2 values are assigned to flow level variables. Then the flow ends.
+
+To view the full json content copy paste the url,  https://data.buienradar.nl/2.0/feed/json , to your browser. Then ctl-A and ctl-C to copy the json text. Then paste in Visual Studio Code, on the bottom of the editor change the filetype to JSON. Then right click the content and choose Format document. Now it is human readable and makes sense, right?!
+
+### Bottom flow
+showcases the HTTP In node. Here we create a http://localhost:1880/anywhere365 endpoint. The Function node creates a webpage by glueing together string values, including the values from earlier populated flow level variables. Remember an HTTP in should always be paired with a HTTP Response node. See here the ![Nodered](https://cookbook.nodered.org/#http-requests) documentation details on HTTP requests. 
 
 ![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TutorialBase1/resources/a365-ds-tutorial-base1-debug.png)
 
 ![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TutorialBase1/resources/a365-ds-tutorial-base1-htmlshot.png)
 
-With the debug node on in Dialogue Studio you can nicely read the spoken text. You can keep speaking sentences until one the the configured words is found, then the call is queueed for skill. Small pause in speaking will enable the speech to text output.
-``` debug
-10/22/2020, 9:20:31 AMnode: 2b8d174d.68ec58
-msg.payload.transcriptor.transcript : string[28]
-     " I'd like to speak to Kevin."
-```
-or get an error
-``` debug
-10/22/2020, 9:20:33 AMnode: ActionNodemsg : string[123]
-     "Exception: Session: 97045369-dbc6-4fc0-bf8e-76e097812cf6 - Skill: "KevinSkill" is not found for ucc. Session is not queued."
-```
 
 ## How to download and import in Anywhere365 Dialogue Studio
 - use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
 - click on the .json file, click [raw] on top right, then ctl-A, ctl-C
 - Goto hamburger menu, top right, in Dialogue Studio
 - Choose Import, then ctl-V or select local file
-
-
-## Requirements
-- Google cloud subscription
-- Configure Transcription Google credentials in UCC Sharepoint, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_transcript.html)
-
-## Todo before Import
-- see requirements
-
-## Todo after Import
-- Change Server name and ucc name in Incoming node
-- Make sure the configured skills in Dialogue Studio also exist in Sharepoint and Agents assigned
-- Change Switch node values and Say confirmation node texts
-- Change Delay timeout and following Say bye node text, default set to 30 sec
-
-## Next steps
-Sample flow only checks for uppercase names. Maybe better to lowercase the msg.payload.transcriptor.transcript in a Function- or Change- node before the Switch node. Extend with more names. Now the names are hardcoded may want to read from a Sharepoint list or database and put in flow.set variables.

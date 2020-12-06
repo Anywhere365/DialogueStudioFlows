@@ -1,0 +1,300 @@
+[
+    {
+        "id": "8d87dd4e.43ee",
+        "type": "tab",
+        "label": "Tutorial base 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6a13c51f.e0df3c",
+        "type": "inject",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 141,
+        "wires": [
+            [
+                "fee1157d.88ae88",
+                "2a3137ab.21b4f8",
+                "2f5e3d38.961642"
+            ]
+        ]
+    },
+    {
+        "id": "2a3137ab.21b4f8",
+        "type": "debug",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 141,
+        "wires": []
+    },
+    {
+        "id": "fee1157d.88ae88",
+        "type": "function",
+        "z": "8d87dd4e.43ee",
+        "name": "to human readable date",
+        "func": "// linux date to human readable date\n\nvar mydate = new Date(msg.payload)\nmsg.payload = mydate\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 103,
+        "wires": [
+            [
+                "2a3137ab.21b4f8"
+            ]
+        ]
+    },
+    {
+        "id": "9d20af76.6083",
+        "type": "http request",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://data.buienradar.nl/2.0/feed/json",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 350,
+        "y": 350,
+        "wires": [
+            [
+                "a9d2cf01.1823b"
+            ]
+        ]
+    },
+    {
+        "id": "62efc993.a92d78",
+        "type": "inject",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 350,
+        "wires": [
+            [
+                "9d20af76.6083"
+            ]
+        ]
+    },
+    {
+        "id": "2f2e0508.4ca2fa",
+        "type": "debug",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 670,
+        "y": 350,
+        "wires": []
+    },
+    {
+        "id": "a9d2cf01.1823b",
+        "type": "json",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 350,
+        "wires": [
+            [
+                "2f2e0508.4ca2fa",
+                "3eeb1b85.8d6814",
+                "9da6bcb8.cdeab",
+                "1c6cfdee.520c82"
+            ]
+        ]
+    },
+    {
+        "id": "3eeb1b85.8d6814",
+        "type": "debug",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.actual.stationmeasurements[32].regio",
+        "targetType": "msg",
+        "x": 790,
+        "y": 390,
+        "wires": []
+    },
+    {
+        "id": "9da6bcb8.cdeab",
+        "type": "debug",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.actual.stationmeasurements[32].temperature",
+        "targetType": "msg",
+        "x": 810,
+        "y": 430,
+        "wires": []
+    },
+    {
+        "id": "1c6cfdee.520c82",
+        "type": "function",
+        "z": "8d87dd4e.43ee",
+        "name": "set flow variables",
+        "func": "flow.set(\"city\", msg.payload.actual.stationmeasurements[32].regio)\nflow.set(\"temp\", msg.payload.actual.stationmeasurements[32].temperature)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 470,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8f5020fd.acada",
+        "type": "http in",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "url": "/anywhere365",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 192,
+        "y": 622,
+        "wires": [
+            [
+                "17b18e9d.42dd81"
+            ]
+        ]
+    },
+    {
+        "id": "61f0ac3e.9c5ba4",
+        "type": "http response",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 622,
+        "wires": []
+    },
+    {
+        "id": "17b18e9d.42dd81",
+        "type": "function",
+        "z": "8d87dd4e.43ee",
+        "name": "html page + data from flow variables",
+        "func": "var city = flow.get(\"city\")\nvar temp = flow.get(\"temp\")\n\nvar info = \"City: \" + city + \" Temp: \" + temp \n\nvar htmlfirst = \"<html><body><h1>\"\nvar htmlclose = \"</h1></body></html>\"\n\nmsg.payload = htmlfirst + info + htmlclose\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 622,
+        "wires": [
+            [
+                "61f0ac3e.9c5ba4"
+            ]
+        ]
+    },
+    {
+        "id": "123bbea1.d789e1",
+        "type": "comment",
+        "z": "8d87dd4e.43ee",
+        "name": "Get NL weather data",
+        "info": "",
+        "x": 190,
+        "y": 288,
+        "wires": []
+    },
+    {
+        "id": "4b03c5c8.aa4f9c",
+        "type": "comment",
+        "z": "8d87dd4e.43ee",
+        "name": "My first flow, convert date, set msg.variable and 2 type debug nodes",
+        "info": "",
+        "x": 340,
+        "y": 47,
+        "wires": []
+    },
+    {
+        "id": "e6252239.d946a",
+        "type": "comment",
+        "z": "8d87dd4e.43ee",
+        "name": "Create http://localhost:1880/anywhere365 endpoint",
+        "info": "",
+        "x": 290,
+        "y": 561,
+        "wires": []
+    },
+    {
+        "id": "2f5e3d38.961642",
+        "type": "function",
+        "z": "8d87dd4e.43ee",
+        "name": "to ISO date and msg.variable",
+        "func": "// linux date to iso date and extra non payload property\n\nvar mydate = new Date(msg.payload)\nmsg.payload = mydate.toISOString()\n\nmsg.nowdate = mydate.toISOString()\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 181,
+        "wires": [
+            [
+                "1872100d.0f9d3",
+                "300e4e2e.0a0c12"
+            ]
+        ]
+    },
+    {
+        "id": "1872100d.0f9d3",
+        "type": "debug",
+        "z": "8d87dd4e.43ee",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 630,
+        "y": 181,
+        "wires": []
+    },
+    {
+        "id": "300e4e2e.0a0c12",
+        "type": "debug",
+        "z": "8d87dd4e.43ee",
+        "name": "payload with ISO date",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 680,
+        "y": 220,
+        "wires": []
+    }
+]
