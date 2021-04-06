@@ -30,6 +30,7 @@ By default this flow comes somewhat chatty, that is to signal what code is execu
 
 ## Notes
 Scenario is for 1 on 1 chat. This flow is tested with Android mobile consumer Skype client for the customer part and Skype for Business client for the Agent role. Tested with Anywhere365 Core 8.1 and Dialogue Studio 8.0.0.49231.
+ERROR this flow contains a loop that will hang nodejs and restart you container. We will put an updated version some time.
 
 ## Next steps
 Now the session can be ended by the Agent by closing the chat window in Skype or Teams client.
