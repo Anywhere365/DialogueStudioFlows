@@ -1,0 +1,427 @@
+[
+    {
+        "id": "4a78c07.f3ab54",
+        "type": "tab",
+        "label": "SalesForce",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9f31f03b.768e8",
+        "type": "any-red-incoming-call",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "config": "",
+        "filtertype": "all",
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "2127a197.98fe2e"
+            ]
+        ]
+    },
+    {
+        "id": "67cdec8d.8ff944",
+        "type": "soql",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "query": "",
+        "connection": "",
+        "fetchAll": true,
+        "returnJSON": true,
+        "x": 630,
+        "y": 280,
+        "wires": [
+            [
+                "9f827f10.d9e41"
+            ]
+        ]
+    },
+    {
+        "id": "8db72aeb.08dd48",
+        "type": "inject",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "topic": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 310,
+        "y": 340,
+        "wires": [
+            [
+                "2127a197.98fe2e"
+            ]
+        ]
+    },
+    {
+        "id": "2127a197.98fe2e",
+        "type": "function",
+        "z": "4a78c07.f3ab54",
+        "name": "create Query",
+        "func": "let tsl = `SELECT Owner.name, (SELECT Id, AccountId, CaseNumber, OwnerId, contactid, contact.name, status FROM Cases) FROM Account WHERE phone = '${msg.sip}'`\nmsg.query = tsl;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 280,
+        "wires": [
+            [
+                "67cdec8d.8ff944"
+            ]
+        ]
+    },
+    {
+        "id": "c0aa3ed8.b51d8",
+        "type": "function",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "func": "let owner = msg.payload[0].cases.records[0].OwnerId\nmsg.owner = owner\nquer = \"SELECT name FROM user WHERE Id = \" + \"'\" + msg.owner + \"'\";\nmsg.query = quer\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1450,
+        "y": 360,
+        "wires": [
+            [
+                "fd88206f.fbda4"
+            ]
+        ]
+    },
+    {
+        "id": "571d776d.ca1428",
+        "type": "function",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "func": "sipUri = msg.payload[0].name.replace(' ','.') + '@anywhere365.net'\nmsg.sipUri = sipUri\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1770,
+        "y": 360,
+        "wires": [
+            [
+                "4c094121.b3fba"
+            ]
+        ]
+    },
+    {
+        "id": "26184964.387de6",
+        "type": "function",
+        "z": "4a78c07.f3ab54",
+        "name": "caseState",
+        "func": "let caseState = checkCaseState()\n\nfunction checkCaseState() {\n    for (let i=0;i<msg.payload[0].cases.records[0].Status.length;i++){\n        if (msg.payload[0].cases.records[i].Status != 'Closed'){\n            caseIs = 'open'\n        } else {\n            caseIs = 'closed'\n        }\n        return caseIs\n    }\n}\n\ncontactId = msg.payload[0].cases.records[0].ContactId\n//contactName = msg.payload[0].cases.records[0].Contact.Name\nmsg.contactId = contactId\nmsg.caseState = caseState\n//msg.contactName = contactName\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1100,
+        "y": 340,
+        "wires": [
+            [
+                "ec6cbd3a.e70ab"
+            ]
+        ]
+    },
+    {
+        "id": "ec6cbd3a.e70ab",
+        "type": "switch",
+        "z": "4a78c07.f3ab54",
+        "name": "isOpen",
+        "property": "caseState",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "else"
+            },
+            {
+                "t": "eq",
+                "v": "open",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1260,
+        "y": 340,
+        "wires": [
+            [
+                "577eea73.d5cde4"
+            ],
+            [
+                "c0aa3ed8.b51d8"
+            ]
+        ]
+    },
+    {
+        "id": "fd88206f.fbda4",
+        "type": "soql",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "query": "",
+        "connection": "",
+        "fetchAll": true,
+        "returnJSON": true,
+        "x": 1620,
+        "y": 360,
+        "wires": [
+            [
+                "571d776d.ca1428"
+            ]
+        ]
+    },
+    {
+        "id": "9f073d1e.2849c",
+        "type": "function",
+        "z": "4a78c07.f3ab54",
+        "name": "NewCaseObj",
+        "func": "msg.payload = {'Status':'New','origin':'phone', 'subject':'New ticket raised by phone','AccountId': msg.newAccId}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1710,
+        "y": 240,
+        "wires": [
+            [
+                "2e28569a.20ccba"
+            ]
+        ]
+    },
+    {
+        "id": "2e28569a.20ccba",
+        "type": "dml",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "object": "case",
+        "action": "insert",
+        "connection": "",
+        "x": 1870,
+        "y": 240,
+        "wires": [
+            [
+                "577eea73.d5cde4"
+            ]
+        ]
+    },
+    {
+        "id": "40c02de4.9d7dc4",
+        "type": "function",
+        "z": "4a78c07.f3ab54",
+        "name": "createAcc",
+        "func": "pnum = `+${msg.sip}`\nAccount = {'name':'New Account','phone': msg.sip}\nmsg.payload = Account\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 920,
+        "y": 240,
+        "wires": [
+            [
+                "6ed4654c.e2547c"
+            ]
+        ]
+    },
+    {
+        "id": "577eea73.d5cde4",
+        "type": "any-red-action",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "Skill1",
+        "skillDataType": "str",
+        "sip": "",
+        "sipDataType": "str",
+        "agentSips": "",
+        "agentSipsDataType": "str",
+        "config": "f5b2d722.42ec48",
+        "questionsfilter": "",
+        "questionid": "",
+        "x": 2080,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9f827f10.d9e41",
+        "type": "switch",
+        "z": "4a78c07.f3ab54",
+        "name": "isData",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 770,
+        "y": 280,
+        "wires": [
+            [
+                "40c02de4.9d7dc4"
+            ],
+            [
+                "87e8d96e.3a7598"
+            ]
+        ]
+    },
+    {
+        "id": "6ed4654c.e2547c",
+        "type": "dml",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "object": "Account",
+        "action": "insert",
+        "connection": "",
+        "x": 1070,
+        "y": 240,
+        "wires": [
+            [
+                "d8163252.a88b4"
+            ]
+        ]
+    },
+    {
+        "id": "d8163252.a88b4",
+        "type": "function",
+        "z": "4a78c07.f3ab54",
+        "name": "selectNewAcc",
+        "func": "let tsl = `SELECT Owner.name, (SELECT Id, AccountId, CaseNumber, OwnerId, contactid, contact.name, status FROM Cases) FROM Account WHERE phone = '${msg.sip}'`\nmsg.query = tsl;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1220,
+        "y": 240,
+        "wires": [
+            [
+                "5b61f46b.d22bcc"
+            ]
+        ]
+    },
+    {
+        "id": "e91fdcbf.d282",
+        "type": "soql",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "query": "select firstname, lastname from contact",
+        "connection": "",
+        "fetchAll": true,
+        "returnJSON": true,
+        "x": 1530,
+        "y": 240,
+        "wires": [
+            [
+                "9f073d1e.2849c"
+            ]
+        ]
+    },
+    {
+        "id": "87e8d96e.3a7598",
+        "type": "switch",
+        "z": "4a78c07.f3ab54",
+        "name": "isCases",
+        "property": "payload[0].cases",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 920,
+        "y": 320,
+        "wires": [
+            [
+                "577eea73.d5cde4"
+            ],
+            [
+                "26184964.387de6"
+            ]
+        ]
+    },
+    {
+        "id": "5b61f46b.d22bcc",
+        "type": "function",
+        "z": "4a78c07.f3ab54",
+        "name": "setId",
+        "func": "msg.newAccId = msg.payload.id\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1370,
+        "y": 240,
+        "wires": [
+            [
+                "e91fdcbf.d282"
+            ]
+        ]
+    },
+    {
+        "id": "4c094121.b3fba",
+        "type": "any-red-action",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "agentSkill",
+        "skillDataType": "str",
+        "sip": "",
+        "sipDataType": "str",
+        "agentSips": "",
+        "agentSipsDataType": "str",
+        "config": "f5b2d722.42ec48",
+        "questionsfilter": "",
+        "questionid": "",
+        "x": 2100,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "9685a904.43aa28",
+        "type": "comment",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "info": "Query - \n`SELECT Owner.name, (SELECT Id, AccountId, CaseNumber, OwnerId, contactid, contact.name, status FROM Cases) FROM Account WHERE phone = '${msg.sip}'`\npulls out list of cases, and case owner based on incoming phone number\nisData - checks if there is any data returned",
+        "x": 630,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "8fb5b5.05d22a48",
+        "type": "comment",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "info": "isCases - checks if any cases are returned\ncaseState - checks if any cases are open\nisOpen routes call based on cases state\nIf case is open, route call to last agent working on case\nif no case open, queue call normally",
+        "x": 1260,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c365eaab.1c1448",
+        "type": "comment",
+        "z": "4a78c07.f3ab54",
+        "name": "",
+        "info": "This loop runs through the creation of a new account in SalesForce, creates case, routes call to skill",
+        "x": 1370,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f5b2d722.42ec48",
+        "type": "any-red-config",
+        "z": "",
+        "active": true,
+        "ucc": "ucc_sales_olafg"
+    }
+]
