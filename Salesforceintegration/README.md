@@ -12,7 +12,7 @@ This Salesforce Integration gets the caller Sip and checks if this user has an o
 - Choose Import, then ctl-V or select local file
 
 ## Requirements
-- Make sure you have configured a Chat endpoint for your ucc, see [Golive](https://golive.anywhere365.io/platform_elements/core/userguide/ucc_config_endpoints.html)
+- Make sure you have a Salesforce App account
 
 ## Todo after Import
 - Change Server name and ucc name in Incoming node
