@@ -1,0 +1,120 @@
+[
+    {
+        "id": "b13a2bbf.1dc908",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a12b636.c5126a",
+        "type": "any-red-event-bus",
+        "z": "b13a2bbf.1dc908",
+        "name": "",
+        "config": "",
+        "filtertype": "DialogueHuntStartedEvent",
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "a5f0d687.d03128"
+            ]
+        ]
+    },
+    {
+        "id": "ec5902ae.f72c6",
+        "type": "any-red-event-bus",
+        "z": "b13a2bbf.1dc908",
+        "name": "",
+        "config": "",
+        "filtertype": "DialogueParticipantAddedEvent",
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "1299a664.e1f73a"
+            ]
+        ]
+    },
+    {
+        "id": "a5f0d687.d03128",
+        "type": "function",
+        "z": "b13a2bbf.1dc908",
+        "name": "GetAgent",
+        "func": "let targetAgent = msg.payload.event.agentSipUris[0].slice(4)\n\ndialId = msg.payload.event.dialogueId\nlet agent = flow.set(`${dialId}2`, targetAgent)\nmsg.dialId = dialId\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 180,
+        "wires": [
+            [
+                "e4170e91.f1e06"
+            ]
+        ]
+    },
+    {
+        "id": "e4170e91.f1e06",
+        "type": "function",
+        "z": "b13a2bbf.1dc908",
+        "name": "CreateJSON",
+        "func": "dialId = msg.dialId\nmsg.agentFromflow = flow.get(`${dialId}2`)\nmsg.telFromFlow = flow.get(`${dialId}1`)\nmsg.body = {\n    'agent' : flow.get(`${dialId}2`),\n    'caller' : flow.get(`${dialId}1`)\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 180,
+        "wires": [
+            [
+                "ed9cfdc7.7d3a2"
+            ]
+        ]
+    },
+    {
+        "id": "ed9cfdc7.7d3a2",
+        "type": "function",
+        "z": "b13a2bbf.1dc908",
+        "name": "CreatePayload",
+        "func": "msg.headers = {}\nmsg.method = \"POST\"\nmsg.url = \"CUST-URL\" ;\nmsg.headers = {\"content-type\" : \"application/json\",\n    \"SUBSCRIPTION_KEY\" : \"SOME_KEY\",\n    \"API_KEY\" : \"SOME_KEY\"\n}\n\n\n\nmsg.payload = msg.body\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 180,
+        "wires": [
+            [
+                "10bb5233.508fde"
+            ]
+        ]
+    },
+    {
+        "id": "10bb5233.508fde",
+        "type": "http request",
+        "z": "b13a2bbf.1dc908",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 830,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1299a664.e1f73a",
+        "type": "function",
+        "z": "b13a2bbf.1dc908",
+        "name": "GetTelNo",
+        "func": "telNo =  msg.payload.event.displayName.slice(4)\n\ndialId = msg.payload.event.dialogueId\nvar tel = flow.set(`${dialId}1`, telNo)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 300,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    }
+]
