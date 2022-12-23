@@ -17,6 +17,6 @@ Here are some nice and helpful flow snipset that can make your live easier :-)
 ## list of samples
 
 - check outgoing IP / to get the information of the IP that is used by DS for outbound traffic)
-![QM Monitor Questions flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/QMMonitorQuestion\resources/qmflow.png)
+![Check outbound IP flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/UsefulSamples/resources/a365-ds-checkoutboundip.png)
 - reboot DS instance / if you update a palette you need a restart. With this flow you can restart the DS container
-![QM Monitor Questions flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/QMMonitorQuestion\resources/qmflow.png)
+![Reboot Instance flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/UsefulSamples/resources/a365-ds-rebootcontainer.png)
