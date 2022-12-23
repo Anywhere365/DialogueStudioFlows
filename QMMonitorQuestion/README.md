@@ -6,7 +6,7 @@ Use the QM Monitor Question node to ask the customer Quality monitor questions
 This is only a flow to show how the QM nodes are qorking in Dialogue Studio and not realistic. You have to adjust it to your needs
 The Quality monitor is used to get caller feedack after the agent left the conversation
 
-![QM Monitor Questions flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/QMMonitorQuestion\resources/qmflow.png)
+![QM Monitor Questions flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/QMMonitorQuestion/resources/qmflow.png)
 
 ## How to download and import in Anywhere365 Dialogue Studio
 - use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
