@@ -1,4 +1,4 @@
-## How to save TRanscript and recordingURL to MS Dynamics Online phne activity
+## How to save Transcript and recording URL to MS Dynamics Online phone activity
 ### Anywhere365 Dialogue Studio
 
 We connect to Microsoft Dynamics Online through the MS Graph connection for authentication
