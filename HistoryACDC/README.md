@@ -19,6 +19,6 @@ Uses an endpoint /history to provide call history for an attendant user in the A
 ## Todo after Import
 - Create SQL connection
 - create entry to your DS instance in your attendant view and send your query including "[CONTEXT]"
-![Screenshot002](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/HistoryACDC/resources/screen002.png)
+![Screenshot002](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/HistoryACDC/resources/screen002.png?raw=true)
 
 
