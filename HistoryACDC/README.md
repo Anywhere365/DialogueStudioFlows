@@ -2,7 +2,7 @@
 ### AnywhereNow Dialogue Studio
 ## Flow description
 Uses an endpoint /history to provide call history for an attendant user in the ACDC
-![Screenshot001]([https://github.com/Anywhere365/DialogueStudioFlows/blob/master/HistoryACDC/resources/screen001.png](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/HistoryACDC/resources/Screen001.png?raw=true))
+![Screenshot001](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/HistoryACDC/resources/Screen001.png?raw=true)
 
 ## How to download and import in Anywhere365 Dialogue Studio
 - use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
