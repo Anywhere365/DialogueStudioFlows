@@ -2,7 +2,7 @@
 ### AnywhereNow Dialogue Studio
 ## Flow description
 Uses an endpoint /history to provide call history for an attendant user in the ACDC
-![translate chat minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/HistoryACDC/resources/screen001.png)
+![Screenshot001](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/HistoryACDC/resources/screen001.png)
 
 ## How to download and import in Anywhere365 Dialogue Studio
 - use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
@@ -19,6 +19,6 @@ Uses an endpoint /history to provide call history for an attendant user in the A
 ## Todo after Import
 - Create SQL connection
 - create entry to your DS instance in your attendant view and send your query including "[CONTEXT]"
-![translate chat minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/HistoryACDC/resources/screen002.png)
+![Screenshot002](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/HistoryACDC/resources/screen002.png)
 
 
