@@ -1,82 +1,104 @@
-# Sentiment Analysis with Azure Text Analytics basic
-### Anywhere365 Dialogue Studio
-## Flow description
-Using Azure Cognitive Services Text Analytics a basic flow. Good to test your Azure connectivity and secret. The two top nodes initialise flow level variables for your custom text to be analised and your Azure secret key. Below that are 4 different text analysis you can run on a custom text.
-- language detection
-- sentiment analysis
-- key phrase extraction
-- named entity recognition
+# Sentiment & Text Analytics (Azure AI Language) — AnywhereNow Dialogue Studio
 
-Run each by manually pressing the button on left. See the result in debug area. For larger text copy the debug result to a JSON editer like VS Code. Or write to a file or database. Microsoft allows you to create local Docker container with Text Analytics so your custom texts do not have to travel to the cloud and can be analysed on premisses if you prefer. The analytics cost is the same. 
+A minimal, import-and-run flow to test your Azure connectivity and key, and to try the **Analyze Text** API for:
 
-![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/SentimentAnalysisAzureBasic/resources/a365-ds-azure-sentiment-simple-screenshot.png)
+* **Language detection**
+* **Sentiment analysis** (with optional opinion mining)
+* **Key phrase extraction**
+* **Named entity recognition**
+* **Entity linking** (maps entities to a knowledge base)
 
-Default custom text:
-"In their latest publication, tech consultancy giant Gartner writes about the importance of optimizing Microsoft Teams with Cloud Contact Center Platforms. Even though Contact Center integration with Microsoft Teams is vital for almost any business, Teams lacks capabilities for key use cases. See Anywhere365 on https://anywhere365.io for a great solution!"
+The flow comes with sample text, easy triggers, and a compact summary output for quick validation.
 
-Sentiment Analysis exerpt
-``` json
-{
-    "sentiment": "negative",
-    "confidenceScores": {
-        "positive": 0.0,
-        "neutral": 0.03,
-        "negative": 0.97
-    },
-    "offset": 155,
-    "length": 137,
-    "text": "Even though Contact Center integration with Microsoft Teams is vital for almost any business, Teams lacks capabilities for key use cases."
-},
-{
-    "sentiment": "positive",
-    "confidenceScores": {
-        "positive": 0.99,
-        "neutral": 0.01,
-        "negative": 0.0
-    },
-    "offset": 293,
-    "length": 63,
-    "text": "See Anywhere365 on https://anywhere365.io for a great solution!"
-}
-```
-Key Phrase extraction exerpt
-``` json
-{
-    "id": "1",
-    "keyPhrases": [
-        "Microsoft Teams",
-        "Contact Center integration",
-        "Cloud Contact Center Platforms",
-        "importance",
-        "tech consultancy giant Gartner",
-        "latest publication",
-        "capabilities",
-        "business",
-        "key use cases",
-        "Anywhere365",
-        "great solution"
-    ]
-}
-```
+![flow screenshot](resources/a365-ds-azure-sentiment-simple-screenshot.png)
 
+---
 
-## How to download and import in Anywhere365 Dialogue Studio
-- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
-- click on the .json file, click [raw] on top right, then ctl-A, ctl-C
-- Goto hamburger menu, top right, in Dialogue Studio
-- Choose Import, then ctl-V or select local file
+## What this flow uses
 
-## Requirements
-- Microsoft Azure subscription
-- Azure text analysis key and endpoints
+* **Endpoint (choose one):**
 
-## Todo after Import
-- edit the custom text in the first change node on top
-- edit the key in the second change node on top
-- edit all 4 http request nodes, edit first part to your endpoint
+  * **Multi-service (regional)**: `https://<region>.api.cognitive.microsoft.com` (e.g., `https://westeurope.api.cognitive.microsoft.com`)
+  * **Resource-scoped**: `https://<your-language-resource>.cognitiveservices.azure.com`
+* **API path:** `POST {Endpoint}/language/:analyze-text?api-version=2024-11-01`
+* **Auth:** `Ocp-Apim-Subscription-Key: <your key>` (or use OAuth Bearer token later)
+* **Content-Type:** `application/json`
 
-## Notes
-The UCC IVR call flow on top in this Dialogue Studio flow is just for generating the events. Edit to your needs. If you just want the standard Sharepoint based IVR flow you can change config.xml set identity is false for the nodered plugin. 
+---
+
+## Import & configure
+
+1. **Import**
+   In Dialogue Studio (Node-RED): **Menu → Import**, paste the `.json` flow (or select the file) → **Import** → **Deploy**.
+
+2. **Set your settings**
+   In the **Setup** Change node:
+
+   * `flow.endpoint` → your endpoint (multi-service or resource-scoped)
+   * `flow.key` → your Azure AI key
+   * (Optional) `flow.text` → your sample text
+
+3. **That’s it** — no other nodes need edits for a quick test.
+   For production, consider moving secrets to credentials or a vault.
+
+---
+
+## Run the analyses
+
+Use the inject nodes on the left:
+
+* **Language detection** → returns detected language + confidence
+* **Sentiment analysis (opinion mining ON)** → document sentiment (+ per-sentence if you extend the summarizer)
+* **Key phrase extraction** → important phrases
+* **Entity recognition** → entities with categories + confidence
+* **Entity linking** → entities mapped to URLs (e.g., Wikipedia)
+
+Results appear in two Debug outputs:
+
+* `summary` → compact, human-readable
+* `error/full response` → full JSON (useful for larger payloads or troubleshooting)
+
+---
+
+## Request shapes (important)
+
+The flow automatically sends the correct **analysisInput** shape per kind:
+
+* **LanguageDetection**
+
+  ```json
+  { "analysisInput": { "documents": [ { "id": "1", "text": "..." } ] } }
+  ```
+
+  > No `language` field here.
+
+* **Other kinds (Sentiment/KeyPhrases/Entities/Linking)**
+
+  ```json
+  { "analysisInput": { "documents": [ { "id": "1", "text": "...", "language": "en" } ] } }
+  ```
+
+  * If you set `msg.language` (e.g., `"en"`, `"nl"`, `"pt-PT"`, `"zh-Hans"`), it’s included.
+  * If you omit `msg.language`, the request excludes the field (recommended when unsure).
+  * **Do not** send `"language": "auto"` — it’s not accepted for these kinds.
+
+---
+
+## Tips & common pitfalls
+
+* **400 “Invalid Language Code: auto”**
+  Don’t send `"auto"` except in preview features that explicitly allow it. Leave `language` out or set an actual code.
+* **200 but empty results**
+  Very short texts can be hard to analyze. Try a longer sentence or add more context.
+* **429 (throttling)**
+  Back off and retry using the `Retry-After` header. Batch requests when possible.
+* **401/403**
+  Check the key (or Bearer token) and that you’re targeting the correct endpoint region/resource.
+
+---
 
 ## Next steps
-Happy with the result? Now create Transcript flow and use the text output for sentiment analysis. Change the debug node for a database write so you can see the result in PowerBI reports or Grafana realtime wallboard. To store all the JSON results and do trend reporting on sentiment or key phrases use free open source Elastic search and Kibana.
+
+* Chain **Language detection → Sentiment**: save the detected ISO code to `msg.language`, then call Sentiment for improved accuracy.
+* Persist results: swap the Debug node for a database write (SQL/Elastic). Feed dashboards like Power BI or Grafana.
+---

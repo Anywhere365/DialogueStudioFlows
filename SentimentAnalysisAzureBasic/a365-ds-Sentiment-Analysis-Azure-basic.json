@@ -1,379 +1,343 @@
 [
     {
-        "id": "61421021.6c3a18",
+        "id": "b1a2c3d4e5f60789",
         "type": "tab",
-        "label": "Sentiment Analysis basic",
+        "label": "Azure Language: Analyze Text (basic)",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "61983675.dbd91",
-        "type": "inject",
-        "z": "61421021.6c3a18",
-        "name": "language detect",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 180,
-        "y": 140,
-        "wires": [
-            [
-                "a6fa8c3e.fa0968"
-            ]
-        ]
-    },
-    {
-        "id": "be8a4c7e.f2d6e",
-        "type": "http request",
-        "z": "61421021.6c3a18",
-        "name": "http request /languages",
-        "method": "POST",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "https://dialoguestudio.cognitiveservices.azure.com/text/analytics/v3.0/languages",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 650,
-        "y": 140,
-        "wires": [
-            [
-                "587012a6.fc9264"
-            ]
-        ]
-    },
-    {
-        "id": "a6fa8c3e.fa0968",
-        "type": "function",
-        "z": "61421021.6c3a18",
-        "name": "prep http req",
-        "func": "// payload becomes body of http request\n\nmsg.payload = \"{'documents': [ { 'id': '1', 'text': '\" + flow.get(\"text\") + \"' } ] }\"\n\n// add azure coginitive service subscription key to http request header\nmsg.headers = {};\nmsg.headers['Ocp-Apim-Subscription-Key'] = flow.get(\"key\");\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 140,
-        "wires": [
-            [
-                "be8a4c7e.f2d6e"
-            ]
-        ]
-    },
-    {
-        "id": "587012a6.fc9264",
-        "type": "debug",
-        "z": "61421021.6c3a18",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 870,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "47418e74.daa62",
-        "type": "inject",
-        "z": "61421021.6c3a18",
-        "name": "key phrase extraction",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 200,
-        "y": 260,
-        "wires": [
-            [
-                "64da374e.2d59a8"
-            ]
-        ]
-    },
-    {
-        "id": "e7d68286.3b8ae8",
-        "type": "http request",
-        "z": "61421021.6c3a18",
-        "name": "http request /keyPhrases",
-        "method": "POST",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "https://dialoguestudio.cognitiveservices.azure.com/text/analytics/v3.0/keyPhrases",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 650,
-        "y": 260,
-        "wires": [
-            [
-                "f233ccfe.0cad6"
-            ]
-        ]
-    },
-    {
-        "id": "64da374e.2d59a8",
-        "type": "function",
-        "z": "61421021.6c3a18",
-        "name": "prep http req",
-        "func": "// payload becomes body of http request\n\nmsg.payload = \"{'documents': [ { 'id': '1', 'text': '\" + flow.get(\"text\") + \"' } ] }\"\n\n// add azure coginitive service subscription key to http request header\nmsg.headers = {};\nmsg.headers['Ocp-Apim-Subscription-Key'] = flow.get(\"key\");\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 260,
-        "wires": [
-            [
-                "e7d68286.3b8ae8"
-            ]
-        ]
-    },
-    {
-        "id": "f233ccfe.0cad6",
-        "type": "debug",
-        "z": "61421021.6c3a18",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 870,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "c5cc81ec.da79a8",
-        "type": "inject",
-        "z": "61421021.6c3a18",
-        "name": "sentiment analysis",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 190,
-        "y": 200,
-        "wires": [
-            [
-                "822ca73e.d0e61"
-            ]
-        ]
-    },
-    {
-        "id": "5436017e.9dfd5",
-        "type": "http request",
-        "z": "61421021.6c3a18",
-        "name": "http request /sentiment",
-        "method": "POST",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "https://dialoguestudio.cognitiveservices.azure.com/text/analytics/v3.0/sentiment",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 640,
-        "y": 200,
-        "wires": [
-            [
-                "6b226902.b77e98"
-            ]
-        ]
-    },
-    {
-        "id": "822ca73e.d0e61",
-        "type": "function",
-        "z": "61421021.6c3a18",
-        "name": "prep http req",
-        "func": "// payload becomes body of http request\n\nmsg.payload = \"{'documents': [ { 'id': '1', 'text': '\" + flow.get(\"text\") + \"' } ] }\"\n\n// add azure coginitive service subscription key to http request header\nmsg.headers = {};\nmsg.headers['Ocp-Apim-Subscription-Key'] = flow.get(\"key\");\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 200,
-        "wires": [
-            [
-                "5436017e.9dfd5"
-            ]
-        ]
-    },
-    {
-        "id": "6b226902.b77e98",
-        "type": "debug",
-        "z": "61421021.6c3a18",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 870,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "139278c9.3185cf",
-        "type": "inject",
-        "z": "61421021.6c3a18",
-        "name": "linked entity recognition",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 200,
-        "y": 320,
-        "wires": [
-            [
-                "35487b15.56b074"
-            ]
-        ]
-    },
-    {
-        "id": "6ff00fb4.f1a698",
-        "type": "http request",
-        "z": "61421021.6c3a18",
-        "name": "http request /entities/reco..",
-        "method": "POST",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "https://dialoguestudio.cognitiveservices.azure.com/text/analytics/v3.0/entities/recognition/general",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 660,
-        "y": 320,
-        "wires": [
-            [
-                "78852f6e.659448"
-            ]
-        ]
-    },
-    {
-        "id": "35487b15.56b074",
-        "type": "function",
-        "z": "61421021.6c3a18",
-        "name": "prep http req",
-        "func": "// payload becomes body of http request\n\nmsg.payload = \"{'documents': [ { 'id': '1', 'text': '\" + flow.get(\"text\") + \"' } ] }\"\n\n// add azure coginitive service subscription key to http request header\nmsg.headers = {};\nmsg.headers['Ocp-Apim-Subscription-Key'] = flow.get(\"key\");\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 430,
-        "y": 320,
-        "wires": [
-            [
-                "6ff00fb4.f1a698"
-            ]
-        ]
-    },
-    {
-        "id": "78852f6e.659448",
-        "type": "debug",
-        "z": "61421021.6c3a18",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 870,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "3b080a9f.d8cb96",
+        "id": "c0mment0000000001",
         "type": "comment",
-        "z": "61421021.6c3a18",
-        "name": "Microsoft Azure Text Analytics API example",
-        "info": "",
-        "x": 240,
-        "y": 380,
+        "z": "b1a2c3d4e5f60789",
+        "name": "Azure AI Language • Unified Analyze Text endpoint (2024-11-01)",
+        "info": "POST {Endpoint}/language/:analyze-text?api-version=2024-11-01\nSet msg.kind to one of: SentimentAnalysis, KeyPhraseExtraction, EntityRecognition, EntityLinking, LanguageDetection.",
+        "x": 470,
+        "y": 40,
         "wires": []
     },
     {
-        "id": "a479a602.151648",
+        "id": "setupinj000000001",
         "type": "inject",
-        "z": "61421021.6c3a18",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
+        "z": "b1a2c3d4e5f60789",
+        "name": "Setup: sample text + credentials (edit me)",
+        "props": [],
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": 0.1,
-        "x": 170,
-        "y": 80,
+        "onceDelay": 0.5,
+        "topic": "",
+        "x": 240,
+        "y": 100,
         "wires": [
             [
-                "4a8fc1ec.22acd"
+                "setupchg000000001"
             ]
         ]
     },
     {
-        "id": "4a8fc1ec.22acd",
+        "id": "setupchg000000001",
         "type": "change",
-        "z": "61421021.6c3a18",
-        "name": "",
+        "z": "b1a2c3d4e5f60789",
+        "name": "set flow.text, flow.endpoint, flow.key",
         "rules": [
             {
                 "t": "set",
                 "p": "text",
                 "pt": "flow",
-                "to": "In their latest publication, tech consultancy giant Gartner writes about the importance of optimizing Microsoft Teams with Cloud Contact Center Platforms. Even though Contact Center integration with Microsoft Teams is vital for almost any business, Teams lacks capabilities for key use cases. See Anywhere365 on https://anywhere365.io for a great solution!",
+                "to": "Great service! Staff were friendly and helpful. Close to transit.",
                 "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 350,
-        "y": 80,
-        "wires": [
-            [
-                "53c854ee.21f93c"
-            ]
-        ]
-    },
-    {
-        "id": "53c854ee.21f93c",
-        "type": "change",
-        "z": "61421021.6c3a18",
-        "name": "azure cognitive services key",
-        "rules": [
+            },
+            {
+                "t": "set",
+                "p": "endpoint",
+                "pt": "flow",
+                "to": "https://westeurope.api.cognitive.microsoft.com/",
+                "tot": "str"
+            },
             {
                 "t": "set",
                 "p": "key",
                 "pt": "flow",
-                "to": "<yourazurecognitiveservicekeyhere>",
+                "to": "",
                 "tot": "str"
             }
         ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 580,
-        "y": 80,
+        "x": 620,
+        "y": 100,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "injLangDet0000001",
+        "type": "inject",
+        "z": "b1a2c3d4e5f60789",
+        "name": "Language detection",
+        "props": [
+            {
+                "p": "kind",
+                "v": "LanguageDetection",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "buildreq00000001"
+            ]
+        ]
+    },
+    {
+        "id": "injSentiment0000001",
+        "type": "inject",
+        "z": "b1a2c3d4e5f60789",
+        "name": "Sentiment analysis (opinion mining ON)",
+        "props": [
+            {
+                "p": "kind",
+                "v": "SentimentAnalysis",
+                "vt": "str"
+            },
+            {
+                "p": "parameters",
+                "v": "{\"modelVersion\":\"latest\",\"opinionMining\":true}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 240,
+        "y": 200,
+        "wires": [
+            [
+                "buildreq00000001"
+            ]
+        ]
+    },
+    {
+        "id": "injKeyPhrases000001",
+        "type": "inject",
+        "z": "b1a2c3d4e5f60789",
+        "name": "Key phrase extraction",
+        "props": [
+            {
+                "p": "kind",
+                "v": "KeyPhraseExtraction",
+                "vt": "str"
+            },
+            {
+                "p": "parameters",
+                "v": "{\"modelVersion\":\"latest\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "buildreq00000001"
+            ]
+        ]
+    },
+    {
+        "id": "injEntityRec0000001",
+        "type": "inject",
+        "z": "b1a2c3d4e5f60789",
+        "name": "Entity recognition",
+        "props": [
+            {
+                "p": "kind",
+                "v": "EntityRecognition",
+                "vt": "str"
+            },
+            {
+                "p": "parameters",
+                "v": "{\"modelVersion\":\"latest\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 280,
+        "wires": [
+            [
+                "buildreq00000001"
+            ]
+        ]
+    },
+    {
+        "id": "injEntityLink0000001",
+        "type": "inject",
+        "z": "b1a2c3d4e5f60789",
+        "name": "Entity linking",
+        "props": [
+            {
+                "p": "kind",
+                "v": "EntityLinking",
+                "vt": "str"
+            },
+            {
+                "p": "parameters",
+                "v": "{\"modelVersion\":\"latest\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "buildreq00000001"
+            ]
+        ]
+    },
+    {
+        "id": "buildreq00000001",
+        "type": "function",
+        "z": "b1a2c3d4e5f60789",
+        "name": "build analyze-text request",
+        "func": "const endpoint = flow.get('endpoint');\nconst key = flow.get('key');\nconst sample = flow.get('text');\n\nconst text = (msg.text ?? sample ?? '').toString();\nconst kind = msg.kind || 'SentimentAnalysis';\nconst params = msg.parameters || { modelVersion: 'latest' };\nconst showStats = !!msg.showStats;\n\n// Allow caller to pass a language, e.g. 'en', 'nl', 'pt-PT', 'zh-Hans'.\n// IMPORTANT: 'auto' is NOT valid for Sentiment/Entities/etc.\nconst reqLang = (msg.language ?? '').toString().trim();\n\nif (!endpoint || !key) {\n  node.error('Set flow.endpoint and flow.key first (see \"Setup\" node).', msg);\n  return null;\n}\nif (!text) {\n  node.error('No text provided. Set flow.text or msg.text.', msg);\n  return null;\n}\n\nconst isLangDetect = kind === 'LanguageDetection';\n\n// Build correct analysisInput shape per kind\nlet documents;\nif (isLangDetect) {\n  // Language Detection Analysis Input: no 'language' field\n  documents = [{ id: '1', text /* , countryHint: 'NL' */ }];\n} else {\n  // Multi Language Analysis Input: include 'language' only if it's a real code\n  const doc = { id: '1', text };\n  if (reqLang && reqLang.toLowerCase() !== 'auto') {\n    doc.language = reqLang;\n  }\n  documents = [doc];\n}\n\nmsg.method = 'POST';\nmsg.url = endpoint.replace(/\\/+$/, '') + '/language/:analyze-text?api-version=2024-11-01' + (showStats ? '&showStats=true' : '');\nmsg.headers = {\n  'Ocp-Apim-Subscription-Key': key,\n  'Content-Type': 'application/json'\n};\nmsg.payload = { kind, parameters: params, analysisInput: { documents } };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "httpreq000000001"
+            ]
+        ]
+    },
+    {
+        "id": "httpreq000000001",
+        "type": "http request",
+        "z": "b1a2c3d4e5f60789",
+        "name": "POST /language/:analyze-text",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 800,
+        "y": 240,
+        "wires": [
+            [
+                "switch20000000001"
+            ]
+        ]
+    },
+    {
+        "id": "switch20000000001",
+        "type": "switch",
+        "z": "b1a2c3d4e5f60789",
+        "name": "statusCode === 200",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1050,
+        "y": 240,
+        "wires": [
+            [
+                "summarize00000001"
+            ],
+            [
+                "debugfull00000001"
+            ]
+        ]
+    },
+    {
+        "id": "summarize00000001",
+        "type": "function",
+        "z": "b1a2c3d4e5f60789",
+        "name": "summarize result",
+        "func": "// Normalize kind: API returns e.g. \"LanguageDetectionResults\"\nconst respKind = msg.payload?.kind;\nconst reqKind = msg.kind;\nconst kind = (respKind || reqKind || \"Unknown\").replace(/Results$/, \"\");\n\nconst results = msg.payload?.results || {};\nconst doc = results.documents?.[0] || null;\n\nconst out = { kind, modelVersion: results.modelVersion };\n\nif (doc) {\n  switch (kind) {\n    case \"LanguageDetection\":\n      out.detectedLanguage = doc.detectedLanguage?.name || doc.detectedLanguage?.iso6391Name;\n      out.iso6391Name = doc.detectedLanguage?.iso6391Name;\n      out.script = doc.detectedLanguage?.scriptName || doc.detectedLanguage?.scriptIso15924Code;\n      out.confidence = doc.detectedLanguage?.confidenceScore;\n      break;\n\n    case \"SentimentAnalysis\":\n      out.sentiment = doc.sentiment;\n      out.confidenceScores = doc.confidenceScores;\n      // Optional: include per-sentence sentiments\n      // out.sentences = (doc.sentences || []).map(s => ({ text: s.text, sentiment: s.sentiment }));\n      break;\n\n    case \"KeyPhraseExtraction\":\n      out.keyPhrases = doc.keyPhrases;\n      break;\n\n    case \"EntityRecognition\":\n      out.entities = (doc.entities || []).map(e => ({\n        text: e.text,\n        category: e.category,\n        subcategory: e.subcategory,\n        confidence: e.confidenceScore\n      }));\n      break;\n\n    case \"EntityLinking\":\n      out.entities = (doc.entities || []).map(e => ({\n        name: e.name,\n        url: e.url,\n        dataSource: e.dataSource,\n        matches: (e.matches || []).length\n      }));\n      break;\n\n    default:\n      out.note = \"Unrecognized kind; see full payload for details.\";\n  }\n\n  if (doc.warnings?.length) out.warnings = doc.warnings;\n}\n\nif (results.errors?.length) out.errors = results.errors;\n\nmsg.summary = out;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 220,
+        "wires": [
+            [
+                "debugsum00000001"
+            ]
+        ]
+    },
+    {
+        "id": "debugsum00000001",
+        "type": "debug",
+        "z": "b1a2c3d4e5f60789",
+        "name": "summary",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "summary",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1460,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "debugfull00000001",
+        "type": "debug",
+        "z": "b1a2c3d4e5f60789",
+        "name": "error/full response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1290,
+        "y": 280,
+        "wires": []
     }
 ]
