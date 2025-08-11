@@ -1,47 +1,76 @@
-## Standard simple IVR flow - nocode
-### Anywhere365 Dialogue Studio
-## Flow description
-Standard 'press 1 for ..' ivr flow. With 3 skill choices: Sales, Support and Other. Menu will automatically repeat after 8 second pause. Press 9 to repeat the menu. Timeout after 60 second no caller response then bye message and disconnect action.
-This is a good myFirst flow to test the installation and environment.
+# Standard Simple IVR Flow - No Code
 
-![standard simple ivr flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/DefaultUCCsimple_solution/resource/a365-ds-standard-ivr-flow.png?raw=true)
+## Table of Contents
+- [Overview](#overview)
+- [Flow Description](#flow-description)
+- [How to Download and Import](#how-to-download-and-import)
+- [Configuration After Import](#configuration-after-import)
+- [Node Descriptions](#node-descriptions)
+  - [Incoming Node](#incoming-node)
+  - [Say: Welcome Node](#say-welcome-node)
+  - [Ask&Wait: Press 1 Node](#askwait-press-1-node)
+  - [Switch Node](#switch-node)
+  - [Say Skill Nodes](#say-skill-nodes)
+  - [Enqueue Nodes](#enqueue-nodes)
+  - [Say: We Did Not Node](#say-we-did-not-node)
+  - [Disconnect Node](#disconnect-node)
 
-## How to download and import in Anywhere365 Dialogue Studio
-- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
-- click on the .json file, click [raw] on top right, then ctl-A, ctl-C
-- Goto hamburger menu, top right, in Dialogue Studio
-- Choose Import, then ctl-V or select local file
+## Overview
+This is a standard 'Press 1 for...' IVR flow designed for AnywhereNow Dialogue Studio. It includes three skill choices: Sales, Support, and Other. The menu automatically repeats after an 8-second pause. If no response is received within 60 seconds, the caller hears a goodbye message, and the call is disconnected.
 
-## Todo after Import
- - Change Server name and ucc name in Incoming node
- - Make sure you have configured same skills in your UCC (Sharepoint) as mentioned in Enqueue node
- - optional change Say and Ask&Wait messages or Skill names
- - Configure Agents, AgentSkills, Business hours in Sharepoint
+This flow is ideal as a first test to verify the installation and environment setup.
 
-## Incoming - node
-Accepts incoming voice call. Configure Anywhere365 Server and UCC name properties (double click).
+![Standard Simple IVR Flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/DefaultUCCsimple_solution/resource/a365-ds-standard-ivr-flow.png?raw=true)
 
-## Say: Welcome - node
-Announce welcome message
+## Flow Description
+- **Skill Choices**: Sales, Support, and Other.
+- **Menu Repeat**: Automatically repeats after 8 seconds.
+- **Timeout**: If no response is received within 60 seconds, the caller hears a goodbye message and the call is disconnected.
+- **Press 9**: Allows the caller to manually repeat the menu.
 
-## Ask&Wait: Press 1 - node
- - Press 1 for Sales
- - Press 2 for Support
- - Press 3 for Other
- - Press 9 to manual repeat the menu
-Automatic repeat menu after 8 second pause. Timeout after 60 seconds with message and then disconnect.
+## How to Download and Import
+1. Use the green **Download [Code]** button at the top right of the [repository home](https://github.com/Anywhere365/DialogueStudioFlows).
+2. Alternatively, click on the `.json` file, then click **[Raw]** at the top right, and copy the content using `Ctrl+A` and `Ctrl+C`.
+3. Open Dialogue Studio and click the hamburger menu at the top right.
+4. Choose **Import**, then paste the copied content or select the downloaded file.
 
-## Switch - node
-Route caller choice to skill. Confirm skill choice. Flow to Ask&Wait node on choice 9 or any non 123 choice.
+## Configuration After Import
+1. Update the **Server Name** and **UCC Name** in the Incoming node.
+2. Ensure the same skills (Sales, Support, Other) are configured in your UCC (SharePoint).
+3. Optionally, customize the Say and Ask&Wait messages or skill names.
+4. Configure Agents, Agent Skills, and Business Hours in SharePoint.
 
-## Say skill - nodes
-Confirm caller choice
+## Node Descriptions
 
-## Enqueue - nodes
-Route call to skill queue
+### Incoming Node
+- Accepts incoming voice calls.
+- Configure the AnywhereNow Server and UCC Name properties (double-click the node).
 
-## Say: We did not - node
-We did not get your choice, please call back later, bye
+### Say: Welcome Node
+- Announces the welcome message to the caller.
 
-## Disconnect
-Disconnect, see you later.
+### Ask&Wait: Press 1 Node
+- Provides the following options to the caller:
+  - Press 1 for Sales.
+  - Press 2 for Support.
+  - Press 3 for Other.
+  - Press 9 to manually repeat the menu.
+- Automatically repeats the menu after an 8-second pause.
+- Times out after 60 seconds with a goodbye message and disconnects the call.
+
+### Switch Node
+- Routes the caller's choice to the appropriate skill.
+- Confirms the skill choice.
+- Redirects to the Ask&Wait node if the caller presses 9 or makes an invalid choice.
+
+### Say Skill Nodes
+- Confirms the caller's choice (e.g., "You have chosen Sales").
+
+### Enqueue Nodes
+- Routes the call to the appropriate skill queue (Sales, Support, or Other).
+
+### Say: We Did Not Node
+- Plays a message: "We did not get your choice, please call back later, bye."
+
+### Disconnect Node
+- Disconnects the call with a goodbye message.

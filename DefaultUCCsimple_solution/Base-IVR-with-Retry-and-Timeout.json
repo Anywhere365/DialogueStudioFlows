@@ -11,7 +11,12 @@
         "type": "any-red-ask-wait-input",
         "z": "3b07f7b9.786a98",
         "name": "Ask&Wait: Press 1",
-        "saytext": "Press 1 for Sales, Press 2 for Support, Press 3 for Other questions, juast wait or Press 9 to repeate the menu",
+        "saytext": "Press 1 for Sales, Press 2 for Support, Press 3 for Other questions, juast wait or Press 9 to repeat the menu",
+        "saymethod": "Default",
+        "aawoption": "Say",
+        "voice": "",
+        "audioFile": "",
+        "audioFileSource": "url",
         "dtmftype": "DtmfNumChars",
         "tone": "1",
         "tonecount": "1",
@@ -21,6 +26,7 @@
         "speechphrase": "",
         "speechculture": "en-US",
         "dataType": "str",
+        "audioFileDataType": "str",
         "x": 341,
         "y": 260,
         "wires": [
@@ -39,6 +45,8 @@
         "name": "",
         "text": "Welcome to Top accounting",
         "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
         "x": 270,
         "y": 160,
         "wires": [
@@ -52,7 +60,7 @@
         "type": "any-red-incoming-call",
         "z": "3b07f7b9.786a98",
         "name": "",
-        "config": "db689376.9fd678",
+        "config": "",
         "filtertype": "audiovideo",
         "x": 190,
         "y": 100,
@@ -124,11 +132,13 @@
         "name": "Say: Sales",
         "text": "You have chosen Sales",
         "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
         "x": 750,
         "y": 107,
         "wires": [
             [
-                "b5cfd5c3.2fd29"
+                "d9b5f4f0fceeb4d2"
             ]
         ]
     },
@@ -139,11 +149,13 @@
         "name": "Say: Support",
         "text": "You have choosen Support",
         "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
         "x": 750,
         "y": 147,
         "wires": [
             [
-                "42419066.dd978"
+                "2f3dc4a473bfd822"
             ]
         ]
     },
@@ -154,46 +166,15 @@
         "name": "Say: Other",
         "text": "You have chosen Other",
         "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
         "x": 750,
         "y": 187,
         "wires": [
             [
-                "615b80b7.beb3c8"
+                "cd03f21b320f71cd"
             ]
         ]
-    },
-    {
-        "id": "b5cfd5c3.2fd29",
-        "type": "any-red-enqueue",
-        "z": "3b07f7b9.786a98",
-        "name": "",
-        "skill": "Sales",
-        "dataType": "str",
-        "x": 980,
-        "y": 107,
-        "wires": []
-    },
-    {
-        "id": "42419066.dd978",
-        "type": "any-red-enqueue",
-        "z": "3b07f7b9.786a98",
-        "name": "",
-        "skill": "Support",
-        "dataType": "str",
-        "x": 990,
-        "y": 147,
-        "wires": []
-    },
-    {
-        "id": "615b80b7.beb3c8",
-        "type": "any-red-enqueue",
-        "z": "3b07f7b9.786a98",
-        "name": "",
-        "skill": "Other",
-        "dataType": "str",
-        "x": 980,
-        "y": 187,
-        "wires": []
     },
     {
         "id": "54bcdc16.522424",
@@ -202,37 +183,110 @@
         "name": "",
         "text": "We did not get your choice, please call back later, bye",
         "dataType": "str",
-        "x": 770,
-        "y": 266,
+        "saymethod": "Default",
+        "voice": "",
+        "x": 700,
+        "y": 260,
         "wires": [
             [
-                "142a03f2.1fdbcc"
+                "c91b753a463556bf"
             ]
         ]
     },
     {
-        "id": "142a03f2.1fdbcc",
-        "type": "any-red-disconnect",
+        "id": "c91b753a463556bf",
+        "type": "any-red-action",
         "z": "3b07f7b9.786a98",
         "name": "",
+        "sweetName": "Empty action",
+        "actionType": "disconnect",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "",
+        "skillDataType": "str",
+        "sip": "",
+        "sipDataType": "str",
+        "agentSips": "",
+        "agentSipsDataType": "str",
+        "config": "",
+        "questionsfilter": "",
+        "questionid": "",
         "x": 970,
-        "y": 266,
+        "y": 260,
         "wires": []
     },
     {
-        "id": "92e23596.3b91f8",
-        "type": "comment",
+        "id": "d9b5f4f0fceeb4d2",
+        "type": "any-red-action",
         "z": "3b07f7b9.786a98",
         "name": "",
-        "info": "# Anywhere365 Dialogue Studio\n## Standard simple IVR flow - nocode\n## flow description\nStandard 'press 1 for ..' ivr flow. With 3 skill choices: Sales, Support and Other. Menu will automatically repeate after 8 second pause. Press 9 to repeate the menu. Timeout after 60 second no caller response with bye message and disconnect action.\n\n## Incoming - node\nAccepts incoming voice call\n\n## Say: Welcome - node\nAnnounce welcome message\n\n## Ask&Wait: Press 1 - node\n - Press 1 for Sales\n - Press 2 for Support\n - Press 3 for Other\n - Press 9 to manual repeat the menu\nAutomatic repeat menu after 8 second pause. Timeout after 60 seconds with message and then disconnect.\n\n## Switch - node\nRoute caller choice to skill. Confirm skill choice. Flow to Ask&Wait node on choice 9 or any non 123 choice.\n\n## Say skill - nodes\nConfirm caller choice\n\n## Enqueue - nodes\nRoute call to skill queue\n\n## Say: We did not - node\nWe did not get your choice, please call back later, bye\n\n## Disconnect\nDisconnect, see you later.\n\n## Post Import\n - Change Server name in Incoming node\n - Make sure you have configured same skills in your ucc\n - optional change Say and Ask&Wait messages\n",
-        "x": 120,
-        "y": 340,
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "Sales",
+        "skillDataType": "str",
+        "sip": "",
+        "sipDataType": "str",
+        "agentSips": "",
+        "agentSipsDataType": "str",
+        "config": "",
+        "questionsfilter": "",
+        "questionid": "",
+        "x": 980,
+        "y": 100,
         "wires": []
     },
     {
-        "id": "db689376.9fd678",
-        "type": "any-red-config",
-        "z": "",
-        "url": "http://<servernamefqdn>:<portnumber>/<uccname>"
+        "id": "2f3dc4a473bfd822",
+        "type": "any-red-action",
+        "z": "3b07f7b9.786a98",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "Support",
+        "skillDataType": "str",
+        "sip": "",
+        "sipDataType": "str",
+        "agentSips": "",
+        "agentSipsDataType": "str",
+        "config": "",
+        "questionsfilter": "",
+        "questionid": "",
+        "x": 990,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "cd03f21b320f71cd",
+        "type": "any-red-action",
+        "z": "3b07f7b9.786a98",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "Other",
+        "skillDataType": "str",
+        "sip": "",
+        "sipDataType": "str",
+        "agentSips": "",
+        "agentSipsDataType": "str",
+        "config": "",
+        "questionsfilter": "",
+        "questionid": "",
+        "x": 980,
+        "y": 180,
+        "wires": []
     }
 ]
