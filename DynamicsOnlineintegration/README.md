@@ -1,6 +1,6 @@
 # Sample: Query Dataverse (Dynamics 365) from Node-RED / Dialogue Studio
 
-This example shows how to call the **Dataverse Web API** to look up **Contacts by phone number** from Node-RED (Anywhere365 Dialogue Studio).
+This example shows how to call the **Dataverse Web API** to look up **Contacts by phone number** from Node-RED (AnywhereNow Dialogue Studio).
 It uses the **Microsoft identity platform v2.0** (client credentials) and caches the access token in flow context.
 
 > This sample talks directly to **Dataverse Web API (OData v4)** at:
