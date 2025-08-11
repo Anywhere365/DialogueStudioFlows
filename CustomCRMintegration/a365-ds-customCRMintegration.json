@@ -1,94 +1,98 @@
 [
     {
-        "id": "b13a2bbf.1dc908",
+        "id": "5b7a20d82a334114",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Custom CMR integration POST hunt event",
         "disabled": false,
-        "info": ""
+        "info": "This flow demonstrates a sample integration with a custom CRM. It listens for specific events, processes the data, and sends it to an external HTTP endpoint."
     },
     {
-        "id": "a12b636.c5126a",
+        "id": "e105c09f28cb9564",
         "type": "any-red-event-bus",
-        "z": "b13a2bbf.1dc908",
-        "name": "",
+        "z": "5b7a20d82a334114",
+        "name": "Listen for DialogueHuntStartedEvent",
         "config": "",
         "filtertype": "DialogueHuntStartedEvent",
-        "x": 120,
-        "y": 180,
+        "x": 340,
+        "y": 220,
         "wires": [
             [
-                "a5f0d687.d03128"
+                "4760329f00414bc0"
             ]
         ]
     },
     {
-        "id": "ec5902ae.f72c6",
+        "id": "b51bb14dc16e2697",
         "type": "any-red-event-bus",
-        "z": "b13a2bbf.1dc908",
-        "name": "",
+        "z": "5b7a20d82a334114",
+        "name": "Listen for DialogueParticipantAddedEvent",
         "config": "",
         "filtertype": "DialogueParticipantAddedEvent",
-        "x": 120,
-        "y": 120,
+        "x": 360,
+        "y": 160,
         "wires": [
             [
-                "1299a664.e1f73a"
+                "234c6751ea73d389"
             ]
         ]
     },
     {
-        "id": "a5f0d687.d03128",
+        "id": "4760329f00414bc0",
         "type": "function",
-        "z": "b13a2bbf.1dc908",
-        "name": "GetAgent",
-        "func": "let targetAgent = msg.payload.event.agentSipUris[0].slice(4)\n\ndialId = msg.payload.event.dialogueId\nlet agent = flow.set(`${dialId}2`, targetAgent)\nmsg.dialId = dialId\nreturn msg;",
+        "z": "5b7a20d82a334114",
+        "name": "Extract Agent Information",
+        "func": "// Extract the agent's SIP URI and dialogue ID\nlet targetAgent = msg.payload.event.agentSipUris[0].slice(4);\nlet dialogueId = msg.payload.event.dialogueId;\n\n// Store the agent information in the flow context\nflow.set(`${dialogueId}_agent`, targetAgent);\nmsg.dialogueId = dialogueId;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 290,
-        "y": 180,
+        "x": 670,
+        "y": 220,
         "wires": [
             [
-                "e4170e91.f1e06"
+                "16c37f26c63ffcef"
             ]
         ]
     },
     {
-        "id": "e4170e91.f1e06",
+        "id": "16c37f26c63ffcef",
         "type": "function",
-        "z": "b13a2bbf.1dc908",
-        "name": "CreateJSON",
-        "func": "dialId = msg.dialId\nmsg.agentFromflow = flow.get(`${dialId}2`)\nmsg.telFromFlow = flow.get(`${dialId}1`)\nmsg.body = {\n    'agent' : flow.get(`${dialId}2`),\n    'caller' : flow.get(`${dialId}1`)\n}\n\nreturn msg;",
+        "z": "5b7a20d82a334114",
+        "name": "Create JSON Payload",
+        "func": "// Retrieve stored agent and caller information\nlet dialogueId = msg.dialogueId;\nlet agent = flow.get(`${dialogueId}_agent`);\nlet caller = flow.get(`${dialogueId}_caller`);\n\n// Construct the payload\nmsg.body = {\n    agent: agent,\n    caller: caller\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 220,
+        "wires": [
+            [
+                "6fdfa3285bb4a932"
+            ]
+        ]
+    },
+    {
+        "id": "6fdfa3285bb4a932",
+        "type": "function",
+        "z": "5b7a20d82a334114",
+        "name": "Prepare HTTP Request",
+        "func": "// Set HTTP request details\nmsg.headers = {\n    'content-type': 'application/json',\n    'SUBSCRIPTION_KEY': 'SOME_KEY',\n    'API_KEY': 'SOME_KEY'\n};\nmsg.method = 'POST';\nmsg.url = 'CUST-URL';\nmsg.payload = msg.body;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 470,
-        "y": 180,
+        "x": 1160,
+        "y": 220,
         "wires": [
             [
-                "ed9cfdc7.7d3a2"
+                "d58e597649db36f4"
             ]
         ]
     },
     {
-        "id": "ed9cfdc7.7d3a2",
-        "type": "function",
-        "z": "b13a2bbf.1dc908",
-        "name": "CreatePayload",
-        "func": "msg.headers = {}\nmsg.method = \"POST\"\nmsg.url = \"CUST-URL\" ;\nmsg.headers = {\"content-type\" : \"application/json\",\n    \"SUBSCRIPTION_KEY\" : \"SOME_KEY\",\n    \"API_KEY\" : \"SOME_KEY\"\n}\n\n\n\nmsg.payload = msg.body\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 660,
-        "y": 180,
-        "wires": [
-            [
-                "10bb5233.508fde"
-            ]
-        ]
-    },
-    {
-        "id": "10bb5233.508fde",
+        "id": "d58e597649db36f4",
         "type": "http request",
-        "z": "b13a2bbf.1dc908",
-        "name": "",
+        "z": "5b7a20d82a334114",
+        "name": "Send HTTP Request",
         "method": "use",
         "ret": "obj",
         "paytoqs": "ignore",
@@ -97,22 +101,22 @@
         "persist": false,
         "proxy": "",
         "authType": "",
-        "x": 830,
-        "y": 180,
+        "x": 1410,
+        "y": 220,
         "wires": [
             []
         ]
     },
     {
-        "id": "1299a664.e1f73a",
+        "id": "234c6751ea73d389",
         "type": "function",
-        "z": "b13a2bbf.1dc908",
-        "name": "GetTelNo",
-        "func": "telNo =  msg.payload.event.displayName.slice(4)\n\ndialId = msg.payload.event.dialogueId\nvar tel = flow.set(`${dialId}1`, telNo)\nreturn msg;",
+        "z": "5b7a20d82a334114",
+        "name": "Extract Caller Information",
+        "func": "// Extract the caller's telephone number and dialogue ID\nlet callerTel = msg.payload.event.displayName.slice(4);\nlet dialogueId = msg.payload.event.dialogueId;\n\n// Store the caller information in the flow context\nflow.set(`${dialogueId}_caller`, callerTel);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 300,
-        "y": 120,
+        "x": 670,
+        "y": 160,
         "wires": [
             []
         ]
