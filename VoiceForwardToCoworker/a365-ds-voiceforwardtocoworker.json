@@ -1,116 +1,70 @@
 [
     {
-        "id": "e1dc3a4d.704118",
+        "id": "f0f0f0f0.000001",
         "type": "tab",
-        "label": "Voice forward to coworker",
+        "label": "Voice forward to coworker (improved)",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "c5d4e3cb.0eb5c8",
+        "id": "note_intro",
+        "type": "comment",
+        "z": "f0f0f0f0.000001",
+        "name": "What this flow does",
+        "info": "Greets caller → listens for a coworker name (Linda/Kevin/Tom) → speaks confirmation → enqueues to corresponding Skill.\nTimeout is 30s unless caller responds; timeout is cancelled immediately on match or cancel.\nIf the name isn't recognized after 2 tries, call is escalated to ReceptionSkill.",
+        "x": 350,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "incall",
         "type": "any-red-incoming-call",
-        "z": "e1dc3a4d.704118",
+        "z": "f0f0f0f0.000001",
         "name": "",
-        "config": "5ace9665.55c5c8",
+        "config": "",
         "filtertype": "audiovideo",
-        "x": 160,
-        "y": 80,
+        "x": 280,
+        "y": 180,
         "wires": [
             [
-                "7fc77708.6f4a",
-                "daf5736d.db7ba"
+                "greet",
+                "asr",
+                "note_incoming"
             ]
         ]
     },
     {
-        "id": "daf5736d.db7ba",
-        "type": "any-red-transcriptor",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "enable": true,
-        "culture": "en-US",
-        "final": true,
-        "x": 410,
-        "y": 140,
-        "wires": [
-            [],
-            [
-                "2b8d174d.68ec58",
-                "f32f1cf6.57de8"
-            ]
-        ]
-    },
-    {
-        "id": "7fc77708.6f4a",
-        "type": "any-red-say",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "text": "Hello Rubin, you want to speak to Linda, Kevin or Tom again?",
-        "dataType": "str",
-        "saymethod": "Default",
-        "voice": "",
-        "x": 430,
-        "y": 80,
-        "wires": [
-            [
-                "aef86e1b.67b98"
-            ]
-        ]
-    },
-    {
-        "id": "ed0d7864.429228",
-        "type": "any-red-action",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "sweetName": "Empty action",
-        "actionType": "disconnect",
-        "fromSessionId": "session.id",
-        "fromDataType": "msg",
-        "toSessionId": "fromSessionId",
-        "toDataType": "msg",
-        "skill": "",
-        "skillDataType": "str",
-        "x": 1030,
-        "y": 80,
+        "id": "note_incoming",
+        "type": "comment",
+        "z": "f0f0f0f0.000001",
+        "name": "Incoming call → greet + start timeout + start ASR",
+        "info": "",
+        "x": 670,
+        "y": 120,
         "wires": []
     },
     {
-        "id": "40e7a8ec.a510f",
+        "id": "greet",
         "type": "any-red-say",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "text": "that took too long, bye",
+        "z": "f0f0f0f0.000001",
+        "name": "Say: greeting",
+        "text": "Hi! Who would you like to speak to: Linda, Kevin, or Tom? You can also say cancel to hang up.",
         "dataType": "str",
         "saymethod": "Default",
         "voice": "",
-        "x": 830,
-        "y": 80,
+        "x": 580,
+        "y": 180,
         "wires": [
             [
-                "ed0d7864.429228"
+                "timeout30"
             ]
         ]
     },
     {
-        "id": "2b8d174d.68ec58",
-        "type": "debug",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload.transcriptor.transcript",
-        "targetType": "msg",
-        "x": 700,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "aef86e1b.67b98",
+        "id": "timeout30",
         "type": "delay",
-        "z": "e1dc3a4d.704118",
-        "name": "Wait 30sec",
+        "z": "f0f0f0f0.000001",
+        "name": "Timeout 30s (cancel on msg.reset)",
         "pauseType": "delay",
         "timeout": "30",
         "timeoutUnits": "seconds",
@@ -121,171 +75,38 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 630,
-        "y": 80,
+        "outputs": 1,
+        "x": 900,
+        "y": 180,
         "wires": [
             [
-                "40e7a8ec.a510f"
+                "say_timeout"
             ]
         ]
     },
     {
-        "id": "f32f1cf6.57de8",
-        "type": "switch",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "property": "payload.transcriptor.transcript",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "Linda",
-                "vt": "str"
-            },
-            {
-                "t": "cont",
-                "v": "Kevin",
-                "vt": "str"
-            },
-            {
-                "t": "cont",
-                "v": "Tom",
-                "vt": "str"
-            },
-            {
-                "t": "cont",
-                "v": "stop",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 4,
-        "x": 390,
-        "y": 240,
-        "wires": [
-            [
-                "84451a71.47e0f8"
-            ],
-            [
-                "8726fc08.6bb54"
-            ],
-            [
-                "ab5d7eab.ea443"
-            ],
-            [
-                "14d3f2e9.707da5"
-            ]
-        ]
-    },
-    {
-        "id": "84451a71.47e0f8",
+        "id": "say_timeout",
         "type": "any-red-say",
-        "z": "e1dc3a4d.704118",
-        "name": "Say: to Linda",
-        "text": "connecting to Linda",
+        "z": "f0f0f0f0.000001",
+        "name": "Say: timeout",
+        "text": "Sorry, that took too long. Goodbye.",
         "dataType": "str",
         "saymethod": "Default",
         "voice": "",
-        "x": 630,
-        "y": 200,
+        "x": 1220,
+        "y": 180,
         "wires": [
             [
-                "5da2e978.8be238"
+                "act_disconnect"
             ]
         ]
     },
     {
-        "id": "5da2e978.8be238",
+        "id": "act_disconnect",
         "type": "any-red-action",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "sweetName": "Empty action",
-        "actionType": "enqueue",
-        "fromSessionId": "session.id",
-        "fromDataType": "msg",
-        "toSessionId": "fromSessionId",
-        "toDataType": "msg",
-        "skill": "LindaSkill",
-        "skillDataType": "str",
-        "x": 840,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "8726fc08.6bb54",
-        "type": "any-red-say",
-        "z": "e1dc3a4d.704118",
-        "name": "Say: to Kevin",
-        "text": "connecting to Kevin",
-        "dataType": "str",
-        "saymethod": "Default",
-        "voice": "",
-        "x": 630,
-        "y": 240,
-        "wires": [
-            [
-                "c82c1323.b0d0e"
-            ]
-        ]
-    },
-    {
-        "id": "ab5d7eab.ea443",
-        "type": "any-red-say",
-        "z": "e1dc3a4d.704118",
-        "name": "Say: to Tom",
-        "text": "connecting to Tom",
-        "dataType": "str",
-        "saymethod": "Default",
-        "voice": "",
-        "x": 630,
-        "y": 280,
-        "wires": [
-            [
-                "1231fc23.42e674"
-            ]
-        ]
-    },
-    {
-        "id": "c82c1323.b0d0e",
-        "type": "any-red-action",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "sweetName": "Empty action",
-        "actionType": "enqueue",
-        "fromSessionId": "session.id",
-        "fromDataType": "msg",
-        "toSessionId": "fromSessionId",
-        "toDataType": "msg",
-        "skill": "KevinSkill",
-        "skillDataType": "str",
-        "x": 840,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "1231fc23.42e674",
-        "type": "any-red-action",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "sweetName": "Empty action",
-        "actionType": "enqueue",
-        "fromSessionId": "session.id",
-        "fromDataType": "msg",
-        "toSessionId": "fromSessionId",
-        "toDataType": "msg",
-        "skill": "TomSkill",
-        "skillDataType": "str",
-        "x": 830,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "cd56e61b.6d141",
-        "type": "any-red-action",
-        "z": "e1dc3a4d.704118",
-        "name": "",
-        "sweetName": "Empty action",
+        "z": "f0f0f0f0.000001",
+        "name": "Disconnect",
+        "sweetName": "Disconnect",
         "actionType": "disconnect",
         "fromSessionId": "session.id",
         "fromDataType": "msg",
@@ -293,32 +114,134 @@
         "toDataType": "msg",
         "skill": "",
         "skillDataType": "str",
-        "x": 810,
-        "y": 320,
+        "x": 1440,
+        "y": 180,
         "wires": []
     },
     {
-        "id": "14d3f2e9.707da5",
-        "type": "any-red-say",
-        "z": "e1dc3a4d.704118",
-        "name": "Say: Sorry",
-        "text": "Sorry to disappoint you",
-        "dataType": "str",
-        "saymethod": "Default",
-        "voice": "",
-        "x": 630,
-        "y": 320,
+        "id": "asr",
+        "type": "any-red-transcriptor",
+        "z": "f0f0f0f0.000001",
+        "name": "Transcribe (final results)",
+        "enable": true,
+        "culture": "en-US",
+        "final": true,
+        "x": 570,
+        "y": 280,
         "wires": [
+            [],
             [
-                "cd56e61b.6d141"
+                "dbg_transcript",
+                "route_by_name"
             ]
         ]
     },
     {
-        "id": "5ace9665.55c5c8",
-        "type": "any-red-config",
-        "z": "",
+        "id": "dbg_transcript",
+        "type": "debug",
+        "z": "f0f0f0f0.000001",
+        "name": "transcript",
         "active": true,
-        "ucc": "ucc_app34_william"
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.transcriptor.transcript",
+        "targetType": "msg",
+        "x": 840,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "route_by_name",
+        "type": "function",
+        "z": "f0f0f0f0.000001",
+        "name": "Route by coworker name / cancel / fallback",
+        "func": "// Read transcript\nconst raw = (msg.payload && msg.payload.transcriptor && msg.payload.transcriptor.transcript) || \"\";\nconst s = raw.toString();\nconst lower = s.toLowerCase();\n\n// Check for cancel/stop intent\nconst cancelPhrases = [\n  'cancel','stop','hang up','goodbye','bye','disconnect','end call'\n];\nconst cancelHit = cancelPhrases.some(p => new RegExp('\\\\b' + p.replace(/\\s+/g,'\\\\s+') + '\\\\b','i').test(s));\nif (cancelHit) {\n  msg.reason = 'caller_cancelled';\n  msg.reset = true; // cancel timeout\n  return [null, msg, null]; // → cancel output\n}\n\n// Known coworkers (aliases allow for small variations)\nconst contacts = [\n  { key: 'Linda', skill: 'LindaSkill', aliases: ['linda','lynda'] },\n  { key: 'Kevin', skill: 'KevinSkill', aliases: ['kevin'] },\n  { key: 'Tom',   skill: 'TomSkill',   aliases: ['tom','thom','tommy'] }\n];\n\nlet match = null;\nfor (const c of contacts) {\n  for (const a of c.aliases) {\n    const re = new RegExp('\\\\b' + a + '\\\\b','i');\n    if (re.test(lower)) { match = c; break; }\n  }\n  if (match) break;\n}\n\nconst sessionId = (msg.session && msg.session.id) || 'default';\nconst key = `vf_attempts:${sessionId}`;\nlet attempts = flow.get(key) || 0;\n\nif (match) {\n  // Success → cancel timeout, reset attempts, set dynamic fields\n  flow.set(key, 0);\n  msg.person = match.key;\n  msg.skill = match.skill;\n  msg.speech = `Connecting you to ${match.key}.`;\n  msg.reset = true; // cancel timeout\n  return [msg, null, null]; // → matched output\n}\n\n// No match → increment attempts and reprompt or escalate\nattempts += 1;\nflow.set(key, attempts);\n\nif (attempts < 3) {\n  msg.reprompt = 'Sorry, I did not catch that. Please say Linda, Kevin, or Tom.';\n  return [null, null, msg]; // → fallback output (reprompt)\n} else {\n  // Escalate after 2 failed reprompts\n  msg.person = 'Reception';\n  msg.skill = 'ReceptionSkill';\n  msg.speech = 'I will connect you to Reception for further assistance.';\n  msg.reset = true; // cancel timeout\n  return [msg, null, null]; // → matched path with Reception\n}\n",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 340,
+        "wires": [
+            [
+                "say_connect",
+                "timeout30"
+            ],
+            [
+                "say_bye",
+                "timeout30"
+            ],
+            [
+                "say_reprompt"
+            ]
+        ]
+    },
+    {
+        "id": "say_connect",
+        "type": "any-red-say",
+        "z": "f0f0f0f0.000001",
+        "name": "Say: connecting …",
+        "text": "speech",
+        "dataType": "msg",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 1220,
+        "y": 320,
+        "wires": [
+            [
+                "act_enqueue_dynamic"
+            ]
+        ]
+    },
+    {
+        "id": "act_enqueue_dynamic",
+        "type": "any-red-action",
+        "z": "f0f0f0f0.000001",
+        "name": "Enqueue to Skill (dynamic)",
+        "sweetName": "Enqueue",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "skill",
+        "skillDataType": "msg",
+        "x": 1490,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "say_bye",
+        "type": "any-red-say",
+        "z": "f0f0f0f0.000001",
+        "name": "Say: goodbye",
+        "text": "Okay, goodbye.",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 1210,
+        "y": 360,
+        "wires": [
+            [
+                "act_disconnect"
+            ]
+        ]
+    },
+    {
+        "id": "say_reprompt",
+        "type": "any-red-say",
+        "z": "f0f0f0f0.000001",
+        "name": "Say: reprompt",
+        "text": "reprompt",
+        "dataType": "msg",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 1210,
+        "y": 400,
+        "wires": [
+            []
+        ]
     }
 ]

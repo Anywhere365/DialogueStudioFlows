@@ -1,42 +1,105 @@
-# Voice forward to Coworker
-### Anywhere365 Dialogue Studio
-## Flow description
-Demonstrate the use of Transcription node, Speech to Text. Implements a personal flow where you can call the Anywhere365 contact center, get a personal greeting and then speak the first name of the co worker your want to be connected to. May be handy from the car. Person names are hardest to get correct with any Speech to text solution. Depending on the specific name your milage may vary. For Google to recognise a word as a persons name, and capitalise, the context matters. So speaking 'can i speak to Tom please' is better than 'Tom' or 'Tom please'. 
+# Voice Forward to Coworker
 
-![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/VoiceForwardToCoworker/resources/a365-ds-voice-forwardto-coworker.png)
+### AnywhereNow Dialogue Studio (Node-RED)
 
+Route callers to a coworker by saying their first name (e.g., *“Linda”*, *“Kevin”*, *“Tom”*).
+The flow greets, listens, confirms, and **enqueues to a Skill**. It includes:
 
-With the debug node on in Dialogue Studio you can nicely read the spoken text. You can keep speaking sentences until one the the configured words is found, then the call is queueed for skill. Small pause in speaking will enable the speech to text output.
-``` debug
-10/22/2020, 9:20:31 AMnode: 2b8d174d.68ec58
-msg.payload.transcriptor.transcript : string[28]
-     " I'd like to speak to Kevin."
+* Case-insensitive name matching with simple aliases (e.g., *Thom* → **Tom**)
+* **Dynamic** speech (`msg.speech`) and skill (`msg.skill`) → no hard-coded values in nodes
+* Up to **2 reprompts**, then escalation to **ReceptionSkill**
+* A **timeout** after \~30s of silence (with a recommended cancellable setup)
+* Basic **cancel** intents (*cancel/stop/hang up/bye…*) that politely disconnect
+
+![Flow screenshot](resources/a365-ds-voice-forwardto-coworker.png)
+
+---
+
+## Prerequisites
+
+* An active **UCC** and Dialogue Studio access
+* **Transcription** enabled on your UCC (Google or Microsoft supported STT)
+  See your platform docs for enabling credentials and culture selection.
+* **Skills** configured in your UCC:
+
+  * `LindaSkill`, `KevinSkill`, `TomSkill` (and optionally `ReceptionSkill`)
+
+> Note: Person names are notoriously hard for STT. Phrase requests in context (“**Can I speak to Tom please?**”) to improve accuracy.&#x20;
+
+---
+
+## Import & first run
+
+1. **Import** the JSON into Dialogue Studio (Menu → **Import** → paste → **Import** → **Deploy**).
+2. In the **Incoming Call** node, set your **Server** and **UCC**.
+3. In the **Transcriptor** node, pick the right **culture** (e.g., `en-US`, `nl-NL`).
+4. Make sure the Skills referenced in the flow **exist** and agents are assigned.
+
+Open the **Debug** panel to see what the ASR heard:
+
 ```
-or get an error
-``` debug
-10/22/2020, 9:20:33 AMnode: ActionNodemsg : string[123]
-     "Exception: Session: 97045369-dbc6-4fc0-bf8e-76e097812cf6 - Skill: "KevinSkill" is not found for ucc. Session is not queued."
+msg.payload.transcriptor.transcript  →  "I'd like to speak to Kevin."
 ```
 
-## How to download and import in Anywhere365 Dialogue Studio
-- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
-- click on the .json file, click [raw] on top right, then ctl-A, ctl-C
-- Goto hamburger menu, top right, in Dialogue Studio
-- Choose Import, then ctl-V or select local file
+If a skill is missing you’ll see an enqueue error in Debug (create/assign the skill, then test again).&#x20;
 
+---
 
-## Requirements
-- Google cloud subscription
-- Configure Transcription Google credentials in UCC Sharepoint, see [Golive](https://golive.anywhere365.io/platform_elements/core/scenarios/how_to_configure_transcript.html)
+## How it works (at a glance)
 
-## Todo before Import
-- see requirements
+1. **Greet**: prompts for “Linda, Kevin, or Tom… you can also say cancel.”
+2. **Listen** (Transcriptor): emits a final transcript on silence or end of utterance.
+3. **Route by name** (Function):
 
-## Todo after Import
-- Change Server name and ucc name in Incoming node
-- Make sure the configured skills in Dialogue Studio also exist in Sharepoint and Agents assigned
-- Change Switch node values and Say confirmation node texts
-- Change Delay timeout and following Say bye node text, default set to 30 sec
+   * Normalizes text, checks **cancel** phrases
+   * Matches against a small **contacts** list (aliases + word boundaries)
+   * On match: sets `msg.person`, `msg.skill`, `msg.speech`
+   * On no match: increments an **attempts** counter (stored per session)
+     → reprompt (max 2), then **escalate** to `ReceptionSkill`
+4. **Confirm** (Say) and **Enqueue** (Action).
+5. **Timeout**: if nobody speaks for \~30s, a polite goodbye and disconnect.
 
-## Next steps
-Sample flow only checks for uppercase names. Maybe better to lowercase the msg.payload.transcriptor.transcript in a Function- or Change- node before the Switch node. Extend with more names. Now the names are hardcoded may want to read from a Sharepoint list or database and put in flow.set variables.
+---
+
+## Configuration you’ll likely change
+
+* **Contacts** list (in the “Route by coworker name …” Function):
+
+  ```js
+  const contacts = [
+    { key: 'Linda', skill: 'LindaSkill', aliases: ['linda','lynda'] },
+    { key: 'Kevin', skill: 'KevinSkill', aliases: ['kevin'] },
+    { key: 'Tom',   skill: 'TomSkill',   aliases: ['tom','thom','tommy'] }
+  ];
+  ```
+
+  Add more coworkers or tweak aliases.
+* **Culture** in the Transcriptor (`en-US` → `nl-NL`, etc.).
+* **Prompts** in the Say nodes (greeting, reprompt, timeout, goodbye).
+* **Escalation** target (change `ReceptionSkill` to your helpdesk/attendant skill).
+
+---
+
+## Tips for accuracy
+
+* Encourage **contextual phrasing** (“Can I speak to Tom please?” tends to transcribe better than just “Tom”).&#x20;
+* Add obvious **aliases** (e.g., *Thom*, *Tommy*).
+* If many coworkers share similar names, consider confirming:
+  *“Did you mean **Tom** from Support or **Tom** from Sales?”*
+* For multilingual callers, match on multiple **cultures** (duplicate flow per language or detect language upstream).
+
+---
+
+## Troubleshooting
+
+* **No audio / no transcripts** → verify STT credentials and the **culture** on the Transcriptor node.
+* **Enqueue errors** (skill not found) → create the skill and assign agents, then redeploy.&#x20;
+* **False matches** (e.g., “tomorrow”) → aliases use **word boundaries** to reduce this; refine aliases or add a confirmation step.
+
+---
+
+## Security & hygiene
+
+* Log only what you need; transcripts can contain personal data.
+
+---
