@@ -1,137 +1,229 @@
 [
     {
-        "id": "9f052b33.89d898",
+        "id": "f1b2c3d4e5a60101",
         "type": "tab",
-        "label": "Transcript Minimal, to debug",
+        "label": "Transcribe to Debug",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "9984ffd1.f6d84",
-        "type": "any-red-incoming-call",
-        "z": "9f052b33.89d898",
-        "name": "",
-        "config": "5ace9665.55c5c8",
-        "filtertype": "audiovideo",
-        "x": 180,
-        "y": 60,
-        "wires": [
-            [
-                "4d05d33d.dfcbd4"
-            ]
-        ]
-    },
-    {
-        "id": "f358df26.2ea7a8",
-        "type": "any-red-transcriptor",
-        "z": "9f052b33.89d898",
-        "name": "",
-        "enable": true,
-        "culture": "en-US",
-        "final": true,
-        "x": 530,
-        "y": 140,
-        "wires": [
-            [
-                "c4b2e756.bfd03"
-            ],
-            [
-                "c4b2e756.bfd03"
-            ]
-        ]
-    },
-    {
-        "id": "c4b2e756.bfd03",
-        "type": "debug",
-        "z": "9f052b33.89d898",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 690,
-        "y": 140,
+        "id": "c-intro",
+        "type": "comment",
+        "z": "f1b2c3d4e5a60101",
+        "name": "Purpose",
+        "info": "Minimal flow to debug speech using FINAL transcripts only:\n- Greet caller\n- Start ASR (final results only)\n- Ask to speak and press 1 when finished\n- On key press: emit aggregated transcript, say goodbye, hang up\nNote: Transcriptor output #1 fires when the transcriptor starts (not partial text). Output #2 carries final transcripts.",
+        "x": 240,
+        "y": 20,
         "wires": []
     },
     {
-        "id": "466aad18.c0f91c",
-        "type": "any-red-ask-wait-input",
-        "z": "9f052b33.89d898",
+        "id": "incall",
+        "type": "any-red-incoming-call",
+        "z": "f1b2c3d4e5a60101",
         "name": "",
-        "saytext": "describe and speak your question and end with a keypress",
+        "config": "fc4953ed8900b279",
+        "filtertype": "audiovideo",
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "say_welcome"
+            ]
+        ]
+    },
+    {
+        "id": "say_welcome",
+        "type": "any-red-say",
+        "z": "f1b2c3d4e5a60101",
+        "name": "Say: welcome",
+        "text": "Welcome to the voice ticket service. Please describe your issue, then press 1 when you are finished.",
+        "dataType": "str",
         "saymethod": "Default",
         "voice": "",
+        "x": 430,
+        "y": 80,
+        "wires": [
+            [
+                "aw_prompt",
+                "asr"
+            ]
+        ]
+    },
+    {
+        "id": "aw_prompt",
+        "type": "any-red-ask-wait-input",
+        "z": "f1b2c3d4e5a60101",
+        "name": "Ask & Wait (press 1 when done)",
+        "saytext": "Please speak your question, then press 1 when you are finished.",
+        "saymethod": "Default",
+        "aawoption": "Say",
+        "voice": "",
+        "audioFile": "",
+        "audioFileSource": "url",
         "dtmftype": "DtmfNumChars",
         "tone": "1",
         "tonecount": "1",
-        "timeout": "99",
+        "timeout": "45",
         "playonce": true,
         "repeatdelay": "5",
         "speechphrase": "",
         "speechculture": "en-US",
         "dataType": "str",
-        "x": 500,
-        "y": 60,
+        "audioFileDataType": "str",
+        "x": 760,
+        "y": 80,
         "wires": [
             [
-                "d1c54988.7706d8"
+                "emit_aggregate",
+                "say_done"
             ],
             [
-                "4d05d33d.dfcbd4"
+                "say_welcome"
             ]
         ]
     },
     {
-        "id": "4d05d33d.dfcbd4",
-        "type": "any-red-say",
-        "z": "9f052b33.89d898",
-        "name": "",
-        "text": "hello welcome to voice ticket service",
-        "dataType": "str",
-        "saymethod": "Default",
-        "voice": "",
-        "x": 300,
-        "y": 140,
+        "id": "asr",
+        "type": "any-red-transcriptor",
+        "z": "f1b2c3d4e5a60101",
+        "name": "Transcribe (final results only)",
+        "enable": true,
+        "culture": "en-US",
+        "final": true,
+        "x": 470,
+        "y": 160,
         "wires": [
             [
-                "466aad18.c0f91c",
-                "f358df26.2ea7a8"
+                "dbg_started"
+            ],
+            [
+                "aggregate_final",
+                "dbg_final"
             ]
         ]
     },
     {
-        "id": "d1c54988.7706d8",
-        "type": "any-red-say",
-        "z": "9f052b33.89d898",
-        "name": "",
-        "text": "your case is recorded, thank you for calling bye",
-        "dataType": "str",
-        "saymethod": "Default",
-        "voice": "",
-        "x": 730,
+        "id": "dbg_started",
+        "type": "debug",
+        "z": "f1b2c3d4e5a60101",
+        "name": "ASR started (output #1)",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "dbg_final",
+        "type": "debug",
+        "z": "f1b2c3d4e5a60101",
+        "name": "ASR final (output #2)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload.transcriptor.transcript",
+        "targetType": "msg",
+        "x": 740,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "aggregate_final",
+        "type": "function",
+        "z": "f1b2c3d4e5a60101",
+        "name": "Aggregate finals per session",
+        "func": "// Append final transcripts to an array/string per session so we can output one blob at the end.\nconst t = msg.payload?.transcriptor?.transcript || \"\";\nconst sid = (msg.session && msg.session.id) || \"default\";\nconst keyA = `asr_aggr_arr:${sid}`;\nconst keyS = `asr_aggr_str:${sid}`;\n\nif (t) {\n  const arr = flow.get(keyA) || [];\n  arr.push(t);\n  flow.set(keyA, arr);\n  flow.set(keyS, (flow.get(keyS) || \"\") + (arr.length > 1 ? \" \" : \"\") + t);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "emit_aggregate",
+        "type": "function",
+        "z": "f1b2c3d4e5a60101",
+        "name": "Emit & clear aggregate",
+        "func": "const sid = (msg.session && msg.session.id) || \"default\";\nconst keyA = `asr_aggr_arr:${sid}`;\nconst keyS = `asr_aggr_str:${sid}`;\nconst arr = flow.get(keyA) || [];\nconst full = flow.get(keyS) || \"\";\n\nmsg.aggregate = { sessionId: sid, pieces: arr, text: full, length: full.length, words: full.trim() ? full.trim().split(/\\s+/).length : 0 };\n\n// Clear for next call\nflow.set(keyA, []);\nflow.set(keyS, \"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
         "y": 60,
         "wires": [
             [
-                "2674834a.df422c"
+                "dbg_aggregate"
             ]
         ]
     },
     {
-        "id": "2674834a.df422c",
-        "type": "any-red-disconnect",
-        "z": "9f052b33.89d898",
-        "name": "",
-        "x": 930,
+        "id": "dbg_aggregate",
+        "type": "debug",
+        "z": "f1b2c3d4e5a60101",
+        "name": "Aggregated transcript",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "aggregate",
+        "targetType": "msg",
+        "x": 1240,
         "y": 60,
         "wires": []
     },
     {
-        "id": "5ace9665.55c5c8",
-        "type": "any-red-config",
-        "z": "",
-        "active": true,
-        "ucc": "ucc_app34_william"
+        "id": "say_done",
+        "type": "any-red-say",
+        "z": "f1b2c3d4e5a60101",
+        "name": "Say: done",
+        "text": "Thanks, your message is recorded. Goodbye.",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "",
+        "x": 1010,
+        "y": 100,
+        "wires": [
+            [
+                "2cdf92c869945384"
+            ]
+        ]
+    },
+    {
+        "id": "2cdf92c869945384",
+        "type": "any-red-action",
+        "z": "f1b2c3d4e5a60101",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "disconnect",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "",
+        "skillDataType": "str",
+        "sip": "",
+        "sipDataType": "str",
+        "agentSips": "",
+        "agentSipsDataType": "str",
+        "config": "fc4953ed8900b279",
+        "questionsfilter": "",
+        "questionid": "",
+        "x": 1210,
+        "y": 100,
+        "wires": []
     }
 ]
