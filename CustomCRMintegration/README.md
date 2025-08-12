@@ -19,7 +19,7 @@ The flow listens for specific events from the EventBus:
 
 The captured data is processed and sent to the CRM system in JSON format.
 
-![Flow Diagram](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/CustomCRMintegration/resources/a365-ds-customercrmintegration.png)
+![Flow Diagram](resources/a365-ds-customercrmintegration.png)
 
 ## How to Download and Import
 1. Use the green **Download [Code]** button at the top right of the [repository home](https://github.com/Anywhere365/DialogueStudioFlows).

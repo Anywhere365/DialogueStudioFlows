@@ -20,7 +20,7 @@ This is a standard 'Press 1 for...' IVR flow designed for AnywhereNow Dialogue S
 
 This flow is ideal as a first test to verify the installation and environment setup.
 
-![Standard Simple IVR Flow](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/DefaultUCCsimple_solution/resource/a365-ds-standard-ivr-flow.png?raw=true)
+![Standard Simple IVR Flow](resource/a365-ds-standard-ivr-flow.png?raw=true)
 
 ## Flow Description
 - **Skill Choices**: Sales, Support, and Other.

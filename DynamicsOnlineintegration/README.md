@@ -11,10 +11,14 @@ It uses the **Microsoft identity platform v2.0** (client credentials) and caches
 ## What you import
 
 * **Flow tab:** `Sample: Contacts by phone`
+![Flow Diagram](resources/a365-dynonlinesamplepng.png)
 * **Subflow:** `Dataverse token (client credentials)`
+![Subflow Diagram](resources/a365-dynonlinesublow.png)
 
   * Obtains a token with `scope={ORG_URL}/.default` (v2.0)
   * Caches `dv_at` (token), `dv_exp` (expiry ms), and `dv_org` (org URL) in **flow** context
+
+
 
 ---
 
