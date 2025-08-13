@@ -1,5 +1,5 @@
 # Tutorial Base 1
-### Anywhere365 Dialogue Studio
+### AnywhereNow Dialogue Studio
 ## Flow description
 First time user of Dialogue Studio? This introduction flow is specially for you to learn the general nodes. What will we cover?
 - Timestamp node to manually start a flow
@@ -8,7 +8,7 @@ First time user of Dialogue Studio? This introduction flow is specially for you 
 - Flow level variables
 - HTTP In node and respnd with a webpage with custom values
 
-![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TutorialBase1/resources/a365-ds-tutorial-base1-screenshot.png)
+![transcript flow minimal](resources/a365-ds-tutorial-base1-screenshot.png)
 
 ### Top flow
 showcases the Timestamp node that you can click on the leftside button to start its flow. The Function nodes show different ways to display datetime formats. The Debug nodes. Can have one or more flows as input. Can show the msg.payload (default), all of msg.* values and third ISO date format. You can temporary disable Debug nodes by clicking the rightside button. Later when you need the they are easy to enable again. With Dialogue Studio you will often work with datatime so keep these examples handy!
@@ -23,13 +23,13 @@ showcases the HTTP In node. Here we create a http://localhost:1880/anywhere365 e
 
 see below the results in the Dialogue Studio debug area.
 
-![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TutorialBase1/resources/a365-ds-tutorial-base1-debug.png)
+![transcript flow minimal](resources/a365-ds-tutorial-base1-debug.png)
 
-![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/TutorialBase1/resources/a365-ds-tutorial-base1-htmlshot.png)
+![transcript flow minimal](resources/a365-ds-tutorial-base1-htmlshot.png)
 
 
-## How to download and import in Anywhere365 Dialogue Studio
-- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
+## How to download and import in AnywhereNow Dialogue Studio
+- use green download [Code] button, top right from [repository home](https://github.com/AnywhereNow/DialogueStudioFlows) or
 - click on the .json file, click [raw] on top right, then ctl-A, ctl-C
 - Goto hamburger menu, top right, in Dialogue Studio
 - Choose Import, then ctl-V or select local file

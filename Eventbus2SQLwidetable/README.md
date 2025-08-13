@@ -1,20 +1,20 @@
-## Write Anywhere365 UCC call events to SQL Server
-### Anywhere365 Dialogue Studio
+## Write AnywhereNow UCC call events to SQL Server
+### AnywhereNow Dialogue Studio
 ## Flow description
 Dialogue Studio includes an Event Bus node. This node gives detail events that happen in a UCC call flow. Examples are like CallStart, SkillChosen, AgentJoined, etc. Each event has unique properties. Most call related events have minimal an eventName, dialogueId and timestamp. Most events are not used in this example. This Eventbus2SQL flow writes selected events for a call to a single wide row in SQL Server. The CallStart does an sql INSERT, subsequent events do sql UPDATE statements. This design is optimised for easy reporting and small database size. Multiple green Debug nodes allow you to show optional proces information in the Dialogue Studio debug area. The callsimple table in SQL has columns for a simple call scenario. The callsimple view adds calculated columns for wait-, talk- and call- duration.
 
-![transcript flow minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/Eventbus2SQLwidetable/resources/a365-ds-event2sql-flow.png)
+![transcript flow minimal](resources/a365-ds-event2sql-flow.png)
 
-![transcript debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/Eventbus2SQLwidetable/resources/a365-ds-event2sql-insert.png)
+![transcript debug minimal](resources/a365-ds-event2sql-insert.png)
 
-![transcript debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/Eventbus2SQLwidetable/resources/a365-ds-event2sql-update-skill.png)
+![transcript debug minimal](resources/a365-ds-event2sql-update-skill.png)
 
-![transcript debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/Eventbus2SQLwidetable/resources/a365-ds-event2sql-update-agent.png)
+![transcript debug minimal](resources/a365-ds-event2sql-update-agent.png)
 
-![transcript debug minimal](https://github.com/Anywhere365/DialogueStudioFlows/blob/master/Eventbus2SQLwidetable/resources/a365-ds-event2sql-view.png)
+![transcript debug minimal](resources/a365-ds-event2sql-view.png)
 
-## How to download and import in Anywhere365 Dialogue Studio
-- use green download [Code] button, top right from [repository home](https://github.com/Anywhere365/DialogueStudioFlows) or
+## How to download and import in AnywhereNow Dialogue Studio
+- use green download [Code] button, top right from [repository home](https://github.com/AnywhereNow/DialogueStudioFlows) or
 - click on the .json file, click [raw] on top right, then ctl-A, ctl-C
 - Goto hamburger menu, top right, in Dialogue Studio
 - Choose Import, then ctl-V or select local file
@@ -36,4 +36,4 @@ Dialogue Studio includes an Event Bus node. This node gives detail events that h
 The UCC IVR call flow on top in this Dialogue Studio flow is just for generating the events. Edit to your needs. If you just want the standard Sharepoint based IVR flow you can change config.xml set identity is false for the nodered plugin. 
 
 ## Next steps
-If you want to extend this example for production you may want to add columns to the sql table. e.g. for hunts, qm/agent rating, forwards etc. For inspiration you can view the [PowerBI_Dialogue table](https://golive.anywhere365.io/platform_elements/powerbi_integration/power_bi_integration_technical_overview.html). Same for the callsimple view. e.g. you can add formatted xxx-duration columns that display in min:sec format. Remember sql view columns are only executed when you reference them in a query.
+If you want to extend this example for production you may want to add columns to the sql table. e.g. for hunts, qm/agent rating, forwards etc. For inspiration you can view the [PowerBI_Dialogue table](https://golive.anywhere.now/platform_elements/powerbi_integration/power_bi_integration_technical_overview.html). Same for the callsimple view. e.g. you can add formatted xxx-duration columns that display in min:sec format. Remember sql view columns are only executed when you reference them in a query.

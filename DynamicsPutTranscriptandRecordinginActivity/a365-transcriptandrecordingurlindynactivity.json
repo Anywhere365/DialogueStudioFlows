@@ -1,1 +1,1147 @@
-[{"id":"15f3bbbd.280844","type":"tab","label":"write transcript and recording URL to phone activity in Dynamics","disabled":false,"info":""},{"id":"368bd399.1758ac","type":"group","z":"15f3bbbd.280844","name":"Write transcript to file","style":{"fill":"#ffdf7f","label":true,"color":"#000000"},"nodes":["d6c3139.fcc4df","4beae165.28c5c","25c8acc7.76f6e4","67880613.ed7148","e97d5356.92342","fbe1d03.865fe3"],"x":34,"y":299,"w":972,"h":142},{"id":"d4ab26f2.3a73a8","type":"group","z":"15f3bbbd.280844","name":"Pre Dialogue Phase","style":{"fill":"#ffff7f","label":true,"color":"#000000"},"nodes":["a553090.19551f8","496b8849.562178","e39a2941.65c5e8","3513179a.7e1c68"],"x":34,"y":119,"w":1272,"h":82},{"id":"e8f343fb.c62c2","type":"group","z":"15f3bbbd.280844","name":"If recording has been saved, we send the transcript and recording link to Dynamics","style":{"fill":"#c8e7a7","label":true,"color":"#000000"},"nodes":["8fd8d99a.0ca808","f620f5d0.cc0908","6d167caa.bbd5b4","cae13ad3.e10818","9cc45c76.c9cf2","e49a9f65.9b0b4","8d1bb006.0dba5","c26f2e5a.2ab18","903e418.119d3c","f153cd72.5c27d","d89b0d69.18b69","5e19238f.4c64dc","e44d9b0f.157d38","34ec8088.64447","de395bb1.705d78","8c030912.21e378","8613e619.345f48","5249b14b.2ccc7","8f4892bc.c22ee","ca1394f2.4c38d8","5f1945fd.5d07ec","f023f822.cb3aa8","f5f0b429.64e2d8","f796ac47.fcc6c","f65d0739.340918","6f0548c7.12c3b8","5f85bc1c.160a74"],"x":14,"y":491.5,"w":2612,"h":357},{"id":"a7da9d.3efb456","type":"inject","z":"15f3bbbd.280844","name":"","props":[{"p":"client_id","v":"574ca29a-f755-4ffc-8532-dd0a6b75c1ca","vt":"str"},{"p":"client_secret","v":"XOz8Q~BgWGK3yXhYPu452GlzQYBgXWjyExAnccL8","vt":"str"}],"repeat":"","crontab":"","once":false,"onceDelay":0.1,"topic":"","payloadType":"str","x":550,"y":1920,"wires":[["9d717851.3bc568"]]},{"id":"1257788b.aba4f7","type":"debug","z":"15f3bbbd.280844","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","statusVal":"","statusType":"auto","x":1290,"y":1960,"wires":[]},{"id":"b1167148.1c9de","type":"function","z":"15f3bbbd.280844","name":"set query","func":"msg.headers = {\n    \"Authorization\": \"Bearer \" + global.get(\"dynat\"),\n    \"Accept\": \"application/json\",\n    \"OData-MaxVersion\": \"4.0\",\n    \"OData-Version\": \"4.0\"\n};\nmsg.method = \"GET\"\nvar q = \"447966020081\"\n\nmsg.url = \"https://anywhere365demo.crm4.dynamics.com/api/data/v9.2/contacts?$filter=contains(telephone1,%27\" + q + \"%27)&$select=firstname, lastname, fullname, telephone1, emailaddress1\"\n//$filter=contains(telephone1,%27\" + q + \"%27)\n\n\n//filter=contains(telephone1, 447966020081)\n\n\nmsg.client_id = \"\"\nmsg.client_secret = \"\"\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":1130,"y":2020,"wires":[["ae11a21a.f3e31","1257788b.aba4f7"]]},{"id":"ae11a21a.f3e31","type":"http request","z":"15f3bbbd.280844","name":"requestQuery","method":"use","ret":"obj","paytoqs":"body","url":"","tls":"","persist":false,"proxy":"","authType":"","x":1320,"y":2020,"wires":[["dfbf7581.919368"]]},{"id":"dfbf7581.919368","type":"debug","z":"15f3bbbd.280844","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","targetType":"full","statusVal":"","statusType":"auto","x":1470,"y":1960,"wires":[]},{"id":"6aa2cc36.ada3c4","type":"switch","z":"15f3bbbd.280844","name":"","property":"dynexpire","propertyType":"global","rules":[{"t":"gt","v":"time","vt":"msg"},{"t":"else"}],"checkall":"false","repair":false,"outputs":2,"x":890,"y":2040,"wires":[["b1167148.1c9de"],["bcb57aae.b6acf8"]]},{"id":"9d717851.3bc568","type":"function","z":"15f3bbbd.280844","name":"check if AT is expired","func":"msg.time = new Date()\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":680,"y":2040,"wires":[["6aa2cc36.ada3c4"]]},{"id":"b6e0b282.b019a","type":"http request","z":"15f3bbbd.280844","name":"requestToken","method":"use","ret":"obj","paytoqs":"ignore","url":"","tls":"","persist":false,"proxy":"","authType":"","x":840,"y":2220,"wires":[["a23adcbb.36aba"]]},{"id":"49b662c5.05c57c","type":"function","z":"15f3bbbd.280844","name":"save AT","func":"var date = new Date()\nglobal.set(\"dynat\", msg.payload.access_token);\nglobal.set(\"dynexpire\", new Date(date.setHours(date.getHours()+1)));\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":1220,"y":2220,"wires":[["b1167148.1c9de"]]},{"id":"a23adcbb.36aba","type":"switch","z":"15f3bbbd.280844","name":"Statuscode = 200","property":"statusCode","propertyType":"msg","rules":[{"t":"eq","v":"200","vt":"str"}],"checkall":"true","repair":false,"outputs":1,"x":1050,"y":2220,"wires":[["49b662c5.05c57c"]]},{"id":"bcb57aae.b6acf8","type":"function","z":"15f3bbbd.280844","name":"writeGraphAuthHeader-client_credential","func":"msg.url = 'https://login.microsoftonline.com/4179dd4d-e485-4535-9d45-b3539f584cad/oauth2/token'\nmsg.headers = {'Content-Type': 'application/x-www-form-urlencoded'}\nmsg.payload = {'client_id': msg.client_id,\n    'resource': 'https://anywhere365demo.crm4.dynamics.com/',\n    'client_secret': msg.client_secret,\n    'grant_type': 'client_credentials'}\nmsg.method = \"POST\"\nmsg.client_id = \"\"\nmsg.client_secret = \"\"\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":580,"y":2220,"wires":[["b6e0b282.b019a"]]},{"id":"d6c3139.fcc4df","type":"any-red-indialoguestarted","z":"15f3bbbd.280844","g":"368bd399.1758ac","name":"","config":"","filtertype":"all","x":160,"y":360,"wires":[["4beae165.28c5c"],["25c8acc7.76f6e4"]]},{"id":"4beae165.28c5c","type":"any-red-transcriptor","z":"15f3bbbd.280844","g":"368bd399.1758ac","name":"transcribe customer","enable":true,"culture":"en-US","cultureDataType":"str","final":true,"x":390,"y":340,"wires":[[],["67880613.ed7148"]]},{"id":"25c8acc7.76f6e4","type":"any-red-transcriptor","z":"15f3bbbd.280844","g":"368bd399.1758ac","name":"transcribe Agent","enable":true,"culture":"en-US","cultureDataType":"str","final":true,"x":380,"y":380,"wires":[[],["e97d5356.92342"]]},{"id":"67880613.ed7148","type":"function","z":"15f3bbbd.280844","g":"368bd399.1758ac","name":"Customer text","func":"msg.filename = msg.payload.transcriptor.sessionId + '.txt';\nmsg.payload = 'Customer:' + msg.payload.transcriptor.transcript\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":600,"y":360,"wires":[["fbe1d03.865fe3"]]},{"id":"e97d5356.92342","type":"function","z":"15f3bbbd.280844","g":"368bd399.1758ac","name":"Agent text","func":"msg.filename = msg.payload.transcriptor.sessionId + '.txt';\nmsg.payload = 'Agent:' + msg.payload.transcriptor.transcript\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":580,"y":400,"wires":[["fbe1d03.865fe3"]]},{"id":"fbe1d03.865fe3","type":"file","z":"15f3bbbd.280844","g":"368bd399.1758ac","name":"Create and add transcritp to file","filename":"","appendNewline":true,"createDir":true,"overwriteFile":"false","encoding":"none","x":850,"y":380,"wires":[[]]},{"id":"a553090.19551f8","type":"any-red-incoming-call","z":"15f3bbbd.280844","g":"d4ab26f2.3a73a8","name":"","config":"","filtertype":"audiovideo-ivrquestion","x":240,"y":160,"wires":[["3513179a.7e1c68"]]},{"id":"496b8849.562178","type":"any-red-say","z":"15f3bbbd.280844","g":"d4ab26f2.3a73a8","name":"","text":"Welcxome to our demo","dataType":"str","saymethod":"Default","voice":"9b53d919.17b6d8","x":920,"y":160,"wires":[["e39a2941.65c5e8"]]},{"id":"e39a2941.65c5e8","type":"any-red-action","z":"15f3bbbd.280844","g":"d4ab26f2.3a73a8","name":"","sweetName":"Empty action","actionType":"enqueue","fromSessionId":"session.id","fromDataType":"msg","toSessionId":"fromSessionId","toDataType":"msg","skill":"support","skillDataType":"str","sip":"","sipDataType":"str","agentSips":"","agentSipsDataType":"str","config":"41923228.5882ac","questionsfilter":"","questionid":"","x":1190,"y":160,"wires":[]},{"id":"3513179a.7e1c68","type":"function","z":"15f3bbbd.280844","g":"d4ab26f2.3a73a8","name":"write phnr to flow variable","func":"var phone1 = msg.session.sipUri.split(\"@\")\nvar phone = phone1[0].slice(4)\n\nflow.set(\"phnr\" + msg.session.id, phone)\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":670,"y":160,"wires":[["496b8849.562178"]]},{"id":"8fd8d99a.0ca808","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"create token request","func":"var client_id =\"<yourclientid>\"\nvar client_secret = \"<yourencodedclientsecret>\"\nmsg.headers = {\n\"Content-Type\": \"application/x-www-form-urlencoded\",\n\"Host\": \"login.microsoftonline.com\"\n};\nmsg.method = \"POST\"\nmsg.url = \"https://login.microsoftonline.com/<yourtenantid>/oauth2/token\"\n\nmsg.payload = {'client_id': client_id,\n    'resource': 'https://<yourspo>.crm4.dynamics.com/',\n    'client_secret': client_secret,\n    'grant_type': 'client_credentials'}\n    \nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":680,"y":740,"wires":[["f620f5d0.cc0908"]]},{"id":"f620f5d0.cc0908","type":"http request","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"","method":"use","ret":"obj","paytoqs":"ignore","url":"","tls":"","persist":false,"proxy":"","authType":"","x":870,"y":740,"wires":[["6d167caa.bbd5b4"]]},{"id":"6d167caa.bbd5b4","type":"switch","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"statuscode = 200","property":"statusCode","propertyType":"msg","rules":[{"t":"eq","v":"200","vt":"str"}],"checkall":"true","repair":false,"outputs":1,"x":1050,"y":740,"wires":[["cae13ad3.e10818"]]},{"id":"cae13ad3.e10818","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"write global variables","func":"var date = new Date()\nglobal.set (\"Dynamicstoken\", msg.payload.access_token)\nglobal.set(\"dynexpire\", new Date(date.setHours(date.getHours()+1)))\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":1260,"y":740,"wires":[["9cc45c76.c9cf2"]]},{"id":"9cc45c76.c9cf2","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"create Dyn request","func":"var q1 = flow.get(\"phnr\" +msg.info.event.dialogueId)\nvar q = q1.slice(1)\n\nmsg.url = \"https://<yourspo>.crm4.dynamics.com/api/data/v9.2/phonecalls?$filter=contains(phonenumber,%27\" + q + \"%27)&$orderby=createdon%20desc&$top=1\"\n\nmsg.method = \"GET\"\nmsg.headers = {\n\"Authorization\": \"Bearer \" + global.get('Dynamicstoken'),\n\"Accept\": \"application/json\",\n\"OData-MaxVersion\": \"4.0\",\n\"OData-Version\": \"4.0\"\n};\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":1110,"y":600,"wires":[["e49a9f65.9b0b4"]]},{"id":"e49a9f65.9b0b4","type":"http request","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"","method":"use","ret":"obj","paytoqs":"ignore","url":"","tls":"","persist":false,"proxy":"","authType":"","x":1290,"y":600,"wires":[["f65d0739.340918"]]},{"id":"8d1bb006.0dba5","type":"switch","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"Ended/Recorded","property":"payload.eventType","propertyType":"msg","rules":[{"t":"eq","v":"DialogueRecordingSavedEvent","vt":"str"}],"checkall":"true","repair":false,"outputs":1,"x":270,"y":620,"wires":[["c26f2e5a.2ab18"]]},{"id":"c26f2e5a.2ab18","type":"switch","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"correct ucc","property":"payload.event.location","propertyType":"msg","rules":[{"t":"cont","v":"ucc_olafg","vt":"str"},{"t":"else"}],"checkall":"false","repair":false,"outputs":2,"x":450,"y":620,"wires":[["f153cd72.5c27d"],["f5f0b429.64e2d8"]]},{"id":"903e418.119d3c","type":"switch","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"check at date","property":"date","propertyType":"msg","rules":[{"t":"lte","v":"dynexpire","vt":"global"},{"t":"gt","v":"dynexpire","vt":"global"}],"checkall":"false","repair":false,"outputs":2,"x":790,"y":600,"wires":[["9cc45c76.c9cf2"],["8fd8d99a.0ca808"]]},{"id":"f153cd72.5c27d","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"set Date","func":"var date = new Date();\nmsg.date = new Date();\nmsg.info = msg.payload\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":640,"y":600,"wires":[["903e418.119d3c"]]},{"id":"d89b0d69.18b69","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"write URL to activity","func":"\nvar actid = msg.payload.value[0].activityid\n\nmsg.url = \"https://<yourspo>.crm4.dynamics.com/api/data/v9.2/phonecalls(\"+actid+\")\"\n\nmsg.method = \"PATCH\"\nmsg.payload = {\"<yourfieldforurl>\": msg.info.event.location}\n\n\nmsg.headers = {\n\"Authorization\": \"Bearer \" + global.get('Dynamicstoken'),\n\"Accept\": \"application/json\",\n\"OData-MaxVersion\": \"4.0\",\n\"OData-Version\": \"4.0\",\n\n};\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":1690,"y":600,"wires":[["5e19238f.4c64dc"]]},{"id":"5e19238f.4c64dc","type":"http request","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"","method":"use","ret":"txt","paytoqs":"ignore","url":"","tls":"","persist":false,"proxy":"","authType":"","x":1870,"y":600,"wires":[["34ec8088.64447"]]},{"id":"e44d9b0f.157d38","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"clear flow variable","func":"flow.set(\"phnr\"+ msg.info.event.dialogueId)\nmsg.payload =\"rm \"+ msg.info.event.dialogueId +\".txt\"\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":2190,"y":600,"wires":[["ca1394f2.4c38d8"]]},{"id":"34ec8088.64447","type":"delay","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"","pauseType":"delay","timeout":"5","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":2020,"y":600,"wires":[["e44d9b0f.157d38"]]},{"id":"de395bb1.705d78","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"get actid and file name","func":"msg.actid = msg.payload.value[0].activityid\nmsg.filename = msg.info.event.dialogueId + '.txt'\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":1840,"y":660,"wires":[["8613e619.345f48"]]},{"id":"8c030912.21e378","type":"http request","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"","method":"use","ret":"obj","paytoqs":"ignore","url":"","tls":"","persist":false,"proxy":"","authType":"","x":2370,"y":660,"wires":[[]]},{"id":"8613e619.345f48","type":"file in","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"transcript","filename":"","format":"utf8","chunk":false,"sendError":false,"encoding":"none","x":2020,"y":660,"wires":[["5249b14b.2ccc7"]]},{"id":"5249b14b.2ccc7","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"write URL to activity","func":"\n\n\nmsg.url = \"https://<yourspo>.crm4.dynamics.com/api/data/v9.2/phonecalls(\"+msg.actid+\")\"\n\nmsg.method = \"PATCH\"\nmsg.payload = {\"<yourtranscriptfield>\": msg.payload}\n\n\nmsg.headers = {\n\"Authorization\": \"Bearer \" + global.get('Dynamicstoken'),\n\"Accept\": \"application/json\",\n\"OData-MaxVersion\": \"4.0\",\n\"OData-Version\": \"4.0\",\n\n};\n\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":2190,"y":660,"wires":[["8c030912.21e378"]]},{"id":"8f4892bc.c22ee","type":"delay","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"","pauseType":"delay","timeout":"2","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":1660,"y":660,"wires":[["de395bb1.705d78"]]},{"id":"ca1394f2.4c38d8","type":"exec","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","command":"Delete Transcript from local file system","addpay":"payload","append":"","useSpawn":"false","timer":"","oldrc":false,"name":"","x":2450,"y":600,"wires":[[],[],[]]},{"id":"5f1945fd.5d07ec","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"clear flow variable","func":"flow.set(\"phnr\"+ msg.payload.event.dialogueId)\nmsg.payload =\"rm \"+ msg.payload.event.dialogueId +\".txt\"\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":270,"y":800,"wires":[["f023f822.cb3aa8"]]},{"id":"f023f822.cb3aa8","type":"exec","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","command":"Delete Transcript","addpay":"payload","append":"","useSpawn":"false","timer":"","oldrc":false,"name":"","x":490,"y":800,"wires":[[],[],[]]},{"id":"f5f0b429.64e2d8","type":"delay","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"","pauseType":"delay","timeout":"5","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":false,"x":240,"y":760,"wires":[["5f1945fd.5d07ec"]]},{"id":"f796ac47.fcc6c","type":"any-red-event-bus","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"","config":"","filtertype":"all","x":100,"y":620,"wires":[["8d1bb006.0dba5"]]},{"id":"f65d0739.340918","type":"switch","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"Answer > 0","property":"payload.value.length","propertyType":"msg","rules":[{"t":"eq","v":"0","vt":"str"},{"t":"else"}],"checkall":"false","repair":false,"outputs":2,"x":1450,"y":600,"wires":[["6f0548c7.12c3b8"],["d89b0d69.18b69","8f4892bc.c22ee"]]},{"id":"6f0548c7.12c3b8","type":"function","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","name":"clear flow variable","func":"flow.set(\"phnr\"+ msg.info.event.dialogueId)\nmsg.payload =\"rm \"+ msg.info.event.dialogueId +\".txt\"\nreturn msg;","outputs":1,"noerr":0,"initialize":"","finalize":"","libs":[],"x":1690,"y":540,"wires":[["5f85bc1c.160a74"]]},{"id":"5f85bc1c.160a74","type":"exec","z":"15f3bbbd.280844","g":"e8f343fb.c62c2","command":"Delete Transcript from local file system","addpay":"payload","append":"","useSpawn":"false","timer":"","oldrc":false,"name":"","x":1950,"y":540,"wires":[[],[],[]]},{"id":"9b53d919.17b6d8","type":"any-red-say-voice-config","culture":"de-DE","gender":"Female"},{"id":"41923228.5882ac","type":"any-red-config","active":true,"ucc":"ucc_pl_olafg","priority":"0"}]
+[
+    {
+        "id": "15f3bbbd.280844",
+        "type": "tab",
+        "label": "write transcript and recording URL to phone activity in Dynamics",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "368bd399.1758ac",
+        "type": "group",
+        "z": "15f3bbbd.280844",
+        "name": "Write transcript to file",
+        "style": {
+            "fill": "#ffdf7f",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "d6c3139.fcc4df",
+            "4beae165.28c5c",
+            "25c8acc7.76f6e4",
+            "67880613.ed7148",
+            "e97d5356.92342",
+            "fbe1d03.865fe3"
+        ],
+        "x": 34,
+        "y": 299,
+        "w": 972,
+        "h": 142
+    },
+    {
+        "id": "d4ab26f2.3a73a8",
+        "type": "group",
+        "z": "15f3bbbd.280844",
+        "name": "Pre Dialogue Phase",
+        "style": {
+            "fill": "#ffff7f",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "a553090.19551f8",
+            "496b8849.562178",
+            "e39a2941.65c5e8",
+            "3513179a.7e1c68"
+        ],
+        "x": 34,
+        "y": 119,
+        "w": 1272,
+        "h": 82
+    },
+    {
+        "id": "e8f343fb.c62c2",
+        "type": "group",
+        "z": "15f3bbbd.280844",
+        "name": "If recording has been saved, we send the transcript and recording link to Dynamics",
+        "style": {
+            "fill": "#c8e7a7",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "8fd8d99a.0ca808",
+            "f620f5d0.cc0908",
+            "6d167caa.bbd5b4",
+            "cae13ad3.e10818",
+            "9cc45c76.c9cf2",
+            "e49a9f65.9b0b4",
+            "8d1bb006.0dba5",
+            "c26f2e5a.2ab18",
+            "903e418.119d3c",
+            "f153cd72.5c27d",
+            "d89b0d69.18b69",
+            "5e19238f.4c64dc",
+            "e44d9b0f.157d38",
+            "34ec8088.64447",
+            "de395bb1.705d78",
+            "8c030912.21e378",
+            "8613e619.345f48",
+            "5249b14b.2ccc7",
+            "8f4892bc.c22ee",
+            "ca1394f2.4c38d8",
+            "5f1945fd.5d07ec",
+            "f023f822.cb3aa8",
+            "f5f0b429.64e2d8",
+            "f796ac47.fcc6c",
+            "f65d0739.340918",
+            "6f0548c7.12c3b8",
+            "5f85bc1c.160a74"
+        ],
+        "x": 14,
+        "y": 491.5,
+        "w": 2612,
+        "h": 357
+    },
+    {
+        "id": "a7da9d.3efb456",
+        "type": "inject",
+        "z": "15f3bbbd.280844",
+        "name": "",
+        "props": [
+            {
+                "p": "client_id",
+                "v": "574ca29a-f755-4ffc-8532-dd0a6b75c1ca",
+                "vt": "str"
+            },
+            {
+                "p": "client_secret",
+                "v": "XOz8Q~BgWGK3yXhYPu452GlzQYBgXWjyExAnccL8",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 550,
+        "y": 1920,
+        "wires": [
+            [
+                "9d717851.3bc568"
+            ]
+        ]
+    },
+    {
+        "id": "1257788b.aba4f7",
+        "type": "debug",
+        "z": "15f3bbbd.280844",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1290,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "b1167148.1c9de",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "name": "set query",
+        "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + global.get(\"dynat\"),\n    \"Accept\": \"application/json\",\n    \"OData-MaxVersion\": \"4.0\",\n    \"OData-Version\": \"4.0\"\n};\nmsg.method = \"GET\"\nvar q = \"447966020081\"\n\nmsg.url = \"https://anywhere365demo.crm4.dynamics.com/api/data/v9.2/contacts?$filter=contains(telephone1,%27\" + q + \"%27)&$select=firstname, lastname, fullname, telephone1, emailaddress1\"\n//$filter=contains(telephone1,%27\" + q + \"%27)\n\n\n//filter=contains(telephone1, 447966020081)\n\n\nmsg.client_id = \"\"\nmsg.client_secret = \"\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 2020,
+        "wires": [
+            [
+                "ae11a21a.f3e31",
+                "1257788b.aba4f7"
+            ]
+        ]
+    },
+    {
+        "id": "ae11a21a.f3e31",
+        "type": "http request",
+        "z": "15f3bbbd.280844",
+        "name": "requestQuery",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "body",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1320,
+        "y": 2020,
+        "wires": [
+            [
+                "dfbf7581.919368"
+            ]
+        ]
+    },
+    {
+        "id": "dfbf7581.919368",
+        "type": "debug",
+        "z": "15f3bbbd.280844",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "6aa2cc36.ada3c4",
+        "type": "switch",
+        "z": "15f3bbbd.280844",
+        "name": "",
+        "property": "dynexpire",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "time",
+                "vt": "msg"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 890,
+        "y": 2040,
+        "wires": [
+            [
+                "b1167148.1c9de"
+            ],
+            [
+                "bcb57aae.b6acf8"
+            ]
+        ]
+    },
+    {
+        "id": "9d717851.3bc568",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "name": "check if AT is expired",
+        "func": "msg.time = new Date()\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 2040,
+        "wires": [
+            [
+                "6aa2cc36.ada3c4"
+            ]
+        ]
+    },
+    {
+        "id": "b6e0b282.b019a",
+        "type": "http request",
+        "z": "15f3bbbd.280844",
+        "name": "requestToken",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 840,
+        "y": 2220,
+        "wires": [
+            [
+                "a23adcbb.36aba"
+            ]
+        ]
+    },
+    {
+        "id": "49b662c5.05c57c",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "name": "save AT",
+        "func": "var date = new Date()\nglobal.set(\"dynat\", msg.payload.access_token);\nglobal.set(\"dynexpire\", new Date(date.setHours(date.getHours()+1)));\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 2220,
+        "wires": [
+            [
+                "b1167148.1c9de"
+            ]
+        ]
+    },
+    {
+        "id": "a23adcbb.36aba",
+        "type": "switch",
+        "z": "15f3bbbd.280844",
+        "name": "Statuscode = 200",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 2220,
+        "wires": [
+            [
+                "49b662c5.05c57c"
+            ]
+        ]
+    },
+    {
+        "id": "bcb57aae.b6acf8",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "name": "writeGraphAuthHeader-client_credential",
+        "func": "msg.url = 'https://login.microsoftonline.com/4179dd4d-e485-4535-9d45-b3539f584cad/oauth2/token'\nmsg.headers = {'Content-Type': 'application/x-www-form-urlencoded'}\nmsg.payload = {'client_id': msg.client_id,\n    'resource': 'https://anywhere365demo.crm4.dynamics.com/',\n    'client_secret': msg.client_secret,\n    'grant_type': 'client_credentials'}\nmsg.method = \"POST\"\nmsg.client_id = \"\"\nmsg.client_secret = \"\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 2220,
+        "wires": [
+            [
+                "b6e0b282.b019a"
+            ]
+        ]
+    },
+    {
+        "id": "d6c3139.fcc4df",
+        "type": "any-red-indialoguestarted",
+        "z": "15f3bbbd.280844",
+        "g": "368bd399.1758ac",
+        "name": "",
+        "config": "",
+        "filtertype": "all",
+        "x": 160,
+        "y": 360,
+        "wires": [
+            [
+                "4beae165.28c5c"
+            ],
+            [
+                "25c8acc7.76f6e4"
+            ]
+        ]
+    },
+    {
+        "id": "4beae165.28c5c",
+        "type": "any-red-transcriptor",
+        "z": "15f3bbbd.280844",
+        "g": "368bd399.1758ac",
+        "name": "transcribe customer",
+        "enable": true,
+        "culture": "en-US",
+        "cultureDataType": "str",
+        "final": true,
+        "x": 390,
+        "y": 340,
+        "wires": [
+            [],
+            [
+                "67880613.ed7148"
+            ]
+        ]
+    },
+    {
+        "id": "25c8acc7.76f6e4",
+        "type": "any-red-transcriptor",
+        "z": "15f3bbbd.280844",
+        "g": "368bd399.1758ac",
+        "name": "transcribe Agent",
+        "enable": true,
+        "culture": "en-US",
+        "cultureDataType": "str",
+        "final": true,
+        "x": 380,
+        "y": 380,
+        "wires": [
+            [],
+            [
+                "e97d5356.92342"
+            ]
+        ]
+    },
+    {
+        "id": "67880613.ed7148",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "368bd399.1758ac",
+        "name": "Customer text",
+        "func": "msg.filename = msg.payload.transcriptor.sessionId + '.txt';\nmsg.payload = 'Customer:' + msg.payload.transcriptor.transcript\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 360,
+        "wires": [
+            [
+                "fbe1d03.865fe3"
+            ]
+        ]
+    },
+    {
+        "id": "e97d5356.92342",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "368bd399.1758ac",
+        "name": "Agent text",
+        "func": "msg.filename = msg.payload.transcriptor.sessionId + '.txt';\nmsg.payload = 'Agent:' + msg.payload.transcriptor.transcript\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "fbe1d03.865fe3"
+            ]
+        ]
+    },
+    {
+        "id": "fbe1d03.865fe3",
+        "type": "file",
+        "z": "15f3bbbd.280844",
+        "g": "368bd399.1758ac",
+        "name": "Create and add transcritp to file",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 850,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a553090.19551f8",
+        "type": "any-red-incoming-call",
+        "z": "15f3bbbd.280844",
+        "g": "d4ab26f2.3a73a8",
+        "name": "",
+        "config": "",
+        "filtertype": "audiovideo-ivrquestion",
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "3513179a.7e1c68"
+            ]
+        ]
+    },
+    {
+        "id": "496b8849.562178",
+        "type": "any-red-say",
+        "z": "15f3bbbd.280844",
+        "g": "d4ab26f2.3a73a8",
+        "name": "",
+        "text": "Welcxome to our demo",
+        "dataType": "str",
+        "saymethod": "Default",
+        "voice": "9b53d919.17b6d8",
+        "x": 920,
+        "y": 160,
+        "wires": [
+            [
+                "e39a2941.65c5e8"
+            ]
+        ]
+    },
+    {
+        "id": "e39a2941.65c5e8",
+        "type": "any-red-action",
+        "z": "15f3bbbd.280844",
+        "g": "d4ab26f2.3a73a8",
+        "name": "",
+        "sweetName": "Empty action",
+        "actionType": "enqueue",
+        "fromSessionId": "session.id",
+        "fromDataType": "msg",
+        "toSessionId": "fromSessionId",
+        "toDataType": "msg",
+        "skill": "support",
+        "skillDataType": "str",
+        "sip": "",
+        "sipDataType": "str",
+        "agentSips": "",
+        "agentSipsDataType": "str",
+        "config": "41923228.5882ac",
+        "questionsfilter": "",
+        "questionid": "",
+        "x": 1190,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3513179a.7e1c68",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "d4ab26f2.3a73a8",
+        "name": "write phnr to flow variable",
+        "func": "var phone1 = msg.session.sipUri.split(\"@\")\nvar phone = phone1[0].slice(4)\n\nflow.set(\"phnr\" + msg.session.id, phone)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 160,
+        "wires": [
+            [
+                "496b8849.562178"
+            ]
+        ]
+    },
+    {
+        "id": "8fd8d99a.0ca808",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "create token request",
+        "func": "var client_id =\"<yourclientid>\"\nvar client_secret = \"<yourencodedclientsecret>\"\nmsg.headers = {\n\"Content-Type\": \"application/x-www-form-urlencoded\",\n\"Host\": \"login.microsoftonline.com\"\n};\nmsg.method = \"POST\"\nmsg.url = \"https://login.microsoftonline.com/<yourtenantid>/oauth2/token\"\n\nmsg.payload = {'client_id': client_id,\n    'resource': 'https://<yourspo>.crm4.dynamics.com/',\n    'client_secret': client_secret,\n    'grant_type': 'client_credentials'}\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 740,
+        "wires": [
+            [
+                "f620f5d0.cc0908"
+            ]
+        ]
+    },
+    {
+        "id": "f620f5d0.cc0908",
+        "type": "http request",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 870,
+        "y": 740,
+        "wires": [
+            [
+                "6d167caa.bbd5b4"
+            ]
+        ]
+    },
+    {
+        "id": "6d167caa.bbd5b4",
+        "type": "switch",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "statuscode = 200",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 740,
+        "wires": [
+            [
+                "cae13ad3.e10818"
+            ]
+        ]
+    },
+    {
+        "id": "cae13ad3.e10818",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "write global variables",
+        "func": "var date = new Date()\nglobal.set (\"Dynamicstoken\", msg.payload.access_token)\nglobal.set(\"dynexpire\", new Date(date.setHours(date.getHours()+1)))\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 740,
+        "wires": [
+            [
+                "9cc45c76.c9cf2"
+            ]
+        ]
+    },
+    {
+        "id": "9cc45c76.c9cf2",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "create Dyn request",
+        "func": "var q1 = flow.get(\"phnr\" +msg.info.event.dialogueId)\nvar q = q1.slice(1)\n\nmsg.url = \"https://<yourspo>.crm4.dynamics.com/api/data/v9.2/phonecalls?$filter=contains(phonenumber,%27\" + q + \"%27)&$orderby=createdon%20desc&$top=1\"\n\nmsg.method = \"GET\"\nmsg.headers = {\n\"Authorization\": \"Bearer \" + global.get('Dynamicstoken'),\n\"Accept\": \"application/json\",\n\"OData-MaxVersion\": \"4.0\",\n\"OData-Version\": \"4.0\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 600,
+        "wires": [
+            [
+                "e49a9f65.9b0b4"
+            ]
+        ]
+    },
+    {
+        "id": "e49a9f65.9b0b4",
+        "type": "http request",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1290,
+        "y": 600,
+        "wires": [
+            [
+                "f65d0739.340918"
+            ]
+        ]
+    },
+    {
+        "id": "8d1bb006.0dba5",
+        "type": "switch",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "Ended/Recorded",
+        "property": "payload.eventType",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "DialogueRecordingSavedEvent",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 620,
+        "wires": [
+            [
+                "c26f2e5a.2ab18"
+            ]
+        ]
+    },
+    {
+        "id": "c26f2e5a.2ab18",
+        "type": "switch",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "correct ucc",
+        "property": "payload.event.location",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "ucc_olafg",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 620,
+        "wires": [
+            [
+                "f153cd72.5c27d"
+            ],
+            [
+                "f5f0b429.64e2d8"
+            ]
+        ]
+    },
+    {
+        "id": "903e418.119d3c",
+        "type": "switch",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "check at date",
+        "property": "date",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "dynexpire",
+                "vt": "global"
+            },
+            {
+                "t": "gt",
+                "v": "dynexpire",
+                "vt": "global"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 600,
+        "wires": [
+            [
+                "9cc45c76.c9cf2"
+            ],
+            [
+                "8fd8d99a.0ca808"
+            ]
+        ]
+    },
+    {
+        "id": "f153cd72.5c27d",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "set Date",
+        "func": "var date = new Date();\nmsg.date = new Date();\nmsg.info = msg.payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 600,
+        "wires": [
+            [
+                "903e418.119d3c"
+            ]
+        ]
+    },
+    {
+        "id": "d89b0d69.18b69",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "write URL to activity",
+        "func": "\nvar actid = msg.payload.value[0].activityid\n\nmsg.url = \"https://<yourspo>.crm4.dynamics.com/api/data/v9.2/phonecalls(\"+actid+\")\"\n\nmsg.method = \"PATCH\"\nmsg.payload = {\"<yourfieldforurl>\": msg.info.event.location}\n\n\nmsg.headers = {\n\"Authorization\": \"Bearer \" + global.get('Dynamicstoken'),\n\"Accept\": \"application/json\",\n\"OData-MaxVersion\": \"4.0\",\n\"OData-Version\": \"4.0\",\n\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1690,
+        "y": 600,
+        "wires": [
+            [
+                "5e19238f.4c64dc"
+            ]
+        ]
+    },
+    {
+        "id": "5e19238f.4c64dc",
+        "type": "http request",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1870,
+        "y": 600,
+        "wires": [
+            [
+                "34ec8088.64447"
+            ]
+        ]
+    },
+    {
+        "id": "e44d9b0f.157d38",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "clear flow variable",
+        "func": "flow.set(\"phnr\"+ msg.info.event.dialogueId)\nmsg.payload =\"rm \"+ msg.info.event.dialogueId +\".txt\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2190,
+        "y": 600,
+        "wires": [
+            [
+                "ca1394f2.4c38d8"
+            ]
+        ]
+    },
+    {
+        "id": "34ec8088.64447",
+        "type": "delay",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 2020,
+        "y": 600,
+        "wires": [
+            [
+                "e44d9b0f.157d38"
+            ]
+        ]
+    },
+    {
+        "id": "de395bb1.705d78",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "get actid and file name",
+        "func": "msg.actid = msg.payload.value[0].activityid\nmsg.filename = msg.info.event.dialogueId + '.txt'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 660,
+        "wires": [
+            [
+                "8613e619.345f48"
+            ]
+        ]
+    },
+    {
+        "id": "8c030912.21e378",
+        "type": "http request",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 2370,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8613e619.345f48",
+        "type": "file in",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "transcript",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 2020,
+        "y": 660,
+        "wires": [
+            [
+                "5249b14b.2ccc7"
+            ]
+        ]
+    },
+    {
+        "id": "5249b14b.2ccc7",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "write URL to activity",
+        "func": "\n\n\nmsg.url = \"https://<yourspo>.crm4.dynamics.com/api/data/v9.2/phonecalls(\"+msg.actid+\")\"\n\nmsg.method = \"PATCH\"\nmsg.payload = {\"<yourtranscriptfield>\": msg.payload}\n\n\nmsg.headers = {\n\"Authorization\": \"Bearer \" + global.get('Dynamicstoken'),\n\"Accept\": \"application/json\",\n\"OData-MaxVersion\": \"4.0\",\n\"OData-Version\": \"4.0\",\n\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2190,
+        "y": 660,
+        "wires": [
+            [
+                "8c030912.21e378"
+            ]
+        ]
+    },
+    {
+        "id": "8f4892bc.c22ee",
+        "type": "delay",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1660,
+        "y": 660,
+        "wires": [
+            [
+                "de395bb1.705d78"
+            ]
+        ]
+    },
+    {
+        "id": "ca1394f2.4c38d8",
+        "type": "exec",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "command": "Delete Transcript from local file system",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 2450,
+        "y": 600,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5f1945fd.5d07ec",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "clear flow variable",
+        "func": "flow.set(\"phnr\"+ msg.payload.event.dialogueId)\nmsg.payload =\"rm \"+ msg.payload.event.dialogueId +\".txt\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 800,
+        "wires": [
+            [
+                "f023f822.cb3aa8"
+            ]
+        ]
+    },
+    {
+        "id": "f023f822.cb3aa8",
+        "type": "exec",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "command": "Delete Transcript",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 490,
+        "y": 800,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f5f0b429.64e2d8",
+        "type": "delay",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 240,
+        "y": 760,
+        "wires": [
+            [
+                "5f1945fd.5d07ec"
+            ]
+        ]
+    },
+    {
+        "id": "f796ac47.fcc6c",
+        "type": "any-red-event-bus",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "",
+        "config": "",
+        "filtertype": "all",
+        "x": 100,
+        "y": 620,
+        "wires": [
+            [
+                "8d1bb006.0dba5"
+            ]
+        ]
+    },
+    {
+        "id": "f65d0739.340918",
+        "type": "switch",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "Answer > 0",
+        "property": "payload.value.length",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 1450,
+        "y": 600,
+        "wires": [
+            [
+                "6f0548c7.12c3b8"
+            ],
+            [
+                "d89b0d69.18b69",
+                "8f4892bc.c22ee"
+            ]
+        ]
+    },
+    {
+        "id": "6f0548c7.12c3b8",
+        "type": "function",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "name": "clear flow variable",
+        "func": "flow.set(\"phnr\"+ msg.info.event.dialogueId)\nmsg.payload =\"rm \"+ msg.info.event.dialogueId +\".txt\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1690,
+        "y": 540,
+        "wires": [
+            [
+                "5f85bc1c.160a74"
+            ]
+        ]
+    },
+    {
+        "id": "5f85bc1c.160a74",
+        "type": "exec",
+        "z": "15f3bbbd.280844",
+        "g": "e8f343fb.c62c2",
+        "command": "Delete Transcript from local file system",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 1950,
+        "y": 540,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9b53d919.17b6d8",
+        "type": "any-red-say-voice-config",
+        "culture": "de-DE",
+        "gender": "Female"
+    },
+    {
+        "id": "41923228.5882ac",
+        "type": "any-red-config",
+        "active": true,
+        "ucc": "ucc_pl_olafg",
+        "priority": "0"
+    }
+]

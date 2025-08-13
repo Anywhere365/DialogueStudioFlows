@@ -22,7 +22,7 @@ The captured data is processed and sent to the CRM system in JSON format.
 ![Flow Diagram](resources/a365-ds-customercrmintegration.png)
 
 ## How to Download and Import
-1. Use the green **Download [Code]** button at the top right of the [repository home](https://github.com/Anywhere365/DialogueStudioFlows).
+1. Use the green **Download [Code]** button at the top right of the [repository home](https://github.com/AnywhereNow/DialogueStudioFlows).
 2. Alternatively, click on the `.json` file, then click **[Raw]** at the top right, and copy the content using `Ctrl+A` and `Ctrl+C`.
 3. Open Dialogue Studio and click the hamburger menu at the top right.
 4. Choose **Import**, then paste the copied content or select the downloaded file.

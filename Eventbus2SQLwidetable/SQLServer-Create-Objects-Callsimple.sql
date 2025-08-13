@@ -1,5 +1,5 @@
--- Anywhere365 Dialogue Studio - Event bus to SQL wide table
--- https://github.com/Anywhere365/DialogueStudioFlows/tree/master/Eventbus2SQLwidetable
+-- AnywhereNow Dialogue Studio - Event bus to SQL wide table
+-- https://github.com/AnywhereNow/DialogueStudioFlows/tree/master/Eventbus2SQLwidetable
 --
 DROP TABLE callsimple
 CREATE TABLE callsimple (
