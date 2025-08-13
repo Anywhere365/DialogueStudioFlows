@@ -1,0 +1,294 @@
+[
+    {
+        "id": "c0e5d7fa2b2b4a11",
+        "type": "tab",
+        "label": "CrmServiceV2 Template",
+        "disabled": false,
+        "info": "Dialogue Studio template for AnywhereNow CRM Service."
+    },
+    {
+        "id": "f3f1d9c4a6b845f2",
+        "type": "comment",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "Examples — /contacts",
+        "info": "Required search (q) with optional filters ucc & conversationId:\n  curl \"https://{instance}.dialogue.studio/CrmServiceV2/api/v2/contacts?q=%2B31101234567&ucc=UCC001&conversationId=abc-123\"\n\nIf requireAuth=true, add:\n  -H \"Authorization: Bearer <token>\"",
+        "x": 170,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "b8a2e25b4c324767",
+        "type": "http in",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "GET /CrmServiceV2/api/v2/contacts",
+        "url": "/CrmServiceV2/api/v2/contacts",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 280,
+        "y": 80,
+        "wires": [
+            [
+                "f1a3b2c4d5e6f708"
+            ]
+        ]
+    },
+    {
+        "id": "f1a3b2c4d5e6f708",
+        "type": "function",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "Build ContactsResponse (filters only)",
+        "func": "// params: q (required), ucc (optional), conversationId (optional)\nvar q  = (msg.req.query || {}).q;\nvar ucc = (msg.req.query || {}).ucc;\nvar conversationId = (msg.req.query || {}).conversationId;\nvar requireAuth = flow.get(\"requireAuth\") || false;\nvar auth = msg.req.headers.authorization;\n\n// Optional auth enforcement\nif (requireAuth && (!auth || !/^Bearer\\s.+/i.test(auth))) {\n    msg.statusCode = 401;\n    msg.payload = \"Unauthorized\";\n    return msg;\n}\n\n// Contract: q required\nif (!q) {\n    msg.statusCode = 400;\n    msg.headers = {\"Content-Type\":\"application/json\"};\n    msg.payload = {\n        \"type\":\"about:blank\",\n        \"title\":\"Bad Request\",\n        \"status\":400,\n        \"detail\":\"Query 'q' is required for contacts.\",\n        \"errors\": {\"q\":[\"Missing\"]}\n    };\n    return msg;\n}\n\nfunction normalizePhone(input){\n    var digits = String(input).replace(/\\D+/g,'');\n    if (digits.startsWith('00')) digits = digits.slice(2);\n    if (digits && digits[0] !== '+') digits = '+' + digits;\n    return digits;\n}\nvar normalized = normalizePhone(q);\nvar ql = String(q).toLowerCase();\n\n// Sample data set\nvar all = [\n  {\n    id:\"C-1001\", type:\"person\", name:\"Ada Lovelace\",\n    url:\"https://crm.example.com/contacts/C-1001\",\n    image:\"https://example.com/images/ada.png\",\n    properties:[\n      {name:\"phone\", value:\"+31101234567\", displayValue:\"+31 10 123 4567\", type:\"string\"},\n      {name:\"email\", value:\"ada@example.com\", displayValue:\"ada@example.com\", type:\"string\"}\n    ]\n  },\n  {\n    id:\"C-1002\", type:\"company\", name:\"Babbage & Co.\",\n    url:\"https://crm.example.com/accounts/C-1002\",\n    image:\"https://example.com/images/company.png\",\n    properties:[\n      {name:\"mainPhone\", value:\"+31201234567\", displayValue:\"+31 20 123 4567\", type:\"string\"},\n      {name:\"website\", value:\"https://babbage.example.com\", displayValue:\"babbage.example.com\", type:\"string\"}\n    ]\n  }\n];\n\n// Very light search simulation: phone-like -> Ada; 'babbage' -> company; else all\nvar isPhoneish = /\\d{6,}/.test(q);\nvar results = [];\nif (isPhoneish) results.push(all[0]);\nif (ql.indexOf('babbage') >= 0) results.push(all[1]);\nif (results.length === 0) results = all;\n\n// Filters\n// Example: if any filter provided, narrow to first matching as a demo of extra filtering\nif (ucc || conversationId) {\n    results = results.slice(0, 1);\n}\n\nmsg.statusCode = 200;\nmsg = msg;\nmsg.headers = {\"Content-Type\":\"application/json\"};\nmsg.payload = { contacts: results };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 80,
+        "wires": [
+            [
+                "0a8b9c7d6e5f4a3b",
+                "9c2bf3b07f3e4091"
+            ]
+        ]
+    },
+    {
+        "id": "9c2bf3b07f3e4091",
+        "type": "debug",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "req.query (/contacts)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.query",
+        "targetType": "msg",
+        "x": 640,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "0a8b9c7d6e5f4a3b",
+        "type": "http response",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 930,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "f0f8d2ee8d484f1d",
+        "type": "comment",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "Examples — /cases",
+        "info": "By contactId:\n  curl \"https://{instance}.dialogue.studio/CrmServiceV2/api/v2/cases?contactId=C-1001&ucc=UCC001&conversationId=abc-123\"\n  \t\nSearch mode (q):\n  curl \"https://{instance}.dialogue.studio/CrmServiceV2/api/v2/cases?q=billing&ucc=UCC001\"",
+        "x": 150,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f3d1a2b4c5e6f7a8",
+        "type": "http in",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "GET /CrmServiceV2/api/v2/cases",
+        "url": "/CrmServiceV2/api/v2/cases",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 266,
+        "y": 240,
+        "wires": [
+            [
+                "a9b8c7d6e5f4a3b2"
+            ]
+        ]
+    },
+    {
+        "id": "a9b8c7d6e5f4a3b2",
+        "type": "function",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "Build CasesResponse (filters only)",
+        "func": "// Swagger params: contactId OR q (at least one). Optional: ucc, conversationId\nvar contactId = (msg.req.query || {}).contactId;\nvar q = (msg.req.query || {}).q;\nvar ucc = (msg.req.query || {}).ucc;\nvar conversationId = (msg.req.query || {}).conversationId;\nvar requireAuth = flow.get(\"requireAuth\") || false;\nvar auth = msg.req.headers.authorization;\n\nif (requireAuth && (!auth || !/^Bearer\\s.+/i.test(auth))) {\n    msg.statusCode = 401;\n    msg.payload = \"Unauthorized\";\n    return msg;\n}\n\nif (!contactId && !q) {\n    msg.statusCode = 400;\n    msg.headers = {\"Content-Type\":\"application/json\"};\n    msg.payload = {\n        \"type\":\"about:blank\",\n        \"title\":\"Bad Request\",\n        \"status\":400,\n        \"detail\":\"Provide either 'contactId' or 'q'.\",\n        \"errors\": {\"contactId|q\":[\"One is required\"]}\n    };\n    return msg;\n}\n\nvar now = new Date();\nvar yesterday = new Date(Date.now()-24*60*60*1000);\nvar all = [\n  { id:\"CASE-9001\", url:\"https://crm.example.com/cases/CASE-9001\", date: now.toISOString(), status:{value:\"open\", displayValue:\"Open\"}, title:\"Example case\", description:\"Billing inquiry\" },\n  { id:\"CASE-9002\", url:\"https://crm.example.com/cases/CASE-9002\", date: yesterday.toISOString(), status:{value:\"closed\", displayValue:\"Closed\"}, title:\"Second example\", description:\"Delivery delay\" }\n];\n\nvar results = all;\nif (contactId) {\n    // demo: when contactId provided, prefer the fresh/open case\n    results = [all[0]];\n} else if (q) {\n    var ql = String(q).toLowerCase();\n    if (ql.indexOf('billing') >= 0) results = [all[0]];\n    else if (ql.indexOf('delay') >= 0) results = [all[1]];\n}\n\n// Extra filters \nif (ucc || conversationId) {\n    // example: only recent items (today)\n    results = results.filter(function(c){ return new Date(c.date).toDateString() === now.toDateString(); });\n}\n\nmsg.statusCode = 200;\nmsg.headers = {\"Content-Type\":\"application/json\"};\nmsg.payload = { cases: results };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 566,
+        "y": 240,
+        "wires": [
+            [
+                "cf73d9b61c4c4f2c",
+                "f8b7a6c5d4e3f2a1"
+            ]
+        ]
+    },
+    {
+        "id": "f8b7a6c5d4e3f2a1",
+        "type": "debug",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "req.query (/cases)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.query",
+        "targetType": "msg",
+        "x": 606,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "cf73d9b61c4c4f2c",
+        "type": "http response",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 910,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "c3ac8215ec88a6a7",
+        "type": "http in",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "GET /CrmServiceV2/api/v2/capabilities",
+        "url": "/CrmServiceV2/api/v2/capabilities",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "9c8548c018f6e2a6"
+            ]
+        ]
+    },
+    {
+        "id": "9c8548c018f6e2a6",
+        "type": "function",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "Build CapabilitiesResponse",
+        "func": "// GET-only resources (relative to service root)\nmsg.statusCode = 200;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nmsg.payload = {\n  \"capabilities\": [\n    {\"resource\":\"/api/v2/contacts\",\"methods\":[\"GET\"]},\n    {\"resource\":\"/api/v2/cases\",\"methods\":[\"GET\"]},\n    {\"resource\":\"/api/v2/capabilities\",\"methods\":[\"GET\"]},\n    {\"resource\":\"/api/v2/description\",\"methods\":[\"GET\"]}\n  ]\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 608,
+        "y": 360,
+        "wires": [
+            [
+                "e0b6f82a576c0b85"
+            ]
+        ]
+    },
+    {
+        "id": "e0b6f82a576c0b85",
+        "type": "http response",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 908,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "531b6d8ebaa303b4",
+        "type": "http in",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "GET /CrmServiceV2/api/v2/description",
+        "url": "/CrmServiceV2/api/v2/description",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 298,
+        "y": 440,
+        "wires": [
+            [
+                "c861a5047f76f2fd"
+            ]
+        ]
+    },
+    {
+        "id": "c861a5047f76f2fd",
+        "type": "function",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "Build Description string",
+        "func": "// Plain-text service description\nmsg.statusCode = 200;\nmsg.headers = { \"Content-Type\": \"text/plain\" };\nmsg.payload = \"AnywhereNow CRM Service (Dialogue Studio)\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 440,
+        "wires": [
+            [
+                "7fd04eb360a8a309"
+            ]
+        ]
+    },
+    {
+        "id": "7fd04eb360a8a309",
+        "type": "http response",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 916,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "0a2a7b5e4076e1cb",
+        "type": "inject",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "Init: requireAuth = false",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.5,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 520,
+        "wires": [
+            [
+                "3f7fdb7b1a3c0c16"
+            ]
+        ]
+    },
+    {
+        "id": "3f7fdb7b1a3c0c16",
+        "type": "function",
+        "z": "c0e5d7fa2b2b4a11",
+        "name": "flow.requireAuth = false",
+        "func": "flow.set('requireAuth', false);\nnode.status({text:'requireAuth=false'});\nreturn null;",
+        "outputs": 0,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 520,
+        "wires": []
+    }
+]
