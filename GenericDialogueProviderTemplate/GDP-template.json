@@ -1,0 +1,2801 @@
+[
+  {
+    "id": "76f62fdf.bea37",
+    "type": "tab",
+    "label": "GDP",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "31a94a9c.154a76",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Re-open conversation",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "d2adf5bc.8367f8",
+      "360cbdab.0f5d82",
+      "970340e7.adf21",
+      "7d31b1b8.ff06f",
+      "866e82d9.319e8",
+      "15c67fde.1c9be",
+      "493a39b5.dbe088",
+      "8a14284b.313a28",
+      "4d18fa01.2c8a04"
+    ],
+    "x": 1534,
+    "y": 919,
+    "w": 832,
+    "h": 202
+  },
+  {
+    "id": "591c322d.92a9fc",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Send Reply",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "686c174c.c6ae28",
+      "e3ce61a5.98ea6",
+      "a6902e5a.bdaa8",
+      "b3cbb7ed.77e968",
+      "d9126f98.bae6e",
+      "f8be8d24.d6018",
+      "a022a58.53add58"
+    ],
+    "x": 1334,
+    "y": 1419,
+    "w": 952,
+    "h": 142
+  },
+  {
+    "id": "7137f0d0.adc77",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Clear Dialogue from Memory",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "d680afd0.57261",
+      "6b6bc4ad.1575bc"
+    ],
+    "x": 234,
+    "y": 519,
+    "w": 582,
+    "h": 82
+  },
+  {
+    "id": "76692953.c67488",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Disconnect conversation",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "3d0caef9.ab6952",
+      "29d9a0e3.84fb7",
+      "b531ff44.14c47"
+    ],
+    "x": 1554,
+    "y": 779,
+    "w": 752,
+    "h": 82
+  },
+  {
+    "id": "8b42dc9d.f8fdd",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Get Dialogue Messages",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "229ef3e3.64b44c",
+      "96a44a7f.59bf78",
+      "776a9b87.2985a4",
+      "9c6e163d.ff1d58",
+      "3370afdc.348b2",
+      "6846f424.c15dcc",
+      "b8cfb265.28725",
+      "88edecdb.cd90e",
+      "a46ee0fc.bf35d",
+      "15098381.a4683c",
+      "6a67098e.79ed68",
+      "5cd9da7b.0d7e54"
+    ],
+    "x": 1554,
+    "y": 1159,
+    "w": 1212,
+    "h": 202
+  },
+  {
+    "id": "94a7d999.26cf28",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Toggle Subscriber",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "872b704d.66a0c",
+      "b767b102.17538",
+      "3fe76432.36a08c",
+      "67a8350b.85c57c",
+      "e0827d7f.2dec4",
+      "79ba73fd.a735cc",
+      "59c3682e.81b938",
+      "b85974fb.e09a88",
+      "427507b2.396608"
+    ],
+    "x": 1194,
+    "y": 19,
+    "w": 772,
+    "h": 202
+  },
+  {
+    "id": "a016af31.e365e",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Send Reply",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "dfc7fe1f.49753",
+      "ccaa3ba.6b956c8",
+      "cc64463f.067fe8",
+      "5d03339f.41949c",
+      "c2f33552.12aa38",
+      "39ff5390.a83aec",
+      "103e1a8d.8daa15",
+      "5c9e41293838a429",
+      "513729da3d43712e"
+    ],
+    "x": 1534,
+    "y": 539,
+    "w": 1032,
+    "h": 182
+  },
+  {
+    "id": "ada05902.000618",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Start new conversation",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "e9071afc.1a8558",
+      "3680ad18.d4c4d2",
+      "8c0f2eef.61a5b",
+      "67173226.e9508c",
+      "99e2500f.4379f",
+      "78ca90e8.f79be",
+      "7322f696.261a18",
+      "bf014123.9914e",
+      "106ea841.493d08",
+      "efa1dc11.c2951",
+      "53cffda.f354f04",
+      "b0c8fd3d.55823",
+      "3cc74875.9e8b08",
+      "d2d47e7b.9669a",
+      "36d519f5.d03a66",
+      "c720d04.f24ec3",
+      "f45cc962.709fc8",
+      "226b6db5.694082",
+      "487ceae.8aeb114",
+      "297c992.4b42a66",
+      "b585f24f.342cf",
+      "2069a725.a0ac58",
+      "a02a5743.7e3598",
+      "b5afd6ad.6e7a38",
+      "cb8157a4.5c0358",
+      "db53c852.5fbeb8",
+      "3fe7de9be78ae4af"
+    ],
+    "x": 234,
+    "y": 639,
+    "w": 1192,
+    "h": 562
+  },
+  {
+    "id": "ce76da04.1baa78",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Events",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "2a23d86f.d78e08",
+      "977f9ec9.340a9",
+      "6daf274f.fbc3a8",
+      "6ac597ea.ffbf78",
+      "84326ef5.5056a",
+      "889030fe.76914",
+      "f6f6eb6.748e418",
+      "74d7e94f.3752f8",
+      "4a9a5485.b6c22c",
+      "c5371de6.060a4",
+      "d57faa84.0b2c78",
+      "ffe283fdde726a91",
+      "c3945f684bb4b9ab",
+      "f14e6adb0c3b6738",
+      "681af55c90d429f5",
+      "0185af22b1da1473"
+    ],
+    "x": 1194,
+    "y": 199,
+    "w": 1412,
+    "h": 262
+  },
+  {
+    "id": "d129907e.e7de8",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Configure GDP Blueprint settings",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "107273b9.be280c",
+      "71d7148e.78fe9c",
+      "c8dc64d581e0c450"
+    ],
+    "x": 154,
+    "y": 219,
+    "w": 632,
+    "h": 122
+  },
+  {
+    "id": "4dc071e5d690d81d",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Send Attachment",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "868eea72eb553de9",
+      "aa78e51fcec95530",
+      "df74670da2aae344",
+      "297e47a1a39effb4",
+      "d9c05e9c47287ecc",
+      "51370a29415ede4a",
+      "70cb99be0451cdb2",
+      "3e03f1cb865450c0",
+      "b44d3da14b5a40d4",
+      "b92fe6dc0647b929"
+    ],
+    "x": 274,
+    "y": 1259,
+    "w": 812,
+    "h": 202
+  },
+  {
+    "id": "a9182e72d25e0fcc",
+    "type": "group",
+    "z": "76f62fdf.bea37",
+    "name": "Authentication",
+    "style": {
+      "label": true
+    },
+    "nodes": [
+      "fe7a57bedea0e617",
+      "99de898ad559d7fc",
+      "7820f4d79914f730",
+      "df8c149bb06e4f5c",
+      "965f9c9bbc31e0cc",
+      "0dc45e684808a7ab"
+    ],
+    "x": 94,
+    "y": 19,
+    "w": 1032,
+    "h": 162
+  },
+  {
+    "id": "107273b9.be280c",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "d129907e.e7de8",
+    "name": "Click to save settings",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 300,
+    "y": 300,
+    "wires": [
+      [
+        "c8dc64d581e0c450"
+      ]
+    ]
+  },
+  {
+    "id": "e9071afc.1a8558",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Start new conversation",
+    "props": [
+      {
+        "p": "message",
+        "v": "This is a GDP Test Message from Dialogue Studio <b>message</b>",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 380,
+    "y": 820,
+    "wires": [
+      [
+        "8c0f2eef.61a5b"
+      ]
+    ]
+  },
+  {
+    "id": "3680ad18.d4c4d2",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Create a message",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 810,
+    "y": 740,
+    "wires": [
+      [
+        "67173226.e9508c",
+        "487ceae.8aeb114"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "8c0f2eef.61a5b",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "func": "msg.headers = {\n  \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n  \"Content-type\": \"application/json\"\n};\n\nmsg.payload = {\n  \"content\": msg.message,\n  \"direction\": \"Inbound\",\n  \"participants\": [\n    {\n      \"name\": flow.get('customer_name'),\n      \"role\": \"Sender\",\n      \"uri\": flow.get('customer_uri')\n    },\n    {\n      \"name\": flow.get('receiver_name'),\n      \"role\": \"Receiver\",\n      \"uri\": flow.get('receiver_uri')\n    }\n  ]\n}\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 620,
+    "y": 740,
+    "wires": [
+      [
+        "3680ad18.d4c4d2"
+      ]
+    ]
+  },
+  {
+    "id": "67173226.e9508c",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1070,
+    "y": 680,
+    "wires": []
+  },
+  {
+    "id": "99e2500f.4379f",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "message_id",
+        "pt": "msg",
+        "to": "payload.id",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1300,
+    "y": 740,
+    "wires": [
+      [
+        "3cc74875.9e8b08"
+      ]
+    ]
+  },
+  {
+    "id": "78ca90e8.f79be",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 620,
+    "y": 900,
+    "wires": [
+      [
+        "7322f696.261a18",
+        "c720d04.f24ec3"
+      ]
+    ]
+  },
+  {
+    "id": "7322f696.261a18",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Create a dialogue",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/dialogue/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 830,
+    "y": 900,
+    "wires": [
+      [
+        "c720d04.f24ec3",
+        "cb8157a4.5c0358"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "bf014123.9914e",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "dialogue_id",
+        "pt": "msg",
+        "to": "payload.id",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "dialogue_id",
+        "pt": "flow",
+        "to": "payload.id",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1280,
+    "y": 860,
+    "wires": [
+      [
+        "d2d47e7b.9669a"
+      ]
+    ]
+  },
+  {
+    "id": "106ea841.493d08",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.payload = {\n \"dialogueId\": msg.dialogue_id\n}\n\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 600,
+    "y": 1040,
+    "wires": [
+      [
+        "efa1dc11.c2951"
+      ]
+    ]
+  },
+  {
+    "id": "efa1dc11.c2951",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Link message to dialogue",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/{{{message_id}}}/link/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 830,
+    "y": 1040,
+    "wires": [
+      [
+        "f45cc962.709fc8",
+        "a02a5743.7e3598"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "53cffda.f354f04",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Connect dialogue",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/dialogue/{{{dialogue_id}}}/connect/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 830,
+    "y": 1160,
+    "wires": [
+      [
+        "226b6db5.694082",
+        "b585f24f.342cf"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "b0c8fd3d.55823",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.payload = {\n    \"uccId\": flow.get('gdp_ucc')\n}\n\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 600,
+    "y": 1160,
+    "wires": [
+      [
+        "53cffda.f354f04",
+        "3fe7de9be78ae4af"
+      ]
+    ]
+  },
+  {
+    "id": "3cc74875.9e8b08",
+    "type": "delay",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "outputs": 1,
+    "x": 830,
+    "y": 840,
+    "wires": [
+      [
+        "78ca90e8.f79be"
+      ]
+    ]
+  },
+  {
+    "id": "d2d47e7b.9669a",
+    "type": "delay",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "outputs": 1,
+    "x": 830,
+    "y": 980,
+    "wires": [
+      [
+        "106ea841.493d08"
+      ]
+    ]
+  },
+  {
+    "id": "36d519f5.d03a66",
+    "type": "delay",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "outputs": 1,
+    "x": 830,
+    "y": 1100,
+    "wires": [
+      [
+        "b0c8fd3d.55823"
+      ]
+    ]
+  },
+  {
+    "id": "c720d04.f24ec3",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1050,
+    "y": 840,
+    "wires": []
+  },
+  {
+    "id": "f45cc962.709fc8",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1030,
+    "y": 980,
+    "wires": []
+  },
+  {
+    "id": "226b6db5.694082",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1030,
+    "y": 1120,
+    "wires": []
+  },
+  {
+    "id": "2a23d86f.d78e08",
+    "type": "http in",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "",
+    "url": "/gdp/api/v1/eventhook",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 1340,
+    "y": 360,
+    "wires": [
+      [
+        "977f9ec9.340a9",
+        "6daf274f.fbc3a8",
+        "c5371de6.060a4"
+      ]
+    ]
+  },
+  {
+    "id": "872b704d.66a0c",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "94a7d999.26cf28",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/subscribe/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 1710,
+    "y": 100,
+    "wires": [
+      [
+        "59c3682e.81b938"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "b767b102.17538",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "94a7d999.26cf28",
+    "name": "Start Subscriber",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payloadType": "str",
+    "x": 1320,
+    "y": 100,
+    "wires": [
+      [
+        "3fe76432.36a08c"
+      ]
+    ]
+  },
+  {
+    "id": "3fe76432.36a08c",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "94a7d999.26cf28",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.payload = {\n    \"callbackUrl\":  flow.get('ds_url') + \"/gdp/api/v1/eventhook\"\n}\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1500,
+    "y": 100,
+    "wires": [
+      [
+        "872b704d.66a0c",
+        "59c3682e.81b938"
+      ]
+    ]
+  },
+  {
+    "id": "977f9ec9.340a9",
+    "type": "http response",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 1550,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "67a8350b.85c57c",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "94a7d999.26cf28",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/unsubscribe/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 1710,
+    "y": 180,
+    "wires": [
+      [
+        "b85974fb.e09a88"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "e0827d7f.2dec4",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "94a7d999.26cf28",
+    "name": "Stop Subscriber",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 1320,
+    "y": 180,
+    "wires": [
+      [
+        "79ba73fd.a735cc"
+      ]
+    ]
+  },
+  {
+    "id": "79ba73fd.a735cc",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "94a7d999.26cf28",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1500,
+    "y": 180,
+    "wires": [
+      [
+        "67a8350b.85c57c"
+      ]
+    ]
+  },
+  {
+    "id": "59c3682e.81b938",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "94a7d999.26cf28",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1870,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "b85974fb.e09a88",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "94a7d999.26cf28",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1870,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "6daf274f.fbc3a8",
+    "type": "switch",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "",
+    "property": "payload.type",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "Closed",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "AgentConnected",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "AgentDisconnected",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "NewMessage",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 4,
+    "x": 1550,
+    "y": 360,
+    "wires": [
+      [
+        "889030fe.76914"
+      ],
+      [
+        "f6f6eb6.748e418"
+      ],
+      [
+        "4a9a5485.b6c22c"
+      ],
+      [
+        "6ac597ea.ffbf78"
+      ]
+    ]
+  },
+  {
+    "id": "d680afd0.57261",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "7137f0d0.adc77",
+    "name": "Remove Dialogue from memory",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 410,
+    "y": 560,
+    "wires": [
+      [
+        "6b6bc4ad.1575bc"
+      ]
+    ]
+  },
+  {
+    "id": "6b6bc4ad.1575bc",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "7137f0d0.adc77",
+    "name": "",
+    "rules": [
+      {
+        "t": "delete",
+        "p": "dialogue_id",
+        "pt": "flow"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 690,
+    "y": 560,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "487ceae.8aeb114",
+    "type": "switch",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Check statusCode",
+    "property": "statusCode",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "201",
+        "vt": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1050,
+    "y": 740,
+    "wires": [
+      [
+        "99e2500f.4379f"
+      ],
+      [
+        "297c992.4b42a66"
+      ]
+    ]
+  },
+  {
+    "id": "297c992.4b42a66",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Print Error 1",
+    "func": "node.error(\"Failed, status code: \" + msg.statusCode);\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1270,
+    "y": 680,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6ac597ea.ffbf78",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.message_id = msg.payload.payload\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1740,
+    "y": 420,
+    "wires": [
+      [
+        "84326ef5.5056a"
+      ]
+    ]
+  },
+  {
+    "id": "84326ef5.5056a",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "Get message",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/{{{message_id}}}/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 1920,
+    "y": 420,
+    "wires": [
+      [
+        "74d7e94f.3752f8",
+        "d57faa84.0b2c78",
+        "c3945f684bb4b9ab"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "889030fe.76914",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "Log disconnect",
+    "func": "node.warn(\"The conversation has been closed\")\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1760,
+    "y": 280,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "f6f6eb6.748e418",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "Log agent connected",
+    "func": "node.warn(\"The Agent \" + msg.payload.payload + \" has accepted the conversation\")\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1780,
+    "y": 320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "74d7e94f.3752f8",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "Log agent send",
+    "func": "node.warn(\"The Agent has sent: \" + msg.payload.content)\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2160,
+    "y": 420,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "3d0caef9.ab6952",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "76692953.c67488",
+    "name": "Disconnect conversation",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 1710,
+    "y": 820,
+    "wires": [
+      [
+        "29d9a0e3.84fb7"
+      ]
+    ]
+  },
+  {
+    "id": "29d9a0e3.84fb7",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "76692953.c67488",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\n\n\nmsg.gdp_url = flow.get('gdp_url')\nmsg.dialogue_id = flow.get('dialogue_id')\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1940,
+    "y": 820,
+    "wires": [
+      [
+        "b531ff44.14c47"
+      ]
+    ]
+  },
+  {
+    "id": "b531ff44.14c47",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "76692953.c67488",
+    "name": "Send disconnect to GDP",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/dialogue/{{{dialogue_id}}}/disconnect/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": true,
+    "headers": [],
+    "x": 2170,
+    "y": 820,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "dfc7fe1f.49753",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "a016af31.e365e",
+    "name": "Send reply",
+    "props": [
+      {
+        "p": "message",
+        "v": "This a reply GDP message from Dialogue Studio. <b>Test</b>",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 1640,
+    "y": 620,
+    "wires": [
+      [
+        "cc64463f.067fe8"
+      ]
+    ]
+  },
+  {
+    "id": "ccaa3ba.6b956c8",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "a016af31.e365e",
+    "name": "Create a message",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 1990,
+    "y": 620,
+    "wires": [
+      [
+        "5c9e41293838a429"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "cc64463f.067fe8",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "a016af31.e365e",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.payload = {\n \"content\": msg.message,\n  \"direction\": \"Outbound\",\n  \"participants\": [\n    {\n      \"name\": flow.get('customer_name'),\n      \"role\": \"Receiver\",\n      \"uri\": flow.get('customer_uri')\n    },\n    {\n      \"name\": flow.get('receiver_name'),\n      \"role\": \"Sender\",\n      \"uri\": flow.get('receiver_uri')\n    }\n    ]\n}\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1800,
+    "y": 620,
+    "wires": [
+      [
+        "ccaa3ba.6b956c8"
+      ]
+    ]
+  },
+  {
+    "id": "5d03339f.41949c",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "a016af31.e365e",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\n\n\nmsg.payload = {\n \"dialogueId\": flow.get('dialogue_id')\n}\n\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1800,
+    "y": 680,
+    "wires": [
+      [
+        "c2f33552.12aa38"
+      ]
+    ]
+  },
+  {
+    "id": "c2f33552.12aa38",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "a016af31.e365e",
+    "name": "Link message to dialogue",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/{{{message_id}}}/link/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 2010,
+    "y": 680,
+    "wires": [
+      [
+        "39ff5390.a83aec"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "39ff5390.a83aec",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "a016af31.e365e",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 2270,
+    "y": 680,
+    "wires": []
+  },
+  {
+    "id": "103e1a8d.8daa15",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "a016af31.e365e",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "message_id",
+        "pt": "msg",
+        "to": "payload.id",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 2440,
+    "y": 620,
+    "wires": [
+      [
+        "5d03339f.41949c"
+      ]
+    ]
+  },
+  {
+    "id": "d2adf5bc.8367f8",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "31a94a9c.154a76",
+    "name": "Send reply",
+    "props": [
+      {
+        "p": "message",
+        "v": "This a new GDP message from Dialogue Studio to re-open the conversation",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 1640,
+    "y": 960,
+    "wires": [
+      [
+        "970340e7.adf21"
+      ]
+    ]
+  },
+  {
+    "id": "360cbdab.0f5d82",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "31a94a9c.154a76",
+    "name": "Create a message",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 1990,
+    "y": 960,
+    "wires": [
+      [
+        "493a39b5.dbe088"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "970340e7.adf21",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "31a94a9c.154a76",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.payload = {\n \"content\": msg.message,\n  \"direction\": \"Inbound\",\n  \"participants\": [\n    {\n      \"name\": flow.get('customer_name'),\n      \"role\": \"Sender\",\n      \"uri\": flow.get('customer_uri')\n    },\n    {\n      \"name\": flow.get('receiver_name'),\n      \"role\": \"Receiver\",\n      \"uri\": flow.get('receiver_uri')\n    }\n    ]\n}\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1800,
+    "y": 960,
+    "wires": [
+      [
+        "360cbdab.0f5d82"
+      ]
+    ]
+  },
+  {
+    "id": "7d31b1b8.ff06f",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "31a94a9c.154a76",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.dialogue_id = flow.get('dialogue_id')\n\nmsg.payload = {\n \"dialogueId\": flow.get('dialogue_id')\n}\n\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1800,
+    "y": 1020,
+    "wires": [
+      [
+        "866e82d9.319e8"
+      ]
+    ]
+  },
+  {
+    "id": "866e82d9.319e8",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "31a94a9c.154a76",
+    "name": "Link message to dialogue",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/{{{message_id}}}/link/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 2010,
+    "y": 1020,
+    "wires": [
+      [
+        "15c67fde.1c9be",
+        "4d18fa01.2c8a04"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "15c67fde.1c9be",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "31a94a9c.154a76",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 2270,
+    "y": 1020,
+    "wires": []
+  },
+  {
+    "id": "493a39b5.dbe088",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "31a94a9c.154a76",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "message_id",
+        "pt": "msg",
+        "to": "payload.id",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 2220,
+    "y": 960,
+    "wires": [
+      [
+        "7d31b1b8.ff06f"
+      ]
+    ]
+  },
+  {
+    "id": "8a14284b.313a28",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "31a94a9c.154a76",
+    "name": "Connect dialogue",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/dialogue/{{{dialogue_id}}}/connect/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 2010,
+    "y": 1080,
+    "wires": [
+      []
+    ],
+    "senderr": true
+  },
+  {
+    "id": "4d18fa01.2c8a04",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "31a94a9c.154a76",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.payload = {\n \"uccId\": flow.get('gdp_ucc')\n}\n\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1800,
+    "y": 1080,
+    "wires": [
+      [
+        "8a14284b.313a28"
+      ]
+    ]
+  },
+  {
+    "id": "4a9a5485.b6c22c",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "Log agent disconnected",
+    "func": "node.warn(\"The Agent \" + msg.payload.payload + \" has left the conversation\")\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1790,
+    "y": 360,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "229ef3e3.64b44c",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "Get Dialogue Messages",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 1700,
+    "y": 1200,
+    "wires": [
+      [
+        "776a9b87.2985a4"
+      ]
+    ]
+  },
+  {
+    "id": "96a44a7f.59bf78",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "Get Dialogue",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/dialogue/{{{dialogue_id}}}/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 2070,
+    "y": 1200,
+    "wires": [
+      [
+        "9c6e163d.ff1d58",
+        "6846f424.c15dcc"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "776a9b87.2985a4",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\n\nmsg.dialogue_id = flow.get('dialogue_id')\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1900,
+    "y": 1200,
+    "wires": [
+      [
+        "96a44a7f.59bf78"
+      ]
+    ]
+  },
+  {
+    "id": "9c6e163d.ff1d58",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 2310,
+    "y": 1200,
+    "wires": []
+  },
+  {
+    "id": "3370afdc.348b2",
+    "type": "split",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "",
+    "splt": "\\n",
+    "spltType": "str",
+    "arraySplt": 1,
+    "arraySpltType": "len",
+    "stream": false,
+    "addname": "",
+    "x": 1910,
+    "y": 1280,
+    "wires": [
+      [
+        "b8cfb265.28725"
+      ]
+    ]
+  },
+  {
+    "id": "6846f424.c15dcc",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "payload.messages",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1740,
+    "y": 1280,
+    "wires": [
+      [
+        "3370afdc.348b2"
+      ]
+    ]
+  },
+  {
+    "id": "b8cfb265.28725",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.message_id = msg.payload.id\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2080,
+    "y": 1280,
+    "wires": [
+      [
+        "88edecdb.cd90e"
+      ]
+    ]
+  },
+  {
+    "id": "88edecdb.cd90e",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "Get a message",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/{{{message_id}}}",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 2280,
+    "y": 1280,
+    "wires": [
+      [
+        "a46ee0fc.bf35d",
+        "5cd9da7b.0d7e54"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "a46ee0fc.bf35d",
+    "type": "switch",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "",
+    "property": "payload.direction",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "Inbound",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "Outbound",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2470,
+    "y": 1280,
+    "wires": [
+      [
+        "6a67098e.79ed68"
+      ],
+      [
+        "15098381.a4683c"
+      ]
+    ]
+  },
+  {
+    "id": "15098381.a4683c",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "Log agent send",
+    "func": "node.warn(\"The Agent has sent: \" + msg.payload.content)\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2640,
+    "y": 1320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6a67098e.79ed68",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "Log customer send",
+    "func": "node.warn(\"The Customer has sent: \" + msg.payload.content)\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2650,
+    "y": 1240,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "5cd9da7b.0d7e54",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "8b42dc9d.f8fdd",
+    "name": "",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 2500,
+    "y": 1220,
+    "wires": []
+  },
+  {
+    "id": "427507b2.396608",
+    "type": "comment",
+    "z": "76f62fdf.bea37",
+    "g": "94a7d999.26cf28",
+    "name": "Replace with your own Dialogue Studio URL",
+    "info": "",
+    "x": 1590,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "71d7148e.78fe9c",
+    "type": "comment",
+    "z": "76f62fdf.bea37",
+    "g": "d129907e.e7de8",
+    "name": "Replace with own Generic Dialogue Provider URL",
+    "info": "",
+    "x": 360,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "b585f24f.342cf",
+    "type": "switch",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Check statusCode",
+    "property": "statusCode",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "200",
+        "vt": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1070,
+    "y": 1160,
+    "wires": [
+      [],
+      [
+        "2069a725.a0ac58"
+      ]
+    ]
+  },
+  {
+    "id": "2069a725.a0ac58",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Print Error 4",
+    "func": "node.error(\"Failed, status code: \" + msg.statusCode);\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1290,
+    "y": 1160,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a02a5743.7e3598",
+    "type": "switch",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Check statusCode",
+    "property": "statusCode",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "200",
+        "vt": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1090,
+    "y": 1040,
+    "wires": [
+      [
+        "36d519f5.d03a66"
+      ],
+      [
+        "b5afd6ad.6e7a38"
+      ]
+    ]
+  },
+  {
+    "id": "b5afd6ad.6e7a38",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Print Error 3",
+    "func": "node.error(\"Failed, status code: \" + msg.statusCode);\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1310,
+    "y": 1040,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "cb8157a4.5c0358",
+    "type": "switch",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Check statusCode",
+    "property": "statusCode",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "201",
+        "vt": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1070,
+    "y": 900,
+    "wires": [
+      [
+        "bf014123.9914e"
+      ],
+      [
+        "db53c852.5fbeb8"
+      ]
+    ]
+  },
+  {
+    "id": "db53c852.5fbeb8",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "Print Error 2",
+    "func": "node.error(\"Failed, status code: \" + msg.statusCode);\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1290,
+    "y": 940,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "c5371de6.060a4",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1560,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "d57faa84.0b2c78",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 2120,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "686c174c.c6ae28",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "591c322d.92a9fc",
+    "name": "Add Outbound Bot message",
+    "props": [
+      {
+        "p": "message",
+        "v": "This message is from the bot.",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 1500,
+    "y": 1460,
+    "wires": [
+      [
+        "a6902e5a.bdaa8"
+      ]
+    ]
+  },
+  {
+    "id": "e3ce61a5.98ea6",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "591c322d.92a9fc",
+    "name": "Create a message",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 1910,
+    "y": 1460,
+    "wires": [
+      [
+        "a022a58.53add58"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "a6902e5a.bdaa8",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "591c322d.92a9fc",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.payload = {\n \"content\": msg.message,\n  \"direction\": \"Outbound\",\n  \"participants\": [\n    {\n      \"name\": flow.get('customer_name'),\n      \"role\": \"Receiver\",\n      \"uri\": flow.get('customer_uri')\n    },\n    {\n      \"name\": flow.get('receiver_name'),\n      \"role\": \"Sender\",\n      \"uri\": flow.get('receiver_uri')\n    }\n    ]\n}\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1720,
+    "y": 1460,
+    "wires": [
+      [
+        "e3ce61a5.98ea6"
+      ]
+    ]
+  },
+  {
+    "id": "b3cbb7ed.77e968",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "591c322d.92a9fc",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\n\n\nmsg.payload = {\n \"dialogueId\": flow.get('dialogue_id')\n}\n\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1720,
+    "y": 1520,
+    "wires": [
+      [
+        "d9126f98.bae6e"
+      ]
+    ]
+  },
+  {
+    "id": "d9126f98.bae6e",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "591c322d.92a9fc",
+    "name": "Link message to dialogue",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/{{{message_id}}}/link/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 1930,
+    "y": 1520,
+    "wires": [
+      [
+        "f8be8d24.d6018"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "f8be8d24.d6018",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "591c322d.92a9fc",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 2190,
+    "y": 1520,
+    "wires": []
+  },
+  {
+    "id": "a022a58.53add58",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "591c322d.92a9fc",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "message_id",
+        "pt": "msg",
+        "to": "payload.id",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 2140,
+    "y": 1460,
+    "wires": [
+      [
+        "b3cbb7ed.77e968"
+      ]
+    ]
+  },
+  {
+    "id": "fe7a57bedea0e617",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "a9182e72d25e0fcc",
+    "name": "Request token",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": true,
+    "headers": [],
+    "x": 840,
+    "y": 140,
+    "wires": [
+      [
+        "df8c149bb06e4f5c"
+      ]
+    ]
+  },
+  {
+    "id": "99de898ad559d7fc",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "a9182e72d25e0fcc",
+    "name": "Configure AnywhereNow Authentication request",
+    "func": "const clientId = \"\"\nconst clientSecret = \"\"\nconst url = \"https://login.acc.anywhere365.cloud/auth/realms/b14b1646-6008-ef11-9f89-6045bd96b58a/protocol/openid-connect/token\"\n\nmsg.headers = {\n  \"Content-type\": \"application/x-www-form-urlencoded\"\n};\n\nmsg.payload = {\n  \"client_id\": clientId,\n  \"grant_type\": \"client_credentials\",\n  \"client_secret\": clientSecret\n}\n\nmsg.url = url\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 560,
+    "y": 140,
+    "wires": [
+      [
+        "fe7a57bedea0e617"
+      ]
+    ]
+  },
+  {
+    "id": "7820f4d79914f730",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "a9182e72d25e0fcc",
+    "name": "Generate new token",
+    "props": [],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 270,
+    "y": 140,
+    "wires": [
+      [
+        "99de898ad559d7fc"
+      ]
+    ]
+  },
+  {
+    "id": "df8c149bb06e4f5c",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "a9182e72d25e0fcc",
+    "name": "Store Token",
+    "rules": [
+      {
+        "t": "set",
+        "p": "gdp_token",
+        "pt": "flow",
+        "to": "payload.access_token",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1030,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "3e03f1cb865450c0",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "Prepare file",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    };\n\nmsg.payload = {\n  file: {\n    value: Buffer.from('This is a dummy file content.'),\n    options: {\n      filename: 'dummyfile.txt',\n      contentType: 'text/plain'\n    }\n  }\n};\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 530,
+    "y": 1360,
+    "wires": [
+      [
+        "b44d3da14b5a40d4"
+      ]
+    ]
+  },
+  {
+    "id": "b44d3da14b5a40d4",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "Upload Attachment",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/{{{message_id}}}/attachment/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": true,
+    "headers": [],
+    "x": 730,
+    "y": 1360,
+    "wires": [
+      [
+        "297e47a1a39effb4",
+        "b92fe6dc0647b929"
+      ]
+    ]
+  },
+  {
+    "id": "868eea72eb553de9",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "Send reply",
+    "props": [
+      {
+        "p": "message",
+        "v": "This an attachment.",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 380,
+    "y": 1300,
+    "wires": [
+      [
+        "df74670da2aae344"
+      ]
+    ]
+  },
+  {
+    "id": "aa78e51fcec95530",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "Create a message",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 730,
+    "y": 1300,
+    "wires": [
+      [
+        "70cb99be0451cdb2"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "df74670da2aae344",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\nmsg.payload = {\n \"content\": msg.message,\n  \"direction\": \"Inbound\",\n  \"participants\": [\n    {\n      \"name\": flow.get('customer_name'),\n      \"role\": \"Sender\",\n      \"uri\": flow.get('customer_uri')\n    },\n    {\n      \"name\": flow.get('receiver_name'),\n      \"role\": \"Receiver\",\n      \"uri\": flow.get('receiver_uri')\n    }\n    ]\n}\n\nmsg.gdp_url = flow.get('gdp_url')\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 540,
+    "y": 1300,
+    "wires": [
+      [
+        "aa78e51fcec95530"
+      ]
+    ]
+  },
+  {
+    "id": "297e47a1a39effb4",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "",
+    "func": "msg.headers = {\n    \"Authorization\": \"Bearer \" + flow.get('gdp_token'),\n    \"Content-type\": \"application/json\"\n};\n\n\n\nmsg.payload = {\n \"dialogueId\": flow.get('dialogue_id')\n}\n\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 1420,
+    "wires": [
+      [
+        "d9c05e9c47287ecc"
+      ]
+    ]
+  },
+  {
+    "id": "d9c05e9c47287ecc",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "Link message to dialogue",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/{{{message_id}}}/link/",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 730,
+    "y": 1420,
+    "wires": [
+      [
+        "51370a29415ede4a"
+      ]
+    ],
+    "senderr": true
+  },
+  {
+    "id": "51370a29415ede4a",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 990,
+    "y": 1420,
+    "wires": []
+  },
+  {
+    "id": "70cb99be0451cdb2",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "message_id",
+        "pt": "msg",
+        "to": "payload.id",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 960,
+    "y": 1300,
+    "wires": [
+      [
+        "3e03f1cb865450c0"
+      ]
+    ]
+  },
+  {
+    "id": "b92fe6dc0647b929",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "4dc071e5d690d81d",
+    "name": "debug 7",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 960,
+    "y": 1360,
+    "wires": []
+  },
+  {
+    "id": "965f9c9bbc31e0cc",
+    "type": "inject",
+    "z": "76f62fdf.bea37",
+    "g": "a9182e72d25e0fcc",
+    "name": "Inject Token manually",
+    "props": [
+      {
+        "p": "payload.access_token",
+        "v": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwNWhjS19HMmNwcjZCenQxU1VkdG95a3N4V1dYa1JUS3JidlBQZEdKXzljIn0.eyJleHAiOjE3NTM3OTIzMjEsImlhdCI6MTc1Mzc5MjAyMSwianRpIjoiMzgzOWZkZmYtMzk1ZS00YzE1LWEyNDctOTE5ZmRkYzQwZjRmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL0dEUCIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIyMzYzMTYxMi1jNjQ0LTRmYmMtYjUwYS0zZTBhYTcwOGJiMzUiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJnZHAiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJkZWZhdWx0LXJvbGVzLWdkcCJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImdkcCI6eyJyb2xlcyI6WyJ1bWFfcHJvdGVjdGlvbiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiY2xpZW50SWQiOiJnZHAiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImNsaWVudEhvc3QiOiIxNzIuMTcuMC4xIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LWdkcCIsImNsaWVudEFkZHJlc3MiOiIxNzIuMTcuMC4xIn0.OKIAHwOWEPUn_4lda5PszUEBG6txkvsI3relaXMQ_izYgMWla_W0j0a2m-NA5dajRTy2NRjrCyOA4dSfPZeF1caXXBM1cw9ZbyTyZaVS2Ocr2HB3naUqXWggEfDCF4ee_0kufpNnzfCZJu4j8DiCmGflI48BCBt0AfqSx3veoB9wRPERzzc_74KrDJCZykG4dHfFdiSvoGUD6OhqYWFQJH15MtbvKCXJw1kfdnMSl7aSarriqpQi8J-huMlnBf9CF00Yec3jTctVnaNz86EfbTQPgw91RncIWqIj8uaOYd8X88xYMRr2bFsAUCfPinfMz3jxpBGXr6_b2N_rZTHQXA",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 840,
+    "y": 100,
+    "wires": [
+      [
+        "df8c149bb06e4f5c"
+      ]
+    ]
+  },
+  {
+    "id": "0dc45e684808a7ab",
+    "type": "comment",
+    "z": "76f62fdf.bea37",
+    "g": "a9182e72d25e0fcc",
+    "name": "ToDo: Enter AnywhereNow Authentication information",
+    "info": "",
+    "x": 320,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "c8dc64d581e0c450",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "d129907e.e7de8",
+    "name": "Configure settings for flow variables",
+    "func": "// Prefer environment variables, fall back to sample defaults\nconst gdpUrl = env.get(\"GDP_URL\") || \"https://app22web.anywhere365.net/GenericDialogueProvider\";\nconst gdpUCC = env.get(\"GDP_UCC\") || \"ucc_michael\";\nconst dsUrl  = env.get(\"DS_PUBLIC_URL\") || \"https://{your-instance}.dialogue.studio\";\n\n// define your participants\nvar customerName = env.get(\"GDP_CUSTOMER_NAME\") || \"Road RM Runner\";\nvar customerUri  = env.get(\"GDP_CUSTOMER_URI\")  || \"road.runner.rm@outlook.com\";\nvar receiverName = env.get(\"GDP_RECEIVER_NAME\") || \"GDP\";\nvar receiverUri  = env.get(\"GDP_RECEIVER_URI\")  || \"gdp@anywhere365.net\";\n\n// store into flow context\nflow.set(\"customer_name\", customerName);\nflow.set(\"customer_uri\", customerUri);\nflow.set(\"receiver_name\", receiverName);\nflow.set(\"receiver_uri\", receiverUri);\n\nflow.set('gdp_url', gdpUrl);\nflow.set('gdp_ucc', gdpUCC);\nflow.set('ds_url', dsUrl);\n\nnode.status({text:`gdp_url=${gdpUrl} ucc=${gdpUCC}`});\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 620,
+    "y": 300,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "5c9e41293838a429",
+    "type": "switch",
+    "z": "76f62fdf.bea37",
+    "g": "a016af31.e365e",
+    "name": "Check statusCode",
+    "property": "statusCode",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "201",
+        "vt": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2190,
+    "y": 620,
+    "wires": [
+      [
+        "103e1a8d.8daa15"
+      ],
+      [
+        "513729da3d43712e"
+      ]
+    ]
+  },
+  {
+    "id": "513729da3d43712e",
+    "type": "function",
+    "z": "76f62fdf.bea37",
+    "g": "a016af31.e365e",
+    "name": "Print Error 5",
+    "func": "node.error(\"Failed, status code: \" + msg.statusCode);\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2410,
+    "y": 580,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "3fe7de9be78ae4af",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "ada05902.000618",
+    "name": "debug 9",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 640,
+    "y": 1100,
+    "wires": []
+  },
+  {
+    "id": "c3945f684bb4b9ab",
+    "type": "switch",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "",
+    "property": "payload.attachments[0]",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 2120,
+    "y": 300,
+    "wires": [
+      [
+        "f14e6adb0c3b6738"
+      ]
+    ]
+  },
+  {
+    "id": "f14e6adb0c3b6738",
+    "type": "change",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "attachment_id",
+        "pt": "msg",
+        "to": "payload.attachments[0].id",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 2300,
+    "y": 300,
+    "wires": [
+      [
+        "ffe283fdde726a91"
+      ]
+    ]
+  },
+  {
+    "id": "ffe283fdde726a91",
+    "type": "http request",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "Get attachment",
+    "method": "GET",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "{{{gdp_url}}}/api/v1/message/{{{message_id}}}/attachment/{{{attachment_id}}}",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": true,
+    "headers": [],
+    "x": 2500,
+    "y": 300,
+    "wires": [
+      [
+        "681af55c90d429f5"
+      ]
+    ]
+  },
+  {
+    "id": "681af55c90d429f5",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "debug 69",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 2500,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "0185af22b1da1473",
+    "type": "debug",
+    "z": "76f62fdf.bea37",
+    "g": "ce76da04.1baa78",
+    "name": "debug 70",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 2070,
+    "y": 240,
+    "wires": []
+  }
+]
